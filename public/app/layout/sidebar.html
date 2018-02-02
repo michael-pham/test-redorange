@@ -1,0 +1,98 @@
+<div data-cc-sidebar when-done-animating="vm.sidebarReady()" data-ng-controller="Sidebar as vm" class="sidebar-wrapper">
+   <div class="sidebar-content desktop" ng-scrollbars ng-scrollbars-config="vm.config">
+       <div id="toggle-sidebar">
+           <div></div>
+           <div></div>
+           <div></div>
+       </div>
+      <div class="sidebar-brand">
+         <a data-ng-click="vm.logout()">
+           <img src="./app/assets/img/brand-logo.png">
+           KIOSK MACHINE
+         </a>
+      </div>
+      <div class="sidebar-header">
+         <div class="user-pic">
+            <img class="img-responsive img-rounded" src="app/assets/img/user.jpg" alt="User picture">
+         </div>
+         <div class="user-info">
+            <span class="user-name"><strong>{{user.name}}</strong></span>
+            <span class="user-role">{{user.roles[0].display_name}}</span>
+            <span class="user-status">
+               <i class="fa fa-circle"></i><span>Online</span>
+            </span>
+         </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+         <div>
+            <div class="input-group">
+               <input type="text" class="form-control search-menu" placeholder="Search for...">
+               <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            </div>
+         </div>
+      </div>
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu">
+         <ul>
+            <li class="header-menu"><span>VĂN BẢN</span></li>
+            <li><a href="#/van_bans"><i class="fa fa-connectdevelop"></i><span>Văn bản</span></a></li>
+            <li class="sidebar-dropdown">
+               <a class="button">
+                 <i class="fa fa-paperclip"></i><span>Danh mục</span>
+               </a>
+               <div class="sidebar-submenu">
+                  <ul>
+                    <li><a href="#/co_quan_ban_hanhs" ng-click="vm.goToPage('/co_quan_ban_hanhs')"><span>Cơ quan ban hành</span></a></li>
+                    <li><a href="#/tinh_trang_van_bans" ng-click="vm.goToPage('/tinh_trang_van_bans')"></i><span>Tình trạng văn bản</span></a></li>
+                    <li><a href="#/nganhs" ng-click="vm.goToPage('/nganhs')"><span>Ngành</span></a></li>
+                    <li><a href="#/linh_vuc_van_bans" ng-click="vm.goToPage('/linh_vuc_van_bans')"><span>Lĩnh vực văn bản</span></a></li>
+                    <li><a href="#/loai_van_bans" ng-click="vm.goToPage('/loai_van_bans')"></i><span>Loại văn bản</span></a></li>
+                    <li><a href="#/pham_vi_van_bans" ng-click="vm.goToPage('/pham_vi_van_bans')"><span>Phạm vi văn bản</span></a></li>
+                  </ul>
+               </div>
+            </li>
+            <li class="header-menu"><span>CHỨNG TỪ</span></li>
+            <li><a href="#/du_lieu_dang_kys"><i class="fa fa-database"></i><span>Dữ liệu đăng ký</span></a></li>
+            <li class="sidebar-dropdown">
+              <a class="button"><i class="fa fa-codepen"></i><span>Thiết kế </span></a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li><a href="#/bieu_mau_chung_tus" ng-click="vm.goToPage('/bieu_mau_chung_tus')"></i><span>Biểu mẫu chứng từ</span></a></li>
+                  <li><a href="#/may_ins" ng-click="vm.goToPage('/may_ins')"></i><span>Máy in</span></a></li>
+                  <li><a href="#/page_sizes" ng-click="vm.goToPage('/page_sizes')"></i><span>Loại giấy</span></a></li>
+                  <li><a href="#/font_familys" ng-click="vm.goToPage('/font_familys')"></i><span>Font chữ</span></a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="header-menu"><span>HỆ THỐNG</span></li>
+            <li class="sidebar-dropdown">
+              <a class="button"><i class="fa fa-users"></i><span>Phân quyền</span></a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#/users" ng-click="vm.goToPage('/users')">
+                      <span>Người sử dụng</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#/roles" ng-click="vm.goToPage('/roles')">
+                      <span>Vai trò</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#/permssions" ng-click="vm.goToPage('/permissions')">
+                      <span>Quyền sử dụng</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="sidebar-footer">
+      <a class="button" ng-click="logout()"><i class="fa fa-power-off"></i> Đăng xuất</a>
+   </div>
+</div>

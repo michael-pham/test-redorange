@@ -1,0 +1,56 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="header">
+        <div class="row">
+          <div class="col-md-3">
+            <h5 style="text-transform: uppercase;" class="title col">Danh sách quyền</h5>
+          </div>
+          <div class="col-md-2 pull-right">
+            <a data-ng-click="permissionCrud.openCreateForm('md')" class="btn btn-sm pull-right my-shadown">
+              <i class="fa fa-plus"></i>
+              Thêm quyền
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+            <th>STT</th>
+            <th>Tên quyền</th>
+            <th>Tên hiển thị</th>
+            <th>Mô tả</th>
+            <th>Khởi tạo</th>
+            <th>Cập nhật</th>
+            <th>Tác vụ</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="(key, permission) in permissions | filter:searchText">
+              <td>{{key + 1}}</td>
+              <td>{{permission.name}}</td>
+              <td>{{permission.display_name}}</td>
+              <td>{{permission.description}}</td>
+              <td>{{permission.created_at}}</td>
+              <td>{{permission.updated_at}}</td>
+              <td class="col-md-2">
+                <div class="row">
+                  <div class="col-md-6">
+                    <a ng-click="openUpdateForm(permission.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                  </div>
+                  <div class="col-md-6">
+                    <a ng-click="permissionCrud.deleteModel(permission.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa quyền">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

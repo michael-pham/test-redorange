@@ -1,0 +1,30 @@
+<div data-ng-controller="Shell as vm">
+    <div id="splash-page" data-ng-show="vm.showSplash">
+      <div class="page-splash">
+        <div class="loader">
+          <div class="inner one"></div>
+          <div class="inner two"></div>
+          <div class="inner three"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page-wrapper chiller-theme toggled" data-ng-class="{'toggled': !isLoginPage}">
+        <div data-ng-if="!isLoginPage" data-ng-include="'app/layout/sidebar.html'"></div>
+        <main class="page-content">
+          <div data-ng-hide="isLoginPage" data-ng-include="'app/layout/topnav.html'"></div>
+          <div data-ng-view class="shuffle-animation"></div>
+        </main>
+    </div>
+    <!-- <div ngplus-overlay
+         ngplus-overlay-delay-in="50"
+         ngplus-overlay-delay-out="700"
+         ngplus-overlay-animation="dissolve-animation">
+         <div class="page-splash">
+            <div class="loader">
+              <div class="inner one"></div>
+              <div class="inner two"></div>
+              <div class="inner three"></div>
+            </div>
+          </div>
+    </div> -->
+</div>

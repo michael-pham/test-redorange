@@ -1,0 +1,79 @@
+(function() {
+  'use strict';
+
+  angular
+    .module('app.authentication')
+    .factory('authservice', authservice);
+
+  /* @ngInject */
+  authservice.$inject = ['$localStorage', '$http', '$location', '$q', 'exception'];
+  function authservice($localStorage, $http, $location, $q, exception) {
+
+    var service = {
+      login: login,
+      logout: logout,
+      isLoggedIn: isLoggedIn,
+      getUser: getUser,
+      // getRoles: getRoles
+    }
+
+    return service;
+
+    function login(email, password, callback) {
+      return $http.post('/login', {email: email, password: password})
+        .then(loginComplete)
+        .catch(function(message) {
+          exception.catcher('XHR Failed for logging')(message);
+          return $q.reject(message);
+        });
+
+      function loginComplete(response) {
+        if (response.data.access_token) {
+          $localStorage.user = {access_token: response.data.access_token};
+
+          $http.defaults.headers.common.Authorization =
+            'Bearer ' + response.data.access_token;
+        } else {
+           return $q.reject("Error occurs");
+        }
+
+        return $http.get("/users/" + response.data.user_id
+          + "?includes[]=roles").then(function(successResponse) {
+            $localStorage.user.name = successResponse.data.user.name;
+            $localStorage.user.roles = successResponse.data.user.roles;
+            return $localStorage.user;
+        }).catch(function(message) {
+          exception.catcher('XHR Failed for getting user info')(message);
+          return $q.reject(message);
+        });
+      }
+    }
+
+    function logout() {
+      return $http.post('/logout').then(logoutComplete).catch(function(message) {
+        exception.catcher('Đăng xuất thất bại.')(message);
+        $location.url('/');
+      });
+
+      function logoutComplete(response) {
+        delete $localStorage.user;
+        $http.defaults.headers.common.Authorization = '';
+        $location.url('/');
+        return response.data;
+      }
+    }
+
+    function isLoggedIn() {
+      if ($localStorage.user) {
+        $http.defaults.headers.common.Authorization =
+        'Bearer ' + $localStorage.user.access_token;
+        return true;
+      }
+    }
+
+    function getUser() {
+      return $localStorage.user || {}
+    }
+  };
+
+})();

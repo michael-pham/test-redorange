@@ -1,0 +1,62 @@
+initViDuModel: function(viDuId) {
+    if (viDuId == "") {
+    return {
+        "GETS": {
+        "url": "http:///vi_dus",
+        "respName": "viDus",
+        "data": {
+        },
+        "successMsg": "Get viDu thanh cong",
+        "errorMsg": "Get viDu loi",
+        }
+    }
+    } else {
+    return {
+        "GETS": {
+        "url": "http:///vi_dus",
+        "respName": "viDus",
+        "data": {
+        },
+        "successMsg": "Get viDu thanh cong",
+        "errorMsg": "Get viDu loi",
+        },
+        "GET": {
+        "url": "http:///vi_dus/" + viDuId,
+        "respName": "viDu",
+        "data": {
+        },
+        "successMsg": "Get viDu thanh cong",
+        "errorMsg": "Get viDu loi",
+        },
+        "viDu": {
+        "url": "http:///vi_dus/",
+        "respName": "viDu",
+        "data": {
+            "title": "",
+            "brief": "",
+            "body": "",
+        },
+        "successMsg": "Get viDu thanh cong",
+        "errorMsg": "Get viDu loi",
+        },
+        "PUT": {
+        "url": "http:///vi_dus/" + viDuId,
+        "respName": "viDus",
+        "data": {
+        },
+        "successMsg": "Get viDu thanh cong",
+        "errorMsg": "Get viDu loi",
+        },
+        "DELETE": {
+        "url": "http:///vi_dus/" + viDuId,
+        "respName": "viDus",
+        "titleSAlert": "Xóa ",
+        "textSAlert": "Lưu ý dữ liệu sẽ bị xóa vĩnh viễn khỏi hệ thống.",
+        "data": {
+        },
+        "successMsg": "Get viDu thanh cong",
+        "errorMsg": "Get viDu loi",
+        },
+    }
+    }
+},

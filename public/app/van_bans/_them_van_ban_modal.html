@@ -1,0 +1,149 @@
+<div>
+  <div class="card" style="border: none !important; box-shadow: 0px 0px 0px 0px white !important; padding: 25px 30px 10px 28px;">
+    <div class="header">
+      <h4 class="title text-uppercase">Thêm mới văn bản</h4>
+    </div>
+    <div class="content">
+      <div class="alert alert-danger" ng-show="errMsg">
+        <span>{{ errMsg }}</span>
+      </div>
+      <form>
+        <!-- "ten","","","uri","","ngay_ban_hanh","ngay_co_hieu_luc","","","","","","ngay_het_hieu_luc","","","" -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Tên văn bản</label>
+              <input ng-model="newVanBan.ten" type="text" class="form-control"></input>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Số ký hiệu</label>
+              <input ng-model="newVanBan.so_ky_hieu" type="text" class="form-control"></input>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group"> <!-- Date input -->
+              <label class="control-label" for="date">Ngày ban hành</label>
+              <div class="datepicker" date-format="yyyy-MM-dd" selector="form-control">
+                <input class="form-control" ng-model="newVanBan.ngay_ban_hanh" type="text"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group"> <!-- Date input -->
+              <label class="control-label" for="date">Ngày có hiệu lực</label>
+              <div class="datepicker" date-format="yyyy-MM-dd" selector="form-control">
+                <input class="form-control" ng-model="newVanBan.ngay_co_hieu_luc" type="text"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group"> <!-- Date input -->
+              <label class="control-label" for="date">Ngày hết hiệu lực</label>
+              <div class="datepicker" date-format="yyyy-MM-dd" selector="form-control">
+                <input class="form-control" ng-model="newVanBan.ngay_het_hieu_luc" type="text"/>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-2">
+            <div class="form-group">
+              <label class="control-label">Còn hiệu lực</label>
+                <input class="form-control" type="radio" name="optradio">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="control-label">Hết hiệu lực</label>
+                <input class="form-control" type="radio" name="optradio">
+            </div>
+          </div> -->
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Số lượng bản in cho phép</label>
+              <input ng-model="newVanBan.so_luong_bang_in_cho_phep" type="numeric" class="form-control"></input>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Loại văn bản</label>
+              <select class="form-control" ng-model="newVanBan.loai_van_ban_id"
+                       ng-options="loaiVanBan.id as loaiVanBan.ten for loaiVanBan in loaiVanBans">
+                <option value=""></option>
+              </select>
+             </div>
+           </div>
+           <div class="col-md-4">
+             <div class="form-group">
+               <label>Tình trạng văn bản</label>
+               <select class="form-control" ng-model="newVanBan.tinh_trang_van_ban_id"
+                        ng-options="tinhTrangVanban.id as tinhTrangVanban.ten for tinhTrangVanban in tinhTrangVanBans">
+                 <option value=""></option>
+               </select>
+              </div>
+            </div>
+         </div>
+         <div class="row">
+           <div class="col-md-4">
+             <div class="form-group">
+               <label>Cơ quan ban hành</label>
+               <select class="form-control" ng-model="newVanBan.co_quan_ban_hanh_id"
+                ng-options="coQuanBanHanh.id as coQuanBanHanh.ten_viet_tat for coQuanBanHanh in coQuanBanHanhs">
+                <option value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Phạm vi văn bản</label>
+                <select class="form-control" ng-model="newVanBan.pham_vi_van_ban_id"
+                         ng-options="phamViVanBan.id as phamViVanBan.ten for phamViVanBan in phamViVanBans">
+                  <option value=""></option>
+                </select>
+               </div>
+             </div>
+             <div class="col-md-4">
+               <div class="form-group">
+                 <label>Lĩnh vực văn bản</label>
+                 <select class="form-control" ng-model="newVanBan.linh_vuc_van_ban_id"
+                          ng-options="linhVucVanBan.id as linhVucVanBan.ten for linhVucVanBan in linhVucVanBans">
+                   <option value=""></option>
+                 </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                 <label>Tải file (pdf)</label>
+                 <input class="form-control-file btn btn-fill" type="file" ngf-select ng-model="fileVanBan.pdfFile" name="file"
+                   accept="application/pdf" ngf-max-size="5MB"
+                     ngf-model-invalid="errorFile">
+                 <i ng-show="fileVanBan.file.$error.required">*required</i><br>
+                 <i ng-show="fileVanBan.file.$error.maxSize">File too large
+                   {{errorFile.size / 1000000|number:5}}MB: max 1M</i>
+               </div>
+             </div>
+             <button class="btn btn-fill btn-danger" ng-click="fileVanBan.pdfFile = null" ng-show="fileVanBan.pdfFile">Xóa</button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Mô tả</label>
+              <textarea rows="5" ng-model="newVanBan.mo_ta" type="text" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-6">
+            <button ng-click="submitCreateForm(newVanBan, fileVanBan.pdfFile)" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>
+            <button style="margin-right: 0.5rem" ng-click="vanBanCrud.dismissCreateForm()" class="btn btn-fill col-md-4 pull-right">Trở lại</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{
+    "name": "optimus/heimdal",
+    "autoload": {
+        "psr-4": {
+            "Optimus\\Heimdal\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "tests/helpers.php"
+        ]
+    },
+    "require": {
+        "laravel/framework": "~5.3"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "orchestra/testbench": "~3.1",
+        "phpunit/phpunit": "~4.7",
+        "satooshi/php-coveralls": "dev-master@dev",
+        "bugsnag/bugsnag-laravel": "^2.0"
+    },
+    "suggest": {
+        "asm89/stack-cors": "Needed to add CORS headers if add_cors_headers configuration is true",
+        "sentry/sentry": "Needed to report exceptions to Sentry.io"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "MIT"
+}

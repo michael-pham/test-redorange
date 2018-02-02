@@ -1,0 +1,20 @@
+<div class="login-page" id="particles-js">
+  <div class="login-page">
+    <div class="login-wrapper">
+      <form class="login">
+        <p class="title">ĐĂNG NHẬP</p>
+        <div class="alert alert-danger" ng-show="err_msg">
+          <span>{{ err_msg }}</span>
+        </div>
+        <input type="text" placeholder="Email" autofocus ng-model="vm.email"/>
+        <i class="fa fa-user"></i>
+        <input type="password" placeholder="Mật khẩu" ng-model="vm.password"/>
+        <i class="fa fa-key"></i>
+        <button ng-click="vm.login()">
+          <i ng-if="loading"></i>
+          <span class="state">Đăng nhập</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

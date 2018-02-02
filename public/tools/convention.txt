@@ -1,0 +1,5 @@
+# Angularjs naming convention
+Module name:
+  - camel case with the first character in lowercase
+Controller name:
+  - camel case with the first character in uppercase
