@@ -222,5 +222,12 @@
     <script src="/app/font_familys/font_familys.js"></script>
     <script src="/app/font_familys/font_family_model.js"></script>
     <!-- endinject -->
+
+    <!-- projects -->
+    <script src="/app/projects/projects.module.js"></script>
+    <script src="/app/projects/config.route.js"></script>
+    <script src="/app/projects/projects.js"></script>
+    <script src="/app/projects/project_model.js"></script>
+    <!-- endinject -->
 </body>
 </html>

@@ -37,6 +37,7 @@
         'app.users',
         'app.permissions',
         'app.roles',
-        'app.fontFamilys'
+        'app.fontFamilys',
+        'app.projects'
     ]);
 })();

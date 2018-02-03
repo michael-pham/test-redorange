@@ -4,12 +4,12 @@
       <div class="header">
         <div class="row">
           <div class="col-md-3">
-            <h5 style="text-transform: uppercase;" class="title col">Danh sách máy in</h5>
+            <h5 style="text-transform: uppercase;" class="title col">Danh sách model name</h5>
           </div>
           <div class="col-md-2 pull-right">
-            <a data-ng-click="mayInCrud.openCreateForm('md')" class="btn btn-sm pull-right my-shadown">
+            <a data-ng-click="modelNameCrud.openCreateForm('md')" class="btn btn-sm pull-right my-shadown">
               <i class="fa fa-plus"></i>
-              Thêm máy in
+              Thêm model name
             </a>
           </div>
         </div>
@@ -19,30 +19,30 @@
           <thead>
 <!-- start_table_headers -->
 <!-- REPLACEMENT -->
-<th>Tên máy in</th>
+<th>Tên model name</th>
 <!-- end_table_headers -->
             <th>Khởi tạo</th>
             <th>Cập nhật</th>
             <th>Tác vụ</th>
           </thead>
           <tbody>
-            <tr ng-repeat="(key, mayIn) in mayIns | filter:searchText">
+            <tr ng-repeat="(key, modelName) in modelNames | filter:searchText">
               <!-- start_table_data -->
               <!-- REPLACEMENT -->
-              <td>{{mayIn.ten}}</td>
+              <td>{{modelName.ten}}</td>
               <!-- end_table_data -->
 
-              <td>{{mayIn.created_at}}</td>
-              <td>{{mayIn.updated_at}}</td>
+              <td>{{modelName.created_at}}</td>
+              <td>{{modelName.updated_at}}</td>
               <td class="col-md-2">
                 <div class="row">
                   <div class="col-md-6">
-                    <a ng-click="openUpdateForm(mayIn.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                    <a ng-click="openUpdateForm(modelName.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </div>
                   <div class="col-md-6">
-                    <a ng-click="mayInCrud.deleteModel(mayIn.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa máy in">
+                    <a ng-click="modelNameCrud.deleteModel(modelName.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa model name">
                       <i class="fa fa-close"></i>
                     </a>
                   </div>

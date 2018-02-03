@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.mayIns')
+        .module('app.modelSpecifiers')
         .run(appRun);
 
     /* @ngInject */
@@ -14,15 +14,15 @@
     function getRoutes() {
         return [
             {
-                url: '/may_ins',
+                url: '/model_specifiers',
                 config: {
-                    templateUrl: 'app/may_ins/may_ins.html',
-                    controller: 'MayIns',
+                    templateUrl: 'app/model_specifiers/model_specifiers.html',
+                    controller: 'ModelSpecifiers',
                     controllerAs: 'vm',
                     title: 'Máy in',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-lock"></i> may_in'
+                        content: '<i class="fa fa-lock"></i> model_specifier'
                     }
                 }
             }
