@@ -42,11 +42,19 @@ CREATE_FORM_INPUTS_MARKER = "{{create_modal_inputs}}"
 
 
 # Common
+INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 INPUT_NAME_MARKER = "{{input_name}}"
 INPUT_LABEL_MARKER = "{{input_label}}"
+INPUT_VALIDATION_MARKER = "{{input_validation}}"
+INPUT_VALIDATION_NGMESSAGES_MARKER = "{{input_validation_ngmessages}}"
+
+CREATE_FORM = 'create form'
+UPDATEE_FORM = 'update form'
+CREATE_FORM_MODEL_NAME_PREFIX = "new"
+UPDATE_FORM_MODEL_NAME_PREFIX = "old"
 
 # Text input
-TEXT_INPUT_TPL = 'text_input.html'
+TEXT_INPUT_TPL = './ui_components/text_input.html'
 TEXT_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 TEXT_INPUT_LABEL_MARKER = "{{input_label}}"
 TEXT_INPUT_NAME_MARKER = "{{input_name}}"
@@ -54,7 +62,7 @@ TEXT_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 TEXT_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Numeric input
-NUMERIC_INPUT_TPL = 'numeric_input.html'
+NUMERIC_INPUT_TPL = './ui_components/numeric_input.html'
 NUMERIC_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 NUMERIC_INPUT_LABEL_MARKER = "{{input_label}}"
 NUMERIC_INPUT_NAME_MARKER = "{{input_name}}"
@@ -62,7 +70,7 @@ NUMERIC_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 NUMERIC_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Checkbox input
-CHECKBOX_INPUT_TPL = 'checkbox_input.html'
+CHECKBOX_INPUT_TPL = './ui_components/checkbox_input.html'
 CHECKBOX_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 CHECKBOX_INPUT_LABEL_MARKER = "{{input_label}}"
 CHECKBOX_INPUT_NAME_MARKER = "{{input_name}}"
@@ -70,7 +78,7 @@ CHECKBOX_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 CHECKBOX_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Datalist input
-DATALIST_INPUT_TPL = 'datalist_input.html'
+DATALIST_INPUT_TPL = './ui_components/datalist_input.html'
 DATALIST_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 DATALIST_INPUT_LABEL_MARKER = "{{input_label}}"
 DATALIST_INPUT_NAME_MARKER = "{{input_name}}"
@@ -78,7 +86,7 @@ DATALIST_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 DATALIST_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Radio input
-RADIO_INPUT_TPL = 'radio_input.html'
+RADIO_INPUT_TPL = './ui_components/radio_input.html'
 RADIO_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 RADIO_INPUT_LABEL_MARKER = "{{input_label}}"
 RADIO_INPUT_NAME_MARKER = "{{input_name}}"
@@ -86,7 +94,7 @@ RADIO_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 RADIO_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Date input
-DATE_INPUT_TPL = 'date_input.html'
+DATE_INPUT_TPL = './ui_components/date_input.html'
 DATE_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 DATE_INPUT_LABEL_MARKER = "{{input_label}}"
 DATE_INPUT_NAME_MARKER = "{{input_name}}"
@@ -94,15 +102,15 @@ DATE_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 DATE_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Textarea input
-TEXTAREA_INPUT_TPL = 'textarea_input.html'
+TEXTAREA_INPUT_TPL = './ui_components/textarea_input.html'
 TEXTAREA_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 TEXTAREA_INPUT_LABEL_MARKER = "{{input_label}}"
 TEXTAREA_INPUT_NAME_MARKER = "{{input_name}}"
 TEXTAREA_INPUT_VALIDATION_MARKER = "{{input_validation}}"
-TEXTAREA_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"Text
+TEXTAREA_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Selection input
-SELECTION_INPUT_TPL = 'selection_input.html'
+SELECTION_INPUT_TPL = './ui_components/selection_input.html'
 SELECTION_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 SELECTION_INPUT_LABEL_MARKER = "{{input_label}}"
 SELECTION_INPUT_NAME_MARKER = "{{input_name}}"
@@ -110,17 +118,17 @@ SELECTION_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 SELECTION_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # ngmessages for validations
-MAX_NGMESSSAGE_TPL = './ui_components/max_ngmessage.html'
-MAX_NGMESSSAGE_VALUE = '{{max_ngmessage_value}}'
+MAX_NGMESSAGE_TPL = './ui_components/max_ngmessage.html'
+MAX_NGMESSAGE_VALUE_MARKER = '{{max_ngmessage_value}}'
 
-MIN_NGMESSSAGE_TPL = './ui_components/min_ngmessage.html'
-MIN_NGMESSSAGE_VALUE = '{{min_ngmessage_value}}'
+MIN_NGMESSAGE_TPL = './ui_components/min_ngmessage.html'
+MIN_NGMESSAGE_VALUE_MARKER = '{{min_ngmessage_value}}'
 
-NUMERIC_NGMESSSAGE_TPL = './ui_components/numeric_ngmessage.html'
+NUMERIC_NGMESSAGE_TPL = './ui_components/numeric_ngmessage.html'
 
-PATTERN_NGMESSSAGE_TPL = './ui_components/pattern_ngmessage.html'
-PATTERN_NGMESSAGE_VALUE = '{{pattern_ngmessage_value}}'
+PATTERN_NGMESSAGE_TPL = './ui_components/pattern_ngmessage.html'
+PATTERN_NGMESSAGE_VALUE_MARKER = '{{pattern_ngmessage_value}}'
 
-REQUIRED_NGMESSSAGE_TPL = './ui_components/required_ngmessage.html'
+REQUIRED_NGMESSAGE_TPL = './ui_components/required_ngmessage.html'
 
-EMAIL_NGMESSSAGE_TPL = './ui_components/email_ngmessage.html
+EMAIL_NGMESSAGE_TPL = './ui_components/email_ngmessage.html'
