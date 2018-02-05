@@ -1,51 +1,66 @@
-# Copy function
-import shutil, errno
-def copy(src, dst):
-    try:
-        if os.path.exists(dst):
-            # return
-            shutil.rmtree(dst)
-        shutil.copytree(src, dst)
-    except OSError as exc: # python >2.5
-        if exc.errno == errno.ENOTDIR:
-            shutil.copy(src, dst)
-        else: raise
+from codegen_consts import *
 
-from codepen_consts import *
+def ng_messages(ngmessage_tpl, render_markers, code_contents):
+    with open(ngmessage_tpl, 'r') as file :
+      file_data = file.read()
 
+    for render_marker in render_markers:
+        file_data = file_data.replace(render_marker, \
+            code_contents[render_marker])
 
+    return file_data
 
-def input_validation(constraints):
+def input_validation(input_label, constraints):
     ngmessages = ""
     validation = ""
-
-    {"max":"500","min":"","pattern":"","required":"true","nullable":"","numeric":"","unique":"","email":""}
 
     max_constraint = constraints[MAX_KEY]
     if int(max_constraint) > 0:
         validation += "ng-maxlength='" + max_constraint + "' "
-        ngmessages += ""
+        render_markers = [INPUT_LABEL, MAX_NGMESSSAGE_VALUE]
+        code_contents = {INPUT_LABEL: input_label, MAX_NGMESSAGE_VALUE:  max_constraint}
+        ngmessages += ng_messages(MAX_NGMESSSAGE_TPL, render_markers,
+            code_contents)
 
     min_constraint = constraints[MIN_KEY]
     if int(min_constraint) > 0:
         validation += "ng-minlength='" + min_constraint + "' "
             min_constraint = constraints[MIN_KEY]
+        render_markers = [INPUT_LABEL, MIN_NGMESSSAGE_VALUE]
+        code_contents = {INPUT_LABEL: input_label, MIN_NGMESSAGE_VALUE: min_constraint}
+        ngmessages += ng_messages(MIN_NGMESSSAGE_TPL, render_markers,
+            code_contents)
 
     pattern_constraint = constraints[PATTERN_KEY]
+    pattern_message = constraints[PATTERN_MESSAGE_KEY]
     if pattern_constraint is not "":
         validation += "ng-pattern='" + pattern_constraint + "' "
+        render_markers = [INPUT_LABEL, PATTERN_NGMESSAGE_VALUE]
+        code_contents = {INPUT_LABEL: input_label, PATTERN_NGMESSAGE_VALUE: pattern_message}
+        ngmessages += ng_messages(PATTERN_NGMESSSAGE_TPL, render_markers,
+            code_contents)
 
     required_constraint = constraints[REQUIRED_KEY]
     if required_constraint is "True":
         validaton += "required" + " "
+        render_markers = [INPUT_LABEL]
+        code_contents = {INPUT_LABEL: input_label}
+        ngmessages += ng_messages(PATTERN_NGMESSSAGE_TPL, render_markers,
+            code_contents)
 
     numeric_constraint = constraints[NUMERIC_KEY]
     if numeric_constaint is "True":
-        ng-messages += ""
+        render_markers = [INPUT_LABEL]
+        code_contents = {INPUT_LABEL: input_label}
+        ngmessages += ng_messages(NUMERIC_NGMESSSAGE_TPL, render_markers,
+            code_contents)
 
     email_constraint = constraints[EMAIL_KEY]
     if email_constraint is "True":
-        ngmessages +=""
+        render_markers = []
+        code_contents = {}
+        ngmessages += ng_messages(EMAIL_NGMESSSAGE_TPL, render_markers,
+            code_contents)
 
     return [ngmessages, validation]
 
@@ -63,7 +78,6 @@ def text_input(form_model_name, attribute):
     code_contents[INPUT_NAME_MARKER] = attribute[NAME_KEY]
 
     constraints = attribute[CONSTRAINTS_KEY]
-
 
     # # Properties of the current model
     # current_model_name = model[NAME_KEY]

@@ -8,6 +8,7 @@ CONSTRAINTS_KEY = 'constraints'
 MAX_KEY = 'max'
 MIN_KEY = 'min'
 PATTERN_KEY = 'pattern'
+PATTERN_MESSAGE_KEY = "pattern_message"
 REQUIRED_KEY = 'required'
 NULLABLE_KEY = 'nullable'
 NUMERIC_KEY = 'numeric'
