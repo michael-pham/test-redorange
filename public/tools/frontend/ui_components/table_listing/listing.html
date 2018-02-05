@@ -9,7 +9,7 @@
               <h5 class="title text-uppercase">{{table_title}}<h5>
             </div>
             <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-              <li class="dropdown" style="padding: 0px";>
+              <li class="dropdown" style="padding: 0px">
                 <input class="btn-sm pull-right my-shadown" type="text"
                   ng-model="searchText" style="color: black" placeholder="{{table_search_quick_box_placeholder}}">
               </li>
@@ -28,22 +28,24 @@
               <span>{{ errMsg }}</span>
             </div>
             <div class="row">
+              <form name="myForm">
               {{table_search_fields}}
-              <div class="col-md-2">
-                  <label></label>
-                <div class="row" style="padding-top: 0.6rem;">
-                  <div class="col-md-7">
-                    <a ng-click="get{{model_name}}s()" style="background: #3D55DA; color: white;" class="btn-block btn btn-md my-shadown">
-                      <i class="fa fa-search"></i>
-                    </a>
-                  </div>
-                  <div class="col-md-5">
-                    <a ng-click="reset{{model_name}}List()" style="color: #5D5D5D;" class="btn-block btn btn-md my-shadown">
-                      <i class="fa fa-close"></i>
-                    </a>
+                <div class="col-md-2">
+                    <label></label>
+                  <div class="row" style="padding-top: 0.6rem;">
+                    <div class="col-md-7">
+                      <a ng-click="get{{model_name}}s()" style="background: #3D55DA; color: white;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-5">
+                      <a ng-click="reset{{model_name}}List()" style="color: #5D5D5D;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-close"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

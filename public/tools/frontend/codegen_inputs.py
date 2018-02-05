@@ -77,11 +77,40 @@ def input(form_model_name, input_tpl, attribute):
 
     (code_contents[INPUT_VALIDATION_NGMESSAGES_MARKER], \
        code_contents[INPUT_VALIDATION_MARKER]) = \
-            input_validation(attribute[DISPLAY_NAME_KEY], attribute[CONSTRAINTS_KEY])
+            input_validation(attribute[DISPLAY_NAME_KEY], \
+                attribute[CONSTRAINTS_KEY])
 
     # Read in the file
     with open(input_tpl, 'r') as file :
       file_data = file.read()
+
+    for render_marker in render_markers:
+        file_data = file_data.replace(render_marker, code_contents[render_marker])
+
+    return file_data
+
+def search_input(form_model_name, input_tpl, attribute):
+    render_markers = [INPUT_MODEL_NAME_MARKER, INPUT_LABEL_MARKER,
+        INPUT_NAME_MARKER, INPUT_VALIDATION_MARKER,
+            INPUT_VALIDATION_NGMESSAGES_MARKER]
+
+    code_contents = dict()
+    code_contents[INPUT_MODEL_NAME_MARKER] = form_model_name
+    code_contents[INPUT_LABEL_MARKER] = attribute[DISPLAY_NAME_KEY]
+    code_contents[INPUT_NAME_MARKER] = attribute[NAME_KEY]
+
+    (code_contents[INPUT_VALIDATION_NGMESSAGES_MARKER], \
+       code_contents[INPUT_VALIDATION_MARKER]) = \
+            input_validation(attribute[DISPLAY_NAME_KEY], \
+                attribute[CONSTRAINTS_KEY])
+
+    # Read in the file
+    with open(input_tpl, 'r') as file :
+      file_data = file.read()
+
+    file_data = file_data.replace('12', '2')
+    file_data = file_data.replace("<div class=\"row\">", '')
+    file_data = file_data.replace('</div>', '', 1)
 
     for render_marker in render_markers:
         file_data = file_data.replace(render_marker, code_contents[render_marker])

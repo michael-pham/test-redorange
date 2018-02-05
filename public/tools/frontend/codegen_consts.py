@@ -55,6 +55,7 @@ CREATE_FORM = 'create form'
 UPDATE_FORM = 'update form'
 CREATE_FORM_MODEL_NAME_PREFIX = "new"
 UPDATE_FORM_MODEL_NAME_PREFIX = "old"
+SEARCH_FORM_MODEL_NAME_PREFIX = "search"
 CREATE_FORM_URL = './ui_components/create_modal.html'
 UPDATE_FORM_URL = './ui_components/update_modal.html'
 
@@ -142,6 +143,7 @@ REQUIRED_NGMESSAGE_TPL = './ui_components/required_ngmessage.html'
 EMAIL_NGMESSAGE_TPL = './ui_components/email_ngmessage.html'
 
 # Table
+TABLE_LISTING_TPL = "./ui_components/table_listing/listing.html"
 TABLE_TITLE_MARKER = "{{table_title}}"
 TABLE_SEARCH_QUICK_BOX_PLACEHOLDER_MARKER = "{{table_search_quick_box_placeholder}}"
 UNCAPITALSED_MODEL_NAME_MARKER = "{{uncapitalsed_model_name}}"
@@ -151,7 +153,7 @@ MODEL_NAME_MARKER = "{{model_name}}"
 TABLE_DATA_MARKER = "{{table_data}}"
 SNAKE_CASE_MODEL_NAME_MARKER = "{{snake_case_model_name}}"
 MODEL_DISPLAY_NAME_MARKER = "{{model_display_name}}"
-TABLE_HEADERS_KEY = "{{table_headers}}"
+TABLE_HEADERS_MARKER = "{{table_headers}}"
 
 TABLE_TITLE_PREFIX = "Danh sách"
 TABLE_SEARCH_QUICK_BOX_PLACEHOLDER = "Tìm kiếm nhanh"
