@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>{{input_label}}</label>
-      <input ng-model="{{input_model_name}}.{{input_name}}" type="number"
+      <input name="{{input_name}}" ng-model="{{input_model_name}}.{{input_name}}" type="number"
         class="form-control" {{input_validation}}></input>
 
       <div ng-messages="myForm.{{input_name}}.$error"

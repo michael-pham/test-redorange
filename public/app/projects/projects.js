@@ -168,11 +168,13 @@
               show: true,
               display_name: "",
               type: "",
+              ui_type: "",
               hidden: "",
               constraints: {
                 max: "",
                 min: "",
                 pattern: "",
+                pattern_message: "",
                 required: "",
                 nullable: "",
                 numeric: "",

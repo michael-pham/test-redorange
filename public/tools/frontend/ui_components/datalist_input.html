@@ -1,64 +1,21 @@
-from codepen_consts import *
-from codegen_utils import *
-
-# Make update form
-def make_create_form(model):
-    model_form_name = "new" + model[NAME_KEY]
-    
-
-
-# Make create form
-def make_update_form():
-
-# Make listing table
-def make_listing_table():
-    # Properties of the current model
-    current_model_name = model[NAME_KEY]
-
-    # Attributes of the current model
-    attributes = model[ATTRIBUTES_KEY]
-    for attribute in attributes:
-        # Constraints of the attribute
-        constraints = attribute[CONSTRAINTS_KEY]
-        max_constraint = constraints[MAX_KEY]
-        min_constraint = constraints[MIN_KEY]
-        pattern_constraint = constraints[PATTERN_KEY]
-        required_constraint = constraints[REQUIRED_KEY]
-        nullable_constraint = constraints[NULLABLE_KEY]
-        numeric_key_constraint = constraints[NUMERIC_KEY]
-        unique_key_constraint = constraints[UNIQUE_KEY]
-        email_constraint = constraints[EMAIL_KEY]
-
-import json
-data_path = './hello.json'
-import ast
-with open(data_path) as fd:
-    content = fd.read()
-    json_data = ast.literal_eval(content)
-    json_data = json.dumps(json_data)
-    data = json.loads(json_data)
-
-    # Traverse models
-    for model in data:
-        # Properties of the current model
-        current_model_name = model[NAME_KEY]
-
-        # Attributes of the current model
-        attributes = model[ATTRIBUTES_KEY]
-        for attribute in attributes:
-            # Constraints of the attribute
-            constraints = attribute[CONSTRAINTS_KEY]
-            max_constraint = constraints[MAX_KEY]
-            min_constraint = constraints[MIN_KEY]
-            pattern_constraint = constraints[PATTERN_KEY]
-            required_constraint = constraints[REQUIRED_KEY]
-            nullable_constraint = constraints[NULLABLE_KEY]
-            numeric_key_constraint = constraints[NUMERIC_KEY]
-            unique_key_constraint = constraints[UNIQUE_KEY]
-            email_constraint = constraints[EMAIL_KEY]
-
-
-            # Make update form
-
-            # Make create form
-            # Make listing tables
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>{{input_label}}</label>
+      <input autocomplete="off" name="{{input_name}}" list="{{selection_list}}" type="text" class="form-control"
+        ng-model="{{input_model_name}}.{{input_name}}" {{input_validation}}>
+      <datalist id="{{selection_list}}">
+        <option ng-repeat="{{selection_item}} in selection_list" value="{{selection_item}}.{{selection_item_value}}">
+      </datalist>
+      <!-- <div ng-messages="myForm.ten_khach_hang.$error" style="color:maroon" role="alert" ng-if='myForm.ten_khach_hang.$dirty'>
+        <div ng-show="!doesItemExists(oldHopDong.ten_khach_hang, khachHangs, 'ten_khach_hang') && myForm.ten_khach_hang.$dirty && (oldHopDong.ten_khach_hang.length > 0)">
+          Khách hàng không tồn tại
+        </div>
+      </div> -->
+      <div ng-messages="myForm.{{input_name}}.$error"
+        style="color:maroon" role="alert" ng-if='myForm.{{input_name}}.$dirty'>
+        {{input_validation_ngmessages}}
+      </div>
+    </div>
+  </div>
+</div>

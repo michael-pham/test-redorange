@@ -77,16 +77,16 @@ class ProjectService
     }
 
     public function buildProject($projectId) {
-      // $project = $this->getRequestedProject($projectId);
-      //
-      // File::put('/home/hbkhanh/workspace/codebase/public/tools/models.json',
-      //   $project->generating_data_refined);
-      //
-      // $command =
-      //   escapeshellcmd('/home/hbkhanh/workspace/codebase/public/tools/codegen.py');
-      // $output = shell_exec($command);
-      //
-      // echo $output;
+      $project = $this->getRequestedProject($projectId);
+
+      File::put('/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools/models.json',
+        $project->generating_data_refined);
+
+      $command =
+        escapeshellcmd('/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools/codegen.py');
+      $output = shell_exec($command);
+      
+      echo $output;
     }
 
     private function getRequestedProject($projectId)

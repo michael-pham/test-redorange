@@ -18,6 +18,7 @@ UI_TYPE_KEY = 'ui_type'
 
 # Form input types
 TEXT_INPUT = 'text_input'
+EMAIL_INPUT = 'text_input'
 SELECTION_INPUT = 'selection_input'
 RADIO_INPUT = 'radio_input'
 DATALIST_INPUT = 'datalist_input'
@@ -35,11 +36,13 @@ NUMERIC_INPUT_TPL = 'numeric_input.html'
 TEXTAREA_INPUT_TPL = 'textarea_input.html'
 
 # Create form
-CREATE_FORM_URL = './ui_components/create_modal.html'
 CREATE_FORM_TITLE_PREFIX = "Thêm mới"
 CREATE_FORM_TITLE_MARKER = "{{create_modal_title}}"
 CREATE_FORM_INPUTS_MARKER = "{{create_modal_inputs}}"
 
+UPDATE_FORM_TITLE_PREFIX = "Cập nhật mới"
+UPDATE_FORM_TITLE_MARKER = "{{update_modal_title}}"
+UPDATE_FORM_INPUTS_MARKER = "{{update_modal_inputs}}"
 
 # Common
 INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
@@ -49,9 +52,11 @@ INPUT_VALIDATION_MARKER = "{{input_validation}}"
 INPUT_VALIDATION_NGMESSAGES_MARKER = "{{input_validation_ngmessages}}"
 
 CREATE_FORM = 'create form'
-UPDATEE_FORM = 'update form'
+UPDATE_FORM = 'update form'
 CREATE_FORM_MODEL_NAME_PREFIX = "new"
 UPDATE_FORM_MODEL_NAME_PREFIX = "old"
+CREATE_FORM_URL = './ui_components/create_modal.html'
+UPDATE_FORM_URL = './ui_components/update_modal.html'
 
 # Text input
 TEXT_INPUT_TPL = './ui_components/text_input.html'
@@ -117,6 +122,9 @@ SELECTION_INPUT_NAME_MARKER = "{{input_name}}"
 SELECTION_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 SELECTION_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
+# Email input
+EMAIL_INPUT_TPL = './ui_components/email_input.html'
+
 # ngmessages for validations
 MAX_NGMESSAGE_TPL = './ui_components/max_ngmessage.html'
 MAX_NGMESSAGE_VALUE_MARKER = '{{max_ngmessage_value}}'
@@ -132,3 +140,19 @@ PATTERN_NGMESSAGE_VALUE_MARKER = '{{pattern_ngmessage_value}}'
 REQUIRED_NGMESSAGE_TPL = './ui_components/required_ngmessage.html'
 
 EMAIL_NGMESSAGE_TPL = './ui_components/email_ngmessage.html'
+
+# Table
+TABLE_TITLE_MARKER = "{{table_title}}"
+TABLE_SEARCH_QUICK_BOX_PLACEHOLDER_MARKER = "{{table_search_quick_box_placeholder}}"
+UNCAPITALSED_MODEL_NAME_MARKER = "{{uncapitalsed_model_name}}"
+TABLE_ADD_ITEM_TITLE_MARKER = "{{table_add_item_title}}"
+TABLE_SEARCH_FIELDS_MARKER = "{{table_search_fields}}"
+MODEL_NAME_MARKER = "{{model_name}}"
+TABLE_DATA_MARKER = "{{table_data}}"
+SNAKE_CASE_MODEL_NAME_MARKER = "{{snake_case_model_name}}"
+MODEL_DISPLAY_NAME_MARKER = "{{model_display_name}}"
+TABLE_HEADERS_KEY = "{{table_headers}}"
+
+TABLE_TITLE_PREFIX = "Danh sách"
+TABLE_SEARCH_QUICK_BOX_PLACEHOLDER = "Tìm kiếm nhanh"
+TABLE_ADD_ITEM_TITLE_PREFIX = "Thêm mới"

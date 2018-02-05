@@ -44,9 +44,13 @@
               <input ng-model="currentModel.name" type="text"
                 class="form-control" placeholder="Model name"></input>
             </div>
+            <div class="form-group">
+              <input ng-model="currentModel.display_name" type="text"
+                class="form-control" placeholder="Model display name"></input>
+            </div>
             <br>
             <button type="submit" class="btn btn-default" ng-click="addAttribute()">
-              attributes&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>
+              Attributes&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>
             </button>
             <br>
             <br>
@@ -87,6 +91,22 @@
                   </datalist>
                 </div>
                 <div class="form-group col-md-4">
+                  <label>UI type</label>
+                  <input ng-model="attribute.ui_type" class="form-control" placeholder="UI type" list="ui-types"></input>
+                  <datalist id="ui-types">
+                    <option value="text_input">
+                    <option value="email_input">
+                    <option value="datalist_input">
+                    <option value="file_input">
+                    <option value="textarea_input">
+                    <option value="numeric_input">
+                    <option value="selection_input">
+                    <option value="date_input">
+                    <option value="radio_input">
+                    <option value="checkbox_input">
+                  </datalist>
+                </div>
+                <div class="form-group col-md-4">
                   <label>Max</label>
                   <input ng-model="attribute.constraints.max" class="form-control" placeholder="Max"></input>
                 </div>
@@ -94,9 +114,13 @@
                   <label>Min</label>
                   <input ng-model="attribute.constraints.min" class="form-control" placeholder="Min"></input>
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-8">
                   <label>Pattern</label>
                   <input ng-model="attribute.constraints.pattern" class="form-control" placeholder="Pattern"></input>
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Pattern message</label>
+                  <input ng-model="attribute.constraints.pattern_message" class="form-control" placeholder="Pattern message"></input>
                 </div>
                 <div class="form-group col-md-2">
                   <p>

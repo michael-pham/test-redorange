@@ -16,7 +16,7 @@ def input_validation(input_label, constraints):
 
     max_constraint = constraints[MAX_KEY]
 
-    if int(max_constraint) > 0:
+    if len(max_constraint) > 0 and int(max_constraint) > 0:
         validation += "ng-maxlength='" + max_constraint + "' "
         render_markers = [INPUT_LABEL_MARKER, MAX_NGMESSAGE_VALUE_MARKER]
         code_contents = {INPUT_LABEL_MARKER: input_label, MAX_NGMESSAGE_VALUE_MARKER:  max_constraint}
@@ -24,7 +24,7 @@ def input_validation(input_label, constraints):
             code_contents)
 
     min_constraint = constraints[MIN_KEY]
-    if int(min_constraint) > 0:
+    if len(min_constraint) > 0 and int(min_constraint) > 0:
         validation += "ng-minlength='" + min_constraint + "' "
         min_constraint = constraints[MIN_KEY]
         render_markers = [INPUT_LABEL_MARKER, MIN_NGMESSAGE_VALUE_MARKER]
@@ -42,22 +42,22 @@ def input_validation(input_label, constraints):
             code_contents)
 
     required_constraint = constraints[REQUIRED_KEY]
-    if required_constraint is "True":
-        validaton += "required" + " "
+    if required_constraint == "true":
+        validation += "required" + " "
         render_markers = [INPUT_LABEL_MARKER]
         code_contents = {INPUT_LABEL_MARKER: input_label}
-        ngmessages += ng_messages(PATTERN_NGMESSAGE_TPL, render_markers,
+        ngmessages += ng_messages(REQUIRED_NGMESSAGE_TPL, render_markers,
             code_contents)
 
     numeric_constraint = constraints[NUMERIC_KEY]
-    if numeric_constraint is "True":
+    if numeric_constraint == "true":
         render_markers = [INPUT_LABEL_MARKER]
         code_contents = {INPUT_LABEL_MARKER: input_label}
         ngmessages += ng_messages(NUMERIC_NGMESSAGE_TPL, render_markers,
             code_contents)
 
     email_constraint = constraints[EMAIL_KEY]
-    if email_constraint is "True":
+    if email_constraint == "true":
         render_markers = []
         code_contents = {}
         ngmessages += ng_messages(EMAIL_NGMESSAGE_TPL, render_markers,
