@@ -58,4 +58,19 @@ class ProjectController extends Controller
   public function buildProject($projectId) {
     return $this->response($this->projectService->buildProject($projectId));
   }
+
+  public function showUpdateFormCode(Request $request) {
+    $model = $request->get('model');
+    return $this->response($this->projectService->showUpdateFormCode($model));
+  }
+
+  public function showListingTableCode(Request $request) {
+    $model = $request->get('model');
+    return $this->response($this->projectService->showListingTableCode($model));
+  }
+
+  public function showCreateFormCode(Request $request) {
+    $model = $request->get('model');
+    return $this->response($this->projectService->showCreateFormCode($model));
+  }
 }

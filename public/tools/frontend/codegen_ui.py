@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 import sys
@@ -163,7 +165,7 @@ def make_listing_table(model):
     return file_data
 
 import json
-data_path = './hello.json'
+data_path = './tmpModel.json'
 import ast
 with open(data_path) as fd:
     content = fd.read()

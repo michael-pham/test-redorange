@@ -35,10 +35,73 @@
     }
 
 
-      ProjectDetails.$inject = ['$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel'];
+      ProjectDetails.$inject = ['$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel', 'utils'];
 
       /* @ngInject */
-      function ProjectDetails($scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel) {
+      function ProjectDetails($scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel, utils) {
+          $scope.showCreateFormCode = showCreateFormCode;
+          function showCreateFormCode(model) {
+            function replacer(key, value) {
+              if (typeof value === "boolean"||typeof value === "number") {
+                return String(value);
+              }
+              return value;
+            }
+
+            model = JSON.stringify([model], replacer);
+
+            $http.post("http://localhost:8000/show_create_form_code",
+              {model: model}).then(function(successResponse) {
+                var modalUrl = "/app/projects/_source_code_viewer.html";
+                $scope.code = successResponse.data.create_form;
+                utils.openModal(modalUrl, $scope, 'lg');
+            }, function(error) {
+              console.log(error);
+            });
+          }
+
+          $scope.showUpdateFormCode = showUpdateFormCode;
+          function showUpdateFormCode(model) {
+            function replacer(key, value) {
+              if (typeof value === "boolean"||typeof value === "number") {
+                return String(value);
+              }
+              return value;
+            }
+
+            model = JSON.stringify([model], replacer);
+
+            $http.post("http://localhost:8000/show_update_form_code",
+              {model: model}).then(function(successResponse) {
+                var modalUrl = "/app/projects/_source_code_viewer.html";
+                $scope.code = successResponse.data.update_form;
+                utils.openModal(modalUrl, $scope, 'lg');
+            }, function(error) {
+              console.log(error);
+            });
+          }
+
+          $scope.showListingTableCode = showListingTableCode;
+          function showListingTableCode(model) {
+            function replacer(key, value) {
+              if (typeof value === "boolean"||typeof value === "number") {
+                return String(value);
+              }
+              return value;
+            }
+
+            model = JSON.stringify([model], replacer);
+
+            $http.post("http://localhost:8000/show_listing_table_code",
+              {model: model}).then(function(successResponse) {
+                var modalUrl = "/app/projects/_source_code_viewer.html";
+                $scope.code = successResponse.data.listing_table;
+                utils.openModal(modalUrl, $scope, 'lg');
+            }, function(error) {
+              console.log(error);
+            });
+          }
+
           /* jshint validthis: true */
           $scope.projectModel = projectModel.init($scope);
           $scope.projectCrud = crud.make($scope.projectModel);

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # CONSTANTS
-DATA_PATH = './hello.json'
+BASE_URL = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend'
+
+DATA_PATH = BASE_URL + '/hello.json'
 NAME_KEY = 'name'
 DISPLAY_NAME_KEY = 'display_name'
 ATTRIBUTES_KEY = 'attributes'
@@ -56,11 +58,11 @@ UPDATE_FORM = 'update form'
 CREATE_FORM_MODEL_NAME_PREFIX = "new"
 UPDATE_FORM_MODEL_NAME_PREFIX = "old"
 SEARCH_FORM_MODEL_NAME_PREFIX = "search"
-CREATE_FORM_URL = './ui_components/create_modal.html'
-UPDATE_FORM_URL = './ui_components/update_modal.html'
+CREATE_FORM_URL = BASE_URL + '/ui_components/create_modal.html'
+UPDATE_FORM_URL = BASE_URL + '/ui_components/update_modal.html'
 
 # Text input
-TEXT_INPUT_TPL = './ui_components/text_input.html'
+TEXT_INPUT_TPL = BASE_URL + '/ui_components/text_input.html'
 TEXT_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 TEXT_INPUT_LABEL_MARKER = "{{input_label}}"
 TEXT_INPUT_NAME_MARKER = "{{input_name}}"
@@ -68,7 +70,7 @@ TEXT_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 TEXT_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Numeric input
-NUMERIC_INPUT_TPL = './ui_components/numeric_input.html'
+NUMERIC_INPUT_TPL = BASE_URL + '/ui_components/numeric_input.html'
 NUMERIC_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 NUMERIC_INPUT_LABEL_MARKER = "{{input_label}}"
 NUMERIC_INPUT_NAME_MARKER = "{{input_name}}"
@@ -76,7 +78,7 @@ NUMERIC_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 NUMERIC_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Checkbox input
-CHECKBOX_INPUT_TPL = './ui_components/checkbox_input.html'
+CHECKBOX_INPUT_TPL = BASE_URL + '/ui_components/checkbox_input.html'
 CHECKBOX_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 CHECKBOX_INPUT_LABEL_MARKER = "{{input_label}}"
 CHECKBOX_INPUT_NAME_MARKER = "{{input_name}}"
@@ -84,7 +86,7 @@ CHECKBOX_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 CHECKBOX_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Datalist input
-DATALIST_INPUT_TPL = './ui_components/datalist_input.html'
+DATALIST_INPUT_TPL = BASE_URL + '/ui_components/datalist_input.html'
 DATALIST_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 DATALIST_INPUT_LABEL_MARKER = "{{input_label}}"
 DATALIST_INPUT_NAME_MARKER = "{{input_name}}"
@@ -92,7 +94,7 @@ DATALIST_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 DATALIST_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Radio input
-RADIO_INPUT_TPL = './ui_components/radio_input.html'
+RADIO_INPUT_TPL = BASE_URL + '/ui_components/radio_input.html'
 RADIO_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 RADIO_INPUT_LABEL_MARKER = "{{input_label}}"
 RADIO_INPUT_NAME_MARKER = "{{input_name}}"
@@ -100,7 +102,7 @@ RADIO_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 RADIO_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Date input
-DATE_INPUT_TPL = './ui_components/date_input.html'
+DATE_INPUT_TPL = BASE_URL + '/ui_components/date_input.html'
 DATE_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 DATE_INPUT_LABEL_MARKER = "{{input_label}}"
 DATE_INPUT_NAME_MARKER = "{{input_name}}"
@@ -108,7 +110,7 @@ DATE_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 DATE_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Textarea input
-TEXTAREA_INPUT_TPL = './ui_components/textarea_input.html'
+TEXTAREA_INPUT_TPL = BASE_URL + '/ui_components/textarea_input.html'
 TEXTAREA_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 TEXTAREA_INPUT_LABEL_MARKER = "{{input_label}}"
 TEXTAREA_INPUT_NAME_MARKER = "{{input_name}}"
@@ -116,7 +118,7 @@ TEXTAREA_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 TEXTAREA_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Selection input
-SELECTION_INPUT_TPL = './ui_components/selection_input.html'
+SELECTION_INPUT_TPL = BASE_URL + '/ui_components/selection_input.html'
 SELECTION_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 SELECTION_INPUT_LABEL_MARKER = "{{input_label}}"
 SELECTION_INPUT_NAME_MARKER = "{{input_name}}"
@@ -124,26 +126,26 @@ SELECTION_INPUT_VALIDATION_MARKER = "{{input_validation}}"
 SELECTION_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Email input
-EMAIL_INPUT_TPL = './ui_components/email_input.html'
+EMAIL_INPUT_TPL = BASE_URL + '/ui_components/email_input.html'
 
 # ngmessages for validations
-MAX_NGMESSAGE_TPL = './ui_components/max_ngmessage.html'
+MAX_NGMESSAGE_TPL = BASE_URL + '/ui_components/max_ngmessage.html'
 MAX_NGMESSAGE_VALUE_MARKER = '{{max_ngmessage_value}}'
 
-MIN_NGMESSAGE_TPL = './ui_components/min_ngmessage.html'
+MIN_NGMESSAGE_TPL = BASE_URL + '/ui_components/min_ngmessage.html'
 MIN_NGMESSAGE_VALUE_MARKER = '{{min_ngmessage_value}}'
 
-NUMERIC_NGMESSAGE_TPL = './ui_components/numeric_ngmessage.html'
+NUMERIC_NGMESSAGE_TPL = BASE_URL + '/ui_components/numeric_ngmessage.html'
 
-PATTERN_NGMESSAGE_TPL = './ui_components/pattern_ngmessage.html'
+PATTERN_NGMESSAGE_TPL = BASE_URL + '/ui_components/pattern_ngmessage.html'
 PATTERN_NGMESSAGE_VALUE_MARKER = '{{pattern_ngmessage_value}}'
 
-REQUIRED_NGMESSAGE_TPL = './ui_components/required_ngmessage.html'
+REQUIRED_NGMESSAGE_TPL = BASE_URL + '/ui_components/required_ngmessage.html'
 
-EMAIL_NGMESSAGE_TPL = './ui_components/email_ngmessage.html'
+EMAIL_NGMESSAGE_TPL = BASE_URL + '/ui_components/email_ngmessage.html'
 
 # Table
-TABLE_LISTING_TPL = "./ui_components/table_listing/listing.html"
+TABLE_LISTING_TPL =  BASE_URL +  "/ui_components/table_listing/listing.html"
 TABLE_TITLE_MARKER = "{{table_title}}"
 TABLE_SEARCH_QUICK_BOX_PLACEHOLDER_MARKER = "{{table_search_quick_box_placeholder}}"
 UNCAPITALSED_MODEL_NAME_MARKER = "{{uncapitalsed_model_name}}"

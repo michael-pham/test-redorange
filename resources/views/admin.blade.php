@@ -19,6 +19,8 @@
 
     <!-- inject-vendor:css -->
     <link href="/app/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link href="https://bootswatch.com/3/lumen/bootstrap.min.css" rel="stylesheet" /> -->
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="/app/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
