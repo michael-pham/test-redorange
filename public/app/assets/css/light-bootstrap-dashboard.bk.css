@@ -567,7 +567,7 @@ body > .navbar-collapse {
   border-left: 0 none; }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-  background-color: #F5F5F5;
+  background-color: #EBECF1;
   color: #888888;
   cursor: not-allowed; }
 
@@ -1201,7 +1201,7 @@ body > .navbar-collapse {
     color: #777777; }
 
 .footer-default {
-  background-color: #F5F5F5; }
+  background-color: #EBECF1; }
 
 .footer:not(.footer-big) nav > ul {
   font-size: 14px; }
@@ -1270,7 +1270,7 @@ body > .navbar-collapse {
     border-bottom: 0 none; }
   .dropdown-menu > li > a:hover,
   .dropdown-menu > li > a:focus {
-    background-color: #F5F5F5;
+    background-color: #EBECF1;
     color: #333333;
     opacity: 1;
     text-decoration: none; }

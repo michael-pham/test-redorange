@@ -135,6 +135,7 @@ nav, .card {
     font: 12px/30px Arial, sans-serif;
     height: 30px;
     margin: 3px;
+    margin-top: 5px;
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -147,7 +148,7 @@ nav, .card {
     color: black;
 }
 .custom-pagination li.active a {
-    background-color: #5C9DF5;
+    background-color: #3F51B5;
     color: #FFFFFF;
 }
 .custom-pagination li.active a:hover {
