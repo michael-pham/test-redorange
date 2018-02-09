@@ -109,6 +109,8 @@ nav, .card {
 /* custom-pagination */
 .custom-pagination {
     margin: 20px 0;
+    margin-top: 0px;
+    margin-bottom: 0px;
     overflow: hidden;
     position: relative;
 }
@@ -152,4 +154,15 @@ nav, .card {
 }
 .custom-pagination li.active a:hover {
     color: #FFFFFF;
+}
+
+th i {
+  display: block;
+  float: right;
+  color: grey;
+}
+
+th:hover {
+  background-color: #F5F5F5;
+  cursor: pointer;
 }

@@ -6,25 +6,54 @@
           <div class="col-md-3">
             <h5 style="text-transform: uppercase;" class="title col">Danh sách project</h5>
           </div>
-          <div class="col-md-2 pull-right">
-            <a data-ng-click="projectCrud.openCreateForm('md')" class="btn btn-sm pull-right my-shadown">
+          <div class="col-md-4 pull-right">
+            <a data-ng-click="showSelection=!showSelection" class="btn btn-sm pull-right">
+              <i class="fa fa-plus"></i>
+              Chọn dòng
+            </a>
+            <a data-ng-click="projectCrud.openCreateForm('md')" class="btn btn-sm pull-right">
               <i class="fa fa-plus"></i>
               Thêm project
             </a>
           </div>
         </div>
       </div>
-      <div class="content table-responsive">
+      <div class="content table-responsive" ng-init="showSelection=false">
         <table class="table table-hover table-striped">
           <thead>
-            <th>STT</th>
-            <th>Project</th>
-            <th>Khởi tạo</th>
-            <th>Cập nhật</th>
-            <th>Tác vụ</th>
+            <th class="col-md-1" ng-show="showSelection"><input class="form-control" type="checkbox"/></th>
+            <!-- <th class="col-md-1"></th> -->
+            <th>STT<i class="fa fa-fw fa-sort"></i></th>
+            <th>Project<i class="fa fa-fw fa-sort"></i></th>
+            <th>Khởi tạo<i class="fa fa-fw fa-sort"></i></th>
+            <th>Cập nhật<i class="fa fa-fw fa-sort"></i></th>
+            <th class="col-md-1">Tác vụ</th>
           </thead>
           <tbody>
+            <tr>
+              <!-- <td class="col-md-1"><input class="form-control" type="checkbox"/></td> -->
+              <td ng-show="showSelection" class="col-md-1"></td>
+              <td><input class="form-control" type="text" /></td>
+              <td><input class="form-control" type="text" /></td>
+              <td><input class="form-control" type="text" /></td>
+              <td>
+                <input list="test" class="form-control" type="text" />
+                <datalist id="test">
+                  <option value="test1">aa</option>
+                  <option value="test1">asd</option>
+                  <option value="test1">ads</option>
+                </datalist>
+              </td>
+              <td>
+                <!-- <select class="form-control" type="text">
+                  <option>Xem, sửa, xóa</option>
+                  <option>Chia sẻ, sao chép</option>
+                  <option>No name</option>
+                </select> -->
+              </td>
+            </tr>
             <tr ng-repeat="(key, project) in projects | filter:searchText">
+              <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <td>{{key + 1}}</td>
               <td>{{project.name}}</td>
               <td>{{project.created_at}}</td>
@@ -51,15 +80,24 @@
             </tr>
           </tbody>
         </table>
-        <div class="custom-pagination">
-          <ul>
+        <div class="row">
+          <div class="col-md-2">
+                <select class="form-control" type="text">
+                  <option style="outline: none">5 dòng </option>
+                  <option>10 dòng</option>
+                  <option>15 dòng</option>
+                </select>
+          </div>
+          <div class="col-md-8 col-md-offset-2 custom-pagination">
+            <ul>
               <li><a href="#">«</a></li>
               <li class="active"><a>1</a></li>
               <li><a href="#">2</a></li>
               <li><a href="#">3</a></li>
               <li><a href="#">4</a></li>
               <li><a href="#">»</a></li>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

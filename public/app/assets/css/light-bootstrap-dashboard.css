@@ -202,6 +202,8 @@ input:focus {
 
 .btn {
   /* border-width: 2px; */
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border: none;
@@ -217,12 +219,12 @@ input:focus {
   filter: alpha(opacity=80);
   padding: 8px 16px;
   border-color: #888888;
-  color: #888888; 
+  color: #888888;
 /* color: #444; */
 }
   .btn:hover, .btn:focus, .btn:active, .btn.active, .open > .btn.dropdown-toggle {
     /* background-color: transparent; */
-    background-color: #F5F5F5; 
+    background-color: #F5F5F5;
     color: #777777;
     border-color: #777777; }
   .btn.disabled, .btn.disabled:hover, .btn.disabled:focus, .btn.disabled.focus, .btn.disabled:active, .btn.disabled.active, .btn:disabled, .btn:disabled:hover, .btn:disabled:focus, .btn:disabled.focus, .btn:disabled:active, .btn:disabled.active, .btn[disabled], .btn[disabled]:hover, .btn[disabled]:focus, .btn[disabled].focus, .btn[disabled]:active, .btn[disabled].active, fieldset[disabled] .btn, fieldset[disabled] .btn:hover, fieldset[disabled] .btn:focus, fieldset[disabled] .btn.focus, fieldset[disabled] .btn:active, fieldset[disabled] .btn.active {
