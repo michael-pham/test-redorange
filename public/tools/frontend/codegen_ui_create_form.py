@@ -163,7 +163,7 @@ def make_listing_table(model):
     return file_data
 
 import json
-data_path = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend/tmpModel.json'
+data_path = BASE_ROOT + '/frontend/tmpModel.json'
 import ast
 with open(data_path) as fd:
     content = fd.read()

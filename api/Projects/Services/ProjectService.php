@@ -79,38 +79,38 @@ class ProjectService
     public function buildProject($projectId) {
       $project = $this->getRequestedProject($projectId);
 
-      File::put('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/models.json',
+      File::put(env("TOOL_PATH").'/models.json',
         $project->generating_data_refined);
 
       $command =
-        escapeshellcmd('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/codegen.py');
+        escapeshellcmd(env("TOOL_PATH").'/codegen.py');
       $output = shell_exec($command);
 
       echo $output;
     }
 
     public function showCreateFormCode($model) {
-      File::put('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend/tmpModel.json', $model);
+      File::put(env("TOOL_PATH").'/frontend/tmpModel.json', $model);
 
-      $command = escapeshellcmd('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend/codegen_ui_create_form.py');
+      $command = escapeshellcmd(env("TOOL_PATH").'/frontend/codegen_ui_create_form.py');
       $output = shell_exec($command);
 
       return ['create_form' => $output];
     }
 
     public function showUpdateFormCode($model) {
-      File::put('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend/tmpModel.json', $model);
+      File::put(env("TOOL_PATH").'/frontend/tmpModel.json', $model);
 
-      $command = escapeshellcmd('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend/codegen_ui_update_form.py');
+      $command = escapeshellcmd(env("TOOL_PATH").'/frontend/codegen_ui_update_form.py');
       $output = shell_exec($command);
 
       return ['update_form' => $output];
     }
 
     public function showListingTableCode($model) {
-      File::put('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend/tmpModel.json', $model);
+      File::put(env("TOOL_PATH").'/frontend/tmpModel.json', $model);
 
-      $command = escapeshellcmd('/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend/codegen_ui_listing_table.py');
+      $command = escapeshellcmd(env("TOOL_PATH").'/frontend/codegen_ui_listing_table.py');
       $output = shell_exec($command);
 
       return ['listing_table' => $output];

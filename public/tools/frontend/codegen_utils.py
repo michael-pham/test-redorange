@@ -81,3 +81,13 @@ def search_and_replace_without_write(file_path, src_txt, dst_txt):
     file_data = file_data.replace(src_txt, dst_txt)
 
     return file_data
+
+def render(file_path, render_markers, code_contents):
+    with open(file_path, 'r') as file :
+      file_data = file.read()
+
+    for render_marker in render_markers:
+        file_data = file_data.replace(render_marker, \
+            code_contents[render_marker])
+
+    return file_data

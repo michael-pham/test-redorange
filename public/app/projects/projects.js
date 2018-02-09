@@ -35,11 +35,15 @@
     }
 
 
-      ProjectDetails.$inject = ['$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel', 'utils'];
+      ProjectDetails.$inject = ['$sce', '$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel', 'utils'];
 
       /* @ngInject */
-      function ProjectDetails($scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel, utils) {
+      function ProjectDetails($sce, $scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel, utils) {
           $scope.showCreateFormCode = showCreateFormCode;
+          $scope.trustAsHtml = function(string) {
+            return $sce.trustAsHtml(string);
+          };
+          
           function showCreateFormCode(model) {
             function replacer(key, value) {
               if (typeof value === "boolean"||typeof value === "number") {
