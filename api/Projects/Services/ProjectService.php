@@ -79,7 +79,7 @@ class ProjectService
     public function buildProject($projectId) {
       $project = $this->getRequestedProject($projectId);
 
-      File::put(env("TOOL_PATH").'/models.json',
+      File::put(env("TOOL_PATH").'/frontend/tmpModel.json',
         $project->generating_data_refined);
 
       $command =

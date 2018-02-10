@@ -33,12 +33,9 @@
             meta: {
               name: '{{uncapitalised_model_name}}',
               url: 'http://localhost:8000/{{snake_case_model_name}}s',
-              many_to_one: [
-                {{many_to_one_relationship}}
-              ],
+              many_to_one: [{{many_to_one_relationship}}],
               one_to_many: []
             }
-
           },
           delete: {
             url: "http://localhost:8000/{{snake_case_model_name}}s",

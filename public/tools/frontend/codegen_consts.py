@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # CONSTANTS
-# BASE_ROOT = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools'
-# BASE_URL = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend'
+BASE_ROOT = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools'
+BASE_URL = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend'
 
-BASE_ROOT = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools'
-BASE_URL = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools/frontend'
+# BASE_ROOT = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools'
+# BASE_URL = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools/frontend'
 API_BASE_URL = 'http://localhost:8000/'
 
 DATA_PATH = BASE_URL + '/hello.json'
@@ -25,6 +25,7 @@ UI_TYPE_KEY = 'ui_type'
 TYPE_KEY = 'type'
 WITH_KEY = 'with'
 RELATIONSHIPS_KEY = 'relationships'
+IS_FINITE_KEY = 'is_finite'
 
 # Form input types
 TEXT_INPUT = 'text_input'

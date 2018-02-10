@@ -12,13 +12,11 @@ from codegen_ui_model_js_consts import *
 from codegen_utils import *
 
 def make_model_js(model):
-    model_js_tpl = MODEL_JS_TPL
-    render_markers = [UNCAPITALISED_MODEL_NAME_MARKER, \
-        SNAKE_CASE_MODEL_NAME_MARKER, MODEL_DISPLAY_NAME_MARKER, \
-            MANY_TO_ONE_RELATIONSHIP_MARKER]
+
 
     many_to_one_relationship = ""
     for relationship in model[RELATIONSHIPS_KEY]:
+
         if relationship[TYPE_KEY] == "many-to-one":
             foreign_model_name = relationship[WITH_KEY]
             render_markers = [MANY_TO_ONE_LIST_API_MARKER, \
@@ -31,7 +29,22 @@ def make_model_js(model):
 
             many_to_one_relationship += \
                 render(MANY_TO_ONE_MODEL_ITEM_TPL, render_markers, \
-                    sub_code_contents) + ","
+                    sub_code_contents)
+                    
+        if relationship[TYPE_KEY] == "one_to_many":
+            foreign_model_name = relationship[WITH_KEY]
+            render_markers = [MANY_TO_ONE_LIST_API_MARKER, \
+                MANY_TO_ONE_LIST_NAME_MARKER]
+            sub_code_contents = {
+                MANY_TO_ONE_LIST_NAME_MARKER: uncapitalise_txt(foreign_model_name),
+                MANY_TO_ONE_LIST_API_MARKER: API_BASE_URL + \
+                    to_snake_case(foreign_model_name) + "s"
+            }
+
+    model_js_tpl = MODEL_JS_TPL
+    render_markers = [UNCAPITALISED_MODEL_NAME_MARKER, \
+        SNAKE_CASE_MODEL_NAME_MARKER, MODEL_DISPLAY_NAME_MARKER, \
+            MANY_TO_ONE_RELATIONSHIP_MARKER]
 
     code_contents = {
         UNCAPITALISED_MODEL_NAME_MARKER:  uncapitalise_txt(model[NAME_KEY]),
