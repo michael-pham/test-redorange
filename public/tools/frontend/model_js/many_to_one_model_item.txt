@@ -1,4 +1,4 @@
 {
   name: '{{many_to_one_list_name}}',
-  url:  '{{many_to_one_list_api}}'
+  url: 'http://localhost:8000/{{many_to_one_list_api}}s',
 },

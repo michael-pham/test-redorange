@@ -21,3 +21,5 @@ ONE_TO_MANY_MODEL_ITEM_TPL = BASE_URL + '/model_js/one_to_many_model_item.txt'
 ONE_TO_MANY_RELATIONSHIP_MARKER = "{{one_to_many_relationship}}"
 ONE_TO_MANY_LIST_NAME_MARKER = '{{one_to_many_list_name}}'
 ONE_TO_MANY_LIST_API_MARKER = '{{one_to_many_list_api}}'
+
+DOMESTIC_MARKER = '{{domestic}}'
