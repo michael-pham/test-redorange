@@ -60,6 +60,7 @@ def fix_dir_name(dir_path, src_name_portion, dst_name_portion):
 
 # Search and replace text in a file
 def search_and_replace_with_write(file_path, src_txt, dst_txt):
+    print(file_path)
     # Read in the file
     with open(file_path, 'r') as file :
       file_data = file.read()
@@ -91,3 +92,11 @@ def render(file_path, render_markers, code_contents):
             code_contents[render_marker])
 
     return file_data
+
+def make_dir(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+def write_to_file(file_path, file_data):
+    with open(file_path, 'w') as file:
+      file.write(file_data)

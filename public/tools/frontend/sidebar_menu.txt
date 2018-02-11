@@ -1,0 +1,1 @@
+<li><a href="#/{{snake_case_model_name}}s"><i class="fa fa-connectdevelop"></i><span>{{model_display_name}}</span></a></li>

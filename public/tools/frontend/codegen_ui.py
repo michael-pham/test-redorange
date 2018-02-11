@@ -68,7 +68,6 @@ def make_form(form_type, model):
 
     base_content = BeautifulSoup(base_content, 'html.parser').prettify()
     base_content = base_content.replace('required=""', 'required')
-    print(base_content)
 
     return base_content
 # Make update form
@@ -158,26 +157,65 @@ def make_listing_table(model):
     for render_marker in render_markers:
         file_data = file_data.replace(render_marker, code_contents[render_marker])
 
-    file_data = BeautifulSoup(file_data, 'html.parser').prettify()
-    file_data = file_data.replace('required=""', 'required')
-    print(file_data)
+    # file_data = BeautifulSoup(file_data, 'html.parser').prettify()
+    # file_data = file_data.replace('required=""', 'required')
+    # print(file_data)
 
     return file_data
 
 import json
-data_path = './tmpModel.json'
+data_path = BASE_ROOT + '/models.json'
 import ast
 with open(data_path) as fd:
     content = fd.read()
     json_data = ast.literal_eval(content)
     json_data = json.dumps(json_data)
     data = json.loads(json_data)
+    index_path = ROOT + '/resources/views/admin.blade.php'
+    sidebar_path = ROOT + '/public/app/layout/sidebar.html'
 
     # Traverse models
     for model in data:
-        make_form(CREATE_FORM, model)
-        make_form(UPDATE_FORM, model)
-        make_listing_table(model)
+        directory = ROOT + '/public/app/' + to_snake_case(model[NAME_KEY]) + "s"
+        make_dir(directory)
+
+        create_form_path = directory + '/_' + to_snake_case(model[NAME_KEY]) + '_create_modal.html'
+        write_to_file(create_form_path, make_form(CREATE_FORM, model))
+
+        update_form_path = directory + '/_' + to_snake_case(model[NAME_KEY]) + '_update_modal.html'
+        write_to_file(update_form_path, make_form(UPDATE_FORM, model))
+
+        listing_table_path = directory + '/' + to_snake_case(model[NAME_KEY]) + 's.html'
+        write_to_file(listing_table_path, make_listing_table(model))
+
+        # update library
+        render_markers = [SNAKE_CASE_MODEL_NAME_MARKER, MODEL_DISPLAY_NAME_MARKER]
+        code_contents = {
+            SNAKE_CASE_MODEL_NAME_MARKER: to_snake_case(model[NAME_KEY]),
+            MODEL_DISPLAY_NAME_MARKER: model[DISPLAY_NAME_KEY]
+        }
+
+        dst_txt = render(INDEX_TPL, render_markers, code_contents) + MODEL_JS_MARKER
+        search_and_replace_with_write(index_path, dst_txt, "")
+        search_and_replace_with_write(index_path, MODEL_JS_MARKER, dst_txt)
+
+        # update sidebar menu
+        render_markers = [MODEL_DISPLAY_NAME_MARKER, SNAKE_CASE_MODEL_NAME_MARKER]
+        code_contents = {
+            SNAKE_CASE_MODEL_NAME_MARKER: to_snake_case(model[NAME_KEY]),
+            MODEL_DISPLAY_NAME_MARKER: model[DISPLAY_NAME_KEY]
+        }
+
+        dst_txt = render(SIDEBAR_TPL, render_markers, code_contents) + PROJECT_SIDEBAR_MARKER
+        search_and_replace_with_write(sidebar_path, dst_txt, "")
+        search_and_replace_with_write(sidebar_path, PROJECT_SIDEBAR_MARKER, dst_txt)
+
+        # update module
+        search_and_replace_with_write(MODULE_PATH, "'app." + uncapitalise_txt(model[NAME_KEY]) + "s',\n/* add_module */", \
+            "")
+        search_and_replace_with_write(MODULE_PATH, MODULE_MARKER, \
+            "'app." + uncapitalise_txt(model[NAME_KEY]) + "s',\n/* add_module */")
+
         # # Properties of the current model
         # current_model_name = model[NAME_MARKER]
         #

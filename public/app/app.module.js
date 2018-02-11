@@ -22,22 +22,18 @@
          */
         'app.layout',
         'app.authentication',
-        'app.coQuanBanHanhs',
-        'app.tinhTrangVanBans',
-        'app.linhVucVanBans',
-        'app.loaiVanBans',
-        'app.phamViVanBans',
-        'app.mayIns',
-        'app.nganhs',
-        'app.vanBans',
-        'app.duLieuDangKys',
-        'app.bieuMauChungTus',
-        'app.truongDuLieus',
-        'app.pageSizes',
         'app.users',
         'app.permissions',
         'app.roles',
-        'app.fontFamilys',
-        'app.projects'
+        'app.projects',
+'app.baiViets',
+'app.fileDinhKemBaiViets',
+'app.links',
+'app.linkTargets',
+'app.chungLoaiBais',
+'app.tinhTrangBinhLuans',
+'app.tinhTrangBaiViets',
+'app.binhLuans',
+/* add_module */
     ]);
 })();

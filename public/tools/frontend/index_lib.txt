@@ -1,0 +1,5 @@
+<!-- {{model_display_name}} -->
+    <script src="/app/{{snake_case_model_name}}s/{{snake_case_model_name}}s.module.js"></script>
+<script src="/app/{{snake_case_model_name}}s/config.route.js"></script>
+<script src="/app/{{snake_case_model_name}}s/{{snake_case_model_name}}s.js"></script>
+<script src="/app/{{snake_case_model_name}}s/{{snake_case_model_name}}_model.js"></script>

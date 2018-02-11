@@ -1,0 +1,149 @@
+<div class="content">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header">
+          <div class="row">
+            <div class="col-md-11">
+              <h5 class="title text-uppercase">Danh sách Đường dẫn<h5>
+            </div>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+              <li class="dropdown" style="padding: 0px">
+                <input class="btn-sm pull-right my-shadown" type="text"
+                  ng-model="searchText" style="color: black" placeholder="Tìm kiếm nhanh">
+              </li>
+            </ul>
+            <div class="col-md-2 pull-right"  style="margin-right: 10px">
+              <a style="color: #5D5D5D;" class="btn btn-sm pull-right my-shadown"
+                ng-click="linkCrud.openCreateForm()">
+                <i class="fa fa-plus"></i>
+                Thêm mới Đường dẫn
+              </a>
+            </div>
+          </div>
+          <br>
+          <div class=" my-shadown" style="border: #C7C7C7 1px solid; padding: 1.5rem 13px 1rem 13px; border-radius: 5px; margin-top: 10px;">
+            <div class="alert alert-danger" ng-show="errMsg">
+              <span>{{ errMsg }}</span>
+            </div>
+            <div class="row">
+              <form name="myForm">
+              
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Đường dẫn</label>
+      <input name="link_url" ng-model="searchLink.link_url" type="text"
+        class="form-control" ng-maxlength='255' required ></input>
+
+      <div ng-messages="myForm.link_url.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_url.$dirty'>
+        <div ng-message="maxlength">Đường dẫn không được quá 255 ký tự</div>
+  <div ng-message="required">Đường dẫn là trường bắt buộc</div>
+
+      
+    </div>
+  </div>
+</div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Đường dẫn</label>
+      <input name="link_url" ng-model="searchLink.link_url"
+        type="email" class="form-control" ng-maxlength='255' required ></input>
+
+      <div ng-messages="myForm.link_url.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_url.$dirty'>
+        <div ng-message="maxlength">Đường dẫn không được quá 255 ký tự</div>
+  <div ng-message="required">Đường dẫn là trường bắt buộc</div>
+
+      
+    </div>
+  </div>
+</div>
+
+                <div class="col-md-2">
+                    <label></label>
+                  <div class="row" style="padding-top: 0.6rem;">
+                    <div class="col-md-7">
+                      <a ng-click="getLinks()" style="background: #3D55DA; color: white;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-5">
+                      <a ng-click="resetLinkList()" style="color: #5D5D5D;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-close"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <th>Đường dẫn</th><th>Tên link</th><th>Hình ảnh đại diện cho đường dẫn</th><th>ID đối tượng trỏ đến của đường dẫn</th><th>Mô tả về đường dẫn</th><th>Cho phép hiển thị đường dẫn</th><th>Người sở hữu đường dẫn</th><th>Số click vào đường dẫn</th>
+              <th class="col-md-2">Tác vụ</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="{{uncapitalised_model_name}} in links  | filter:searchText">
+              <td>{{link.link_url}}</td><td>{{link.link_name}}</td><td>{{link.link_image}}</td><td>{{link.link_target_id}}</td><td>{{link.link_description}}</td><td>{{link.link_visible}}</td><td>{{link.link_owner}}</td><td>{{link.link_click_count}}</td>
+                <!-- <td>
+                    <a ng-if="!{{uncapitalised_model_name}}.file_uri"target="_blank">
+                      <img style="cursor: not-allowed; width: 3.5rem; -webkit-filter: grayscale(100%); filter: grayscale(100%);" src="/app/assets/img/pdf.png">
+                    </a>
+                    <a ng-if="{{uncapitalised_model_name}}.file_uri" href="/{{uncapitalised_model_name}}.file_uri}}" target="_blank">
+                      <img style="width: 3.5rem" src="/app/assets/img/pdf.png">
+                    </a>
+                </td> -->
+                <td>
+                  <div class="row">
+                    <a style="color: #5D5D5D; margin-right: 12px"
+                      href="#!/link/{{ {{uncapitalised_model_name}}.id}}" class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xem">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a ng-click="openUpdateForm(link.id)" style="color: #5D5D5D; margin-right: 12px"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Chỉnh sửa Đường dẫn">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                    <a style="color: #5D5D5D;" ng-click="deleteLink(link.id)"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xóa Đường dẫn">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <div class="row" ng-show="links" style="margin-left: 0.5rem;">
+          </div> -->
+          <div class="text-center" ng-show="links">
+            <div class="pull-left">
+              <div class="form-group" style="margin-left: 1.2rem;">
+              <label>Số dòng / trang</label>
+              <select  style="height: 3.2rem; font-size: 1.2rem;" class="form-control" ng-model="pagination.limit" ng-change="getLinks()">
+              <option ng-repeat="limit in pagination.limits" value="{{limit}}">{{limit}}</option>
+            </select>
+          </div>
+
+            </div>
+            <ul class="pagination pagination-sm">
+              <li><a ng-click="getLinksLeftPage()" role="button">&laquo;</a></li>
+              <li ng-repeat="page in pagination.pages" ng-class="{active: pagination.page == page}">
+                <a ng-click="getLinksByPage(page)" role="button">{{page + 1}}</a>
+              </li>
+              <li><a ng-click="getLinksRightPage()" role="button">&raquo;</a></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

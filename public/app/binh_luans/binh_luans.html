@@ -1,0 +1,134 @@
+<div class="content">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header">
+          <div class="row">
+            <div class="col-md-11">
+              <h5 class="title text-uppercase">Danh sách Bình luận<h5>
+            </div>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+              <li class="dropdown" style="padding: 0px">
+                <input class="btn-sm pull-right my-shadown" type="text"
+                  ng-model="searchText" style="color: black" placeholder="Tìm kiếm nhanh">
+              </li>
+            </ul>
+            <div class="col-md-2 pull-right"  style="margin-right: 10px">
+              <a style="color: #5D5D5D;" class="btn btn-sm pull-right my-shadown"
+                ng-click="binhLuanCrud.openCreateForm()">
+                <i class="fa fa-plus"></i>
+                Thêm mới Bình luận
+              </a>
+            </div>
+          </div>
+          <br>
+          <div class=" my-shadown" style="border: #C7C7C7 1px solid; padding: 1.5rem 13px 1rem 13px; border-radius: 5px; margin-top: 10px;">
+            <div class="alert alert-danger" ng-show="errMsg">
+              <span>{{ errMsg }}</span>
+            </div>
+            <div class="row">
+              <form name="myForm">
+              
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>ID bài viết</label>
+      <select name="bai_viet_id" class="form-control" ng-model="searchBinhLuan.bai_viet_id" 
+                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.bai_viet_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.bai_viet_id.$dirty'>
+          <div ng-message="required">ID bài viết là trường bắt buộc</div>
+<div ng-message="number">ID bài viết phải là một số hợp lệ</div>
+
+      
+    </div>
+  </div>
+</div>
+
+                <div class="col-md-2">
+                    <label></label>
+                  <div class="row" style="padding-top: 0.6rem;">
+                    <div class="col-md-7">
+                      <a ng-click="getBinhLuans()" style="background: #3D55DA; color: white;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-5">
+                      <a ng-click="resetBinhLuanList()" style="color: #5D5D5D;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-close"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <th>ID bài viết</th><th>ID người bình luận</th><th>Tên người bình luận</th><th>Đường dẫn đến trang thông tin của người bình luận</th><th>Địa chỉ ip của người bình luận</th><th>Nội dung bình luận</th><th>Bình luận cha</th><th>Bình luận được chấp nhận</th>
+              <th class="col-md-2">Tác vụ</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="{{uncapitalised_model_name}} in binhLuans  | filter:searchText">
+              <td>{{binhLuan.bai_viet_id}}</td><td>{{binhLuan.nguoi_binh_luan_id}}</td><td>{{binhLuan.ten_nguoi_binh_luan}}</td><td>{{binhLuan.url_nguoi_binh_luan}}</td><td>{{binhLuan.ip_nguoi_binh_luan}}</td><td>{{binhLuan.noi_dung_binh_luan}}</td><td>{{binhLuan.binh_luan_cha_id}}</td><td>{{binhLuan.binh_luan_duoc_chap_nhan}}</td>
+                <!-- <td>
+                    <a ng-if="!{{uncapitalised_model_name}}.file_uri"target="_blank">
+                      <img style="cursor: not-allowed; width: 3.5rem; -webkit-filter: grayscale(100%); filter: grayscale(100%);" src="/app/assets/img/pdf.png">
+                    </a>
+                    <a ng-if="{{uncapitalised_model_name}}.file_uri" href="/{{uncapitalised_model_name}}.file_uri}}" target="_blank">
+                      <img style="width: 3.5rem" src="/app/assets/img/pdf.png">
+                    </a>
+                </td> -->
+                <td>
+                  <div class="row">
+                    <a style="color: #5D5D5D; margin-right: 12px"
+                      href="#!/binh_luan/{{ {{uncapitalised_model_name}}.id}}" class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xem">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a ng-click="openUpdateForm(binhLuan.id)" style="color: #5D5D5D; margin-right: 12px"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Chỉnh sửa Bình luận">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                    <a style="color: #5D5D5D;" ng-click="deleteBinhLuan(binhLuan.id)"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xóa Bình luận">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <div class="row" ng-show="binhLuans" style="margin-left: 0.5rem;">
+          </div> -->
+          <div class="text-center" ng-show="binhLuans">
+            <div class="pull-left">
+              <div class="form-group" style="margin-left: 1.2rem;">
+              <label>Số dòng / trang</label>
+              <select  style="height: 3.2rem; font-size: 1.2rem;" class="form-control" ng-model="pagination.limit" ng-change="getBinhLuans()">
+              <option ng-repeat="limit in pagination.limits" value="{{limit}}">{{limit}}</option>
+            </select>
+          </div>
+
+            </div>
+            <ul class="pagination pagination-sm">
+              <li><a ng-click="getBinhLuansLeftPage()" role="button">&laquo;</a></li>
+              <li ng-repeat="page in pagination.pages" ng-class="{active: pagination.page == page}">
+                <a ng-click="getBinhLuansByPage(page)" role="button">{{page + 1}}</a>
+              </li>
+              <li><a ng-click="getBinhLuansRightPage()" role="button">&raquo;</a></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

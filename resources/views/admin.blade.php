@@ -130,78 +130,6 @@
     <script src="/app/authentication/authservice.js"></script>
     <script src="/app/authentication/auth.js"></script>
 
-    <!-- co quan ban hanh -->
-    <script src="/app/co_quan_ban_hanhs/co_quan_ban_hanhs.module.js"></script>
-    <script src="/app/co_quan_ban_hanhs/config.route.js"></script>
-    <script src="/app/co_quan_ban_hanhs/co_quan_ban_hanhs.js"></script>
-    <script src="/app/co_quan_ban_hanhs/co_quan_ban_hanh_model.js"></script>
-
-    <!-- may in -->
-    <script src="/app/may_ins/may_ins.module.js"></script>
-    <script src="/app/may_ins/config.route.js"></script>
-    <script src="/app/may_ins/may_ins.js"></script>
-    <script src="/app/may_ins/may_in_model.js"></script>
-
-    <!-- page size -->
-    <script src="/app/page_sizes/page_sizes.module.js"></script>
-    <script src="/app/page_sizes/config.route.js"></script>
-    <script src="/app/page_sizes/page_sizes.js"></script>
-    <script src="/app/page_sizes/page_size_model.js"></script>
-
-    <!-- van ban -->
-    <script src="/app/van_bans/van_bans.module.js"></script>
-    <script src="/app/van_bans/config.route.js"></script>
-    <script src="/app/van_bans/van_bans.js"></script>
-    <script src="/app/van_bans/van_ban_model.js"></script>
-
-    <!-- du lieu dang ky -->
-    <script src="/app/du_lieu_dang_kys/du_lieu_dang_kys.module.js"></script>
-    <script src="/app/du_lieu_dang_kys/config.route.js"></script>
-    <script src="/app/du_lieu_dang_kys/du_lieu_dang_kys.js"></script>
-    <script src="/app/du_lieu_dang_kys/du_lieu_dang_ky_model.js"></script>
-
-    <!-- bieu mau chung tu -->
-    <script src="/app/bieu_mau_chung_tus/bieu_mau_chung_tus.module.js"></script>
-    <script src="/app/bieu_mau_chung_tus/config.route.js"></script>
-    <script src="/app/bieu_mau_chung_tus/bieu_mau_chung_tus.js"></script>
-    <script src="/app/bieu_mau_chung_tus/bieu_mau_chung_tu_model.js"></script>
-
-    <!-- ten truong du lieu -->
-    <script src="/app/truong_du_lieus/truong_du_lieus.module.js"></script>
-    <script src="/app/truong_du_lieus/config.route.js"></script>
-    <script src="/app/truong_du_lieus/truong_du_lieus.js"></script>
-    <script src="/app/truong_du_lieus/truong_du_lieu_model.js"></script>
-
-    <!-- linh vuc van ban -->
-    <script src="/app/linh_vuc_van_bans/linh_vuc_van_bans.module.js"></script>
-    <script src="/app/linh_vuc_van_bans/config.route.js"></script>
-    <script src="/app/linh_vuc_van_bans/linh_vuc_van_bans.js"></script>
-    <script src="/app/linh_vuc_van_bans/linh_vuc_van_ban_model.js"></script>
-
-    <!-- pham vi van ban -->
-    <script src="/app/pham_vi_van_bans/pham_vi_van_bans.module.js"></script>
-    <script src="/app/pham_vi_van_bans/config.route.js"></script>
-    <script src="/app/pham_vi_van_bans/pham_vi_van_bans.js"></script>
-    <script src="/app/pham_vi_van_bans/pham_vi_van_ban_model.js"></script>
-
-    <!-- loai van ban -->
-    <script src="/app/loai_van_bans/loai_van_bans.module.js"></script>
-    <script src="/app/loai_van_bans/config.route.js"></script>
-    <script src="/app/loai_van_bans/loai_van_bans.js"></script>
-    <script src="/app/loai_van_bans/loai_van_ban_model.js"></script>
-
-    <!-- tinh trang van ban -->
-    <script src="/app/tinh_trang_van_bans/tinh_trang_van_bans.module.js"></script>
-    <script src="/app/tinh_trang_van_bans/config.route.js"></script>
-    <script src="/app/tinh_trang_van_bans/tinh_trang_van_bans.js"></script>
-    <script src="/app/tinh_trang_van_bans/tinh_trang_van_ban_model.js"></script>
-
-    <!-- nganhs -->
-    <script src="/app/nganhs/nganhs.module.js"></script>
-    <script src="/app/nganhs/config.route.js"></script>
-    <script src="/app/nganhs/nganhs.js"></script>
-    <script src="/app/nganhs/nganh_model.js"></script>
-
     <!-- users -->
     <script src="/app/users/users.module.js"></script>
     <script src="/app/users/config.route.js"></script>
@@ -220,18 +148,54 @@
     <script src="/app/roles/roles.js"></script>
     <script src="/app/roles/role_model.js"></script>
 
-    <!-- font-family -->
-    <script src="/app/font_familys/font_familys.module.js"></script>
-    <script src="/app/font_familys/config.route.js"></script>
-    <script src="/app/font_familys/font_familys.js"></script>
-    <script src="/app/font_familys/font_family_model.js"></script>
-    <!-- endinject -->
-
     <!-- projects -->
     <script src="/app/projects/projects.module.js"></script>
     <script src="/app/projects/config.route.js"></script>
     <script src="/app/projects/projects.js"></script>
     <script src="/app/projects/project_model.js"></script>
+
+    <!-- Bài viết -->
+    <script src="/app/bai_viets/bai_viets.module.js"></script>
+<script src="/app/bai_viets/config.route.js"></script>
+<script src="/app/bai_viets/bai_viets.js"></script>
+<script src="/app/bai_viets/bai_viet_model.js"></script>
+<!-- File đính kèm trong bài viết -->
+    <script src="/app/file_dinh_kem_bai_viets/file_dinh_kem_bai_viets.module.js"></script>
+<script src="/app/file_dinh_kem_bai_viets/config.route.js"></script>
+<script src="/app/file_dinh_kem_bai_viets/file_dinh_kem_bai_viets.js"></script>
+<script src="/app/file_dinh_kem_bai_viets/file_dinh_kem_bai_viet_model.js"></script>
+<!-- Đường dẫn -->
+    <script src="/app/links/links.module.js"></script>
+<script src="/app/links/config.route.js"></script>
+<script src="/app/links/links.js"></script>
+<script src="/app/links/link_model.js"></script>
+<!-- Đối tượng trỏ tới của đường dẫn -->
+    <script src="/app/link_targets/link_targets.module.js"></script>
+<script src="/app/link_targets/config.route.js"></script>
+<script src="/app/link_targets/link_targets.js"></script>
+<script src="/app/link_targets/link_target_model.js"></script>
+<!-- Chủng loại bài viết -->
+    <script src="/app/chung_loai_bais/chung_loai_bais.module.js"></script>
+<script src="/app/chung_loai_bais/config.route.js"></script>
+<script src="/app/chung_loai_bais/chung_loai_bais.js"></script>
+<script src="/app/chung_loai_bais/chung_loai_bai_model.js"></script>
+<!-- Tình trạng bình luận -->
+    <script src="/app/tinh_trang_binh_luans/tinh_trang_binh_luans.module.js"></script>
+<script src="/app/tinh_trang_binh_luans/config.route.js"></script>
+<script src="/app/tinh_trang_binh_luans/tinh_trang_binh_luans.js"></script>
+<script src="/app/tinh_trang_binh_luans/tinh_trang_binh_luan_model.js"></script>
+<!-- Tình trạng bài viết -->
+    <script src="/app/tinh_trang_bai_viets/tinh_trang_bai_viets.module.js"></script>
+<script src="/app/tinh_trang_bai_viets/config.route.js"></script>
+<script src="/app/tinh_trang_bai_viets/tinh_trang_bai_viets.js"></script>
+<script src="/app/tinh_trang_bai_viets/tinh_trang_bai_viet_model.js"></script>
+<!-- Bình luận -->
+    <script src="/app/binh_luans/binh_luans.module.js"></script>
+<script src="/app/binh_luans/config.route.js"></script>
+<script src="/app/binh_luans/binh_luans.js"></script>
+<script src="/app/binh_luans/binh_luan_model.js"></script>
+<!-- modeljs -->
+    
     <!-- endinject -->
 </body>
 </html>

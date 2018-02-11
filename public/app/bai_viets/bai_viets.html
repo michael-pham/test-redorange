@@ -1,0 +1,134 @@
+<div class="content">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header">
+          <div class="row">
+            <div class="col-md-11">
+              <h5 class="title text-uppercase">Danh sách Bài viết<h5>
+            </div>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+              <li class="dropdown" style="padding: 0px">
+                <input class="btn-sm pull-right my-shadown" type="text"
+                  ng-model="searchText" style="color: black" placeholder="Tìm kiếm nhanh">
+              </li>
+            </ul>
+            <div class="col-md-2 pull-right"  style="margin-right: 10px">
+              <a style="color: #5D5D5D;" class="btn btn-sm pull-right my-shadown"
+                ng-click="baiVietCrud.openCreateForm()">
+                <i class="fa fa-plus"></i>
+                Thêm mới Bài viết
+              </a>
+            </div>
+          </div>
+          <br>
+          <div class=" my-shadown" style="border: #C7C7C7 1px solid; padding: 1.5rem 13px 1rem 13px; border-radius: 5px; margin-top: 10px;">
+            <div class="alert alert-danger" ng-show="errMsg">
+              <span>{{ errMsg }}</span>
+            </div>
+            <div class="row">
+              <form name="myForm">
+              
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>ID tác giả bài viết</label>
+      <select name="tac_gia_bai_viet_id" class="form-control" ng-model="searchBaiViet.tac_gia_bai_viet_id" 
+                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.tac_gia_bai_viet_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.tac_gia_bai_viet_id.$dirty'>
+          <div ng-message="required">ID tác giả bài viết là trường bắt buộc</div>
+<div ng-message="number">ID tác giả bài viết phải là một số hợp lệ</div>
+
+      
+    </div>
+  </div>
+</div>
+
+                <div class="col-md-2">
+                    <label></label>
+                  <div class="row" style="padding-top: 0.6rem;">
+                    <div class="col-md-7">
+                      <a ng-click="getBaiViets()" style="background: #3D55DA; color: white;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-5">
+                      <a ng-click="resetBaiVietList()" style="color: #5D5D5D;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-close"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <th>ID tác giả bài viết</th><th>Nội dung</th><th>Tiêu đề</th><th>Trích yếu</th><th>ID tình trạng bài viết</th><th>Tình trạng bình luận</th><th>ID bài viết cha</th><th>Thứ tự trên menu</th><th>ID chủng loại bài viết</th><th>Số lượng bình lượng</th><th>Đường dẫn đến hình ảnh đại diện</th><th>Đường dẫn đến hình ảnh đại diện thumbnail</th>
+              <th class="col-md-2">Tác vụ</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="{{uncapitalised_model_name}} in baiViets  | filter:searchText">
+              <td>{{baiViet.tac_gia_bai_viet_id}}</td><td>{{baiViet.noi_dung}}</td><td>{{baiViet.tieu_de}}</td><td>{{baiViet.trich_yeu}}</td><td>{{baiViet.tinh_trang_bai_viet_id}}</td><td>{{baiViet.tinh_trang_binh_luan_id}}</td><td>{{baiViet.bai_viet_cha_id}}</td><td>{{baiViet.thu_tu_tren_menu}}</td><td>{{baiViet.chung_loai_bai_viet_id}}</td><td>{{baiViet.so_luong_binh_luan}}</td><td>{{baiViet.hinh_anh_dai_dien_url}}</td><td>{{baiViet.hinh_anh_dai_dien_thumbnail_url}}</td>
+                <!-- <td>
+                    <a ng-if="!{{uncapitalised_model_name}}.file_uri"target="_blank">
+                      <img style="cursor: not-allowed; width: 3.5rem; -webkit-filter: grayscale(100%); filter: grayscale(100%);" src="/app/assets/img/pdf.png">
+                    </a>
+                    <a ng-if="{{uncapitalised_model_name}}.file_uri" href="/{{uncapitalised_model_name}}.file_uri}}" target="_blank">
+                      <img style="width: 3.5rem" src="/app/assets/img/pdf.png">
+                    </a>
+                </td> -->
+                <td>
+                  <div class="row">
+                    <a style="color: #5D5D5D; margin-right: 12px"
+                      href="#!/bai_viet/{{ {{uncapitalised_model_name}}.id}}" class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xem">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a ng-click="openUpdateForm(baiViet.id)" style="color: #5D5D5D; margin-right: 12px"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Chỉnh sửa Bài viết">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                    <a style="color: #5D5D5D;" ng-click="deleteBaiViet(baiViet.id)"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xóa Bài viết">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <div class="row" ng-show="baiViets" style="margin-left: 0.5rem;">
+          </div> -->
+          <div class="text-center" ng-show="baiViets">
+            <div class="pull-left">
+              <div class="form-group" style="margin-left: 1.2rem;">
+              <label>Số dòng / trang</label>
+              <select  style="height: 3.2rem; font-size: 1.2rem;" class="form-control" ng-model="pagination.limit" ng-change="getBaiViets()">
+              <option ng-repeat="limit in pagination.limits" value="{{limit}}">{{limit}}</option>
+            </select>
+          </div>
+
+            </div>
+            <ul class="pagination pagination-sm">
+              <li><a ng-click="getBaiVietsLeftPage()" role="button">&laquo;</a></li>
+              <li ng-repeat="page in pagination.pages" ng-class="{active: pagination.page == page}">
+                <a ng-click="getBaiVietsByPage(page)" role="button">{{page + 1}}</a>
+              </li>
+              <li><a ng-click="getBaiVietsRightPage()" role="button">&raquo;</a></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

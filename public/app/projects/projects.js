@@ -39,11 +39,59 @@
 
       /* @ngInject */
       function ProjectDetails($sce, $scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel, utils) {
+          $scope.makeDanhMuc = function() {
+            for (var i = 0; i < $scope.currentModel.attributes.length; ++i) {
+              $scope.currentModel.attributes[i].show = false;
+            }
+
+            $scope.currentModel.attributes.push({
+              name: "ten",
+              show: false,
+              display_name: "Tên",
+              type: "string",
+              ui_type: "text_input",
+              hidden: "",
+              constraints: {
+                max: "255",
+                min: "",
+                pattern: "",
+                pattern_message: "",
+                required: true,
+                nullable: "",
+                numeric: "",
+                unique: "",
+                email: "",
+              }
+            });
+
+            $scope.currentModel.attributes.push({
+              name: "mo_ta",
+              show: false,
+              display_name: "Mô tả",
+              type: "text",
+              ui_type: "textarea_input",
+              hidden: "",
+              constraints: {
+                max: "500",
+                min: "",
+                pattern: "",
+                pattern_message: "",
+                required: "",
+                nullable: true,
+                numeric: "",
+                unique: "",
+                email: "",
+              }
+            });
+          }
+
+          // NEW GENERATION
+
           $scope.showCreateFormCode = showCreateFormCode;
           $scope.trustAsHtml = function(string) {
             return $sce.trustAsHtml(string);
           };
-          
+
           function showCreateFormCode(model) {
             function replacer(key, value) {
               if (typeof value === "boolean"||typeof value === "number") {

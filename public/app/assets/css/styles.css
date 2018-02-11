@@ -109,6 +109,8 @@ nav, .card {
 /* custom-pagination */
 .custom-pagination {
     margin: 20px 0;
+    margin-top: 0px;
+    margin-bottom: 0px;
     overflow: hidden;
     position: relative;
 }
@@ -135,7 +137,6 @@ nav, .card {
     font: 12px/30px Arial, sans-serif;
     height: 30px;
     margin: 3px;
-    margin-top: 5px;
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -148,9 +149,30 @@ nav, .card {
     color: black;
 }
 .custom-pagination li.active a {
-    background-color: #3F51B5;
+    background-color: #5C9DF5;
     color: #FFFFFF;
 }
 .custom-pagination li.active a:hover {
     color: #FFFFFF;
+}
+
+th i {
+  /*display: block;
+  float: right;*/
+  color: grey;
+}
+
+th:hover {
+  background-color: #F5F5F5;
+  cursor: pointer;
+}
+
+.btn-custom {
+  background-color: #5C9DF5;
+  color: white;
+}
+
+.btn-custom:hover {
+  background-color: #5189FF;
+  color: white;
 }

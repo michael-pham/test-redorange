@@ -3,99 +3,50 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-sys.path.append('../')
+# sys.path.append('../')
 
 from codegen_consts import *
 from codegen_utils import *
-from codegen_inputs import *
-from codegen_ui_model_js_consts import *
+# from codegen_inputs import *
+from codegen_ui_controller_consts import *
 from codegen_utils import *
 
-def make_many_to_one_items(model, model_dict):
-    ret = ""
-    for relationship in model[RELATIONSHIPS_KEY]:
-        if relationship[TYPE_KEY] == 'many-to-one':
-            foreign_model_name = relationship[WITH_KEY]
-            render_markers = [MANY_TO_ONE_LIST_NAME_MARKER, MANY_TO_ONE_LIST_API_MARKER]
-            code_contents = {
-                MANY_TO_ONE_LIST_NAME_MARKER: uncapitalise_txt(foreign_model_name),
-                MANY_TO_ONE_LIST_API_MARKER: to_snake_case(foreign_model_name)
-            }
-            ret += render(MANY_TO_ONE_MODEL_ITEM_TPL, render_markers, code_contents)
-
-    return ret
-
-# Helper
-def make_one_to_many_item(model, model_dict):
-    render_markers = [DOMESTIC_MARKER, ONE_TO_MANY_LIST_API_MARKER, \
-        ONE_TO_MANY_LIST_NAME_MARKER, MANY_TO_ONE_RELATIONSHIP_MARKER,
-            ONE_TO_MANY_RELATIONSHIP_MARKER]
-
-    domestic_attributes = ""
-    for attribute in model[ATTRIBUTES_KEY]:
-        domestic_attributes += attribute[NAME_KEY] + ", "
-
-    one_to_many_list_api = to_snake_case(model[NAME_KEY])
-    one_to_many_list_name = uncapitalise_txt(model[NAME_KEY])
-
-    many_to_one_relationship = make_many_to_one_items(model, model_dict)
-
-    one_to_many_relationship = ""
-    for relationship in model[RELATIONSHIPS_KEY]:
-        if relationship[TYPE_KEY] == "one-to-many":
-            foreign_model_name = relationship[WITH_KEY]
-            try:
-                foreign_model = model_dict[foreign_model_name]
-                one_to_many_relationship += make_one_to_many_item(foreign_model,
-                    model_dict)
-            except:
-                print(foreign_model_name + " not found")
+def make_route_config(model):
+    render_markers = [
+        SNAKE_CASE_MODEL_NAME_MARKER, UNCAPITALISED_MODEL_NAME_MARKER
+    ]
 
     code_contents = {
-        DOMESTIC_MARKER: domestic_attributes,
-        ONE_TO_MANY_LIST_API_MARKER: one_to_many_list_api,
-        ONE_TO_MANY_LIST_NAME_MARKER: one_to_many_list_name,
-        MANY_TO_ONE_RELATIONSHIP_MARKER: many_to_one_relationship,
-        ONE_TO_MANY_RELATIONSHIP_MARKER: one_to_many_relationship
-    }
-
-    return render(ONE_TO_MANY_MODEL_ITEM_TPL, render_markers, code_contents)
-
-def make_model_js(model, model_dict):
-    many_to_one_relationship = make_many_to_one_items(model, model_dict)
-    one_to_many_relationship = ""
-    for relationship in model[RELATIONSHIPS_KEY]:
-        if relationship[TYPE_KEY] == "one-to-many":
-            foreign_model_name = relationship[WITH_KEY]
-            # try:
-            foreign_model = model_dict[foreign_model_name]
-            one_to_many_relationship += make_one_to_many_item(foreign_model, model_dict)
-            # except:
-            #     print(foreign_model_name + " not found")
-
-    model_js_tpl = MODEL_JS_TPL
-    domestic_attributes = ""
-    for attribute in model[ATTRIBUTES_KEY]:
-        domestic_attributes += attribute[NAME_KEY] + ", "
-
-    render_markers = [DOMESTIC_MARKER, UNCAPITALISED_MODEL_NAME_MARKER, \
-        SNAKE_CASE_MODEL_NAME_MARKER, MODEL_DISPLAY_NAME_MARKER, \
-            MANY_TO_ONE_RELATIONSHIP_MARKER, ONE_TO_MANY_RELATIONSHIP_MARKER]
-
-    code_contents = {
-        DOMESTIC_MARKER: domestic_attributes,
-        UNCAPITALISED_MODEL_NAME_MARKER:  uncapitalise_txt(model[NAME_KEY]),
         SNAKE_CASE_MODEL_NAME_MARKER: to_snake_case(model[NAME_KEY]),
-        MODEL_DISPLAY_NAME_MARKER: model[DISPLAY_NAME_KEY],
-        MANY_TO_ONE_RELATIONSHIP_MARKER: many_to_one_relationship,
-        ONE_TO_MANY_RELATIONSHIP_MARKER: one_to_many_relationship
+        UNCAPITALISED_MODEL_NAME_MARKER: uncapitalise_txt(model[NAME_KEY])
     }
 
-    return render(model_js_tpl, render_markers, code_contents)
+    return render(ROUTE_CONFIG_TPL, render_markers, code_contents)
+
+def make_controller(model):
+    render_markers = [UNCAPITALISED_MODEL_NAME_MARKER, MODEL_NAME_MARKER]
+    uncapitalised_model_name = uncapitalise_txt(model[NAME_KEY])
+
+    code_contents = {
+        UNCAPITALISED_MODEL_NAME_MARKER: uncapitalised_model_name,
+        MODEL_NAME_MARKER: model[NAME_KEY]
+    }
+
+    return render(CONTROLLER_TPL, render_markers, code_contents)
+
+def make_module(model):
+    render_markers = [UNCAPITALISED_MODEL_NAME_MARKER]
+    uncapitalised_model_name = uncapitalise_txt(model[NAME_KEY])
+
+    code_contents = {
+        UNCAPITALISED_MODEL_NAME_MARKER: uncapitalised_model_name
+    }
+
+    return render(MODULE_TPL, render_markers, code_contents)
 
 # Make update form
 import json
-data_path = BASE_ROOT + '/frontend/tmpModel.json'
+data_path = BASE_ROOT + '/models.json'
 import ast
 with open(data_path) as fd:
     content = fd.read()
@@ -109,7 +60,18 @@ with open(data_path) as fd:
 
     # Traverse models
     for model in data:
-        print(make_model_js(model, model_dict))
+        directory = ROOT + '/public/app/' + to_snake_case(model[NAME_KEY]) + 's'
+        make_dir(directory)
+
+        module_path = directory + '/' + to_snake_case(model[NAME_KEY]) + 's.module.js'
+        write_to_file(module_path, make_module(model))
+
+        route_config_path = directory + '/config.route.js'
+        write_to_file(route_config_path, make_route_config(model))
+
+        controller_path = directory + '/' + to_snake_case(model[NAME_KEY]) + 's.js'
+        write_to_file(controller_path, make_controller(model))
+
         #make_form(UPDATE_FORM, model)
         #make_listing_table(model)
         # # Properties of the current model

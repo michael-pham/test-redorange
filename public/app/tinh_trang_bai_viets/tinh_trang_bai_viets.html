@@ -1,0 +1,149 @@
+<div class="content">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header">
+          <div class="row">
+            <div class="col-md-11">
+              <h5 class="title text-uppercase">Danh sách Tình trạng bài viết<h5>
+            </div>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+              <li class="dropdown" style="padding: 0px">
+                <input class="btn-sm pull-right my-shadown" type="text"
+                  ng-model="searchText" style="color: black" placeholder="Tìm kiếm nhanh">
+              </li>
+            </ul>
+            <div class="col-md-2 pull-right"  style="margin-right: 10px">
+              <a style="color: #5D5D5D;" class="btn btn-sm pull-right my-shadown"
+                ng-click="tinhTrangBaiVietCrud.openCreateForm()">
+                <i class="fa fa-plus"></i>
+                Thêm mới Tình trạng bài viết
+              </a>
+            </div>
+          </div>
+          <br>
+          <div class=" my-shadown" style="border: #C7C7C7 1px solid; padding: 1.5rem 13px 1rem 13px; border-radius: 5px; margin-top: 10px;">
+            <div class="alert alert-danger" ng-show="errMsg">
+              <span>{{ errMsg }}</span>
+            </div>
+            <div class="row">
+              <form name="myForm">
+              
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Tên</label>
+      <input name="ten" ng-model="searchTinhTrangBaiViet.ten" type="text"
+        class="form-control" ng-maxlength='255' required ></input>
+
+      <div ng-messages="myForm.ten.$error"
+        style="color:maroon" role="alert" ng-if='myForm.ten.$dirty'>
+        <div ng-message="maxlength">Tên không được quá 255 ký tự</div>
+  <div ng-message="required">Tên là trường bắt buộc</div>
+
+      
+    </div>
+  </div>
+</div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label>Tên</label>
+      <input name="ten" ng-model="searchTinhTrangBaiViet.ten"
+        type="email" class="form-control" ng-maxlength='255' required ></input>
+
+      <div ng-messages="myForm.ten.$error"
+        style="color:maroon" role="alert" ng-if='myForm.ten.$dirty'>
+        <div ng-message="maxlength">Tên không được quá 255 ký tự</div>
+  <div ng-message="required">Tên là trường bắt buộc</div>
+
+      
+    </div>
+  </div>
+</div>
+
+                <div class="col-md-2">
+                    <label></label>
+                  <div class="row" style="padding-top: 0.6rem;">
+                    <div class="col-md-7">
+                      <a ng-click="getTinhTrangBaiViets()" style="background: #3D55DA; color: white;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-search"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-5">
+                      <a ng-click="resetTinhTrangBaiVietList()" style="color: #5D5D5D;" class="btn-block btn btn-md my-shadown">
+                        <i class="fa fa-close"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <th>Tên</th><th>Mô tả</th>
+              <th class="col-md-2">Tác vụ</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="{{uncapitalised_model_name}} in tinhTrangBaiViets  | filter:searchText">
+              <td>{{tinhTrangBaiViet.ten}}</td><td>{{tinhTrangBaiViet.mo_ta}}</td>
+                <!-- <td>
+                    <a ng-if="!{{uncapitalised_model_name}}.file_uri"target="_blank">
+                      <img style="cursor: not-allowed; width: 3.5rem; -webkit-filter: grayscale(100%); filter: grayscale(100%);" src="/app/assets/img/pdf.png">
+                    </a>
+                    <a ng-if="{{uncapitalised_model_name}}.file_uri" href="/{{uncapitalised_model_name}}.file_uri}}" target="_blank">
+                      <img style="width: 3.5rem" src="/app/assets/img/pdf.png">
+                    </a>
+                </td> -->
+                <td>
+                  <div class="row">
+                    <a style="color: #5D5D5D; margin-right: 12px"
+                      href="#!/tinh_trang_bai_viet/{{ {{uncapitalised_model_name}}.id}}" class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xem">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a ng-click="openUpdateForm(tinhTrangBaiViet.id)" style="color: #5D5D5D; margin-right: 12px"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Chỉnh sửa Tình trạng bài viết">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                    <a style="color: #5D5D5D;" ng-click="deleteTinhTrangBaiViet(tinhTrangBaiViet.id)"
+                      class="col-md-3 btn btn-sm my-shadown"
+                        data-toggle="tooltip" title="Xóa Tình trạng bài viết">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <div class="row" ng-show="tinhTrangBaiViets" style="margin-left: 0.5rem;">
+          </div> -->
+          <div class="text-center" ng-show="tinhTrangBaiViets">
+            <div class="pull-left">
+              <div class="form-group" style="margin-left: 1.2rem;">
+              <label>Số dòng / trang</label>
+              <select  style="height: 3.2rem; font-size: 1.2rem;" class="form-control" ng-model="pagination.limit" ng-change="getTinhTrangBaiViets()">
+              <option ng-repeat="limit in pagination.limits" value="{{limit}}">{{limit}}</option>
+            </select>
+          </div>
+
+            </div>
+            <ul class="pagination pagination-sm">
+              <li><a ng-click="getTinhTrangBaiVietsLeftPage()" role="button">&laquo;</a></li>
+              <li ng-repeat="page in pagination.pages" ng-class="{active: pagination.page == page}">
+                <a ng-click="getTinhTrangBaiVietsByPage(page)" role="button">{{page + 1}}</a>
+              </li>
+              <li><a ng-click="getTinhTrangBaiVietsRightPage()" role="button">&raquo;</a></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,7 @@
         login_form_state.html('Chào mừng trở lại');
         $timeout(function() {
 
-          $location.path('/nganhs');
+          $location.path('/projects');
         }, 500);
       }
     }

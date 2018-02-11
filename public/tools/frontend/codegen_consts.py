@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 # CONSTANTS
-# BASE_ROOT = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools'
-# BASE_URL = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend'
+ROOT = '/home/hbkhanh/workspace/laravel-angularjs-creator'
+BASE_ROOT = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools'
+BASE_URL = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/tools/frontend'
+INDEX_TPL = BASE_URL + '/index_lib.txt'
+SIDEBAR_TPL = BASE_URL + '/sidebar_menu.txt'
 
-BASE_ROOT = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools'
-BASE_URL = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools/frontend'
+MODEL_JS_MARKER = "<!-- modeljs -->"
+PROJECT_SIDEBAR_MARKER = '<!-- project_links -->'
+MODULE_MARKER = '/* add_module */'
+MODULE_PATH = ROOT + '/public/app/app.module.js'
+
+# BASE_ROOT = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools'
+# BASE_URL = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/tools/frontend'
 API_BASE_URL = 'http://localhost:8000/'
 
 DATA_PATH = BASE_URL + '/hello.json'

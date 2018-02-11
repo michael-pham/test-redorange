@@ -3,11 +3,11 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-sys.path.append('../')
+# sys.path.append('../')
 
 from codegen_consts import *
 from codegen_utils import *
-from codegen_inputs import *
+# from codegen_inputs import *
 from codegen_ui_model_js_consts import *
 from codegen_utils import *
 
@@ -67,11 +67,11 @@ def make_model_js(model, model_dict):
     for relationship in model[RELATIONSHIPS_KEY]:
         if relationship[TYPE_KEY] == "one-to-many":
             foreign_model_name = relationship[WITH_KEY]
-            # try:
-            foreign_model = model_dict[foreign_model_name]
-            one_to_many_relationship += make_one_to_many_item(foreign_model, model_dict)
-            # except:
-            #     print(foreign_model_name + " not found")
+            try:
+                foreign_model = model_dict[foreign_model_name]
+                one_to_many_relationship += make_one_to_many_item(foreign_model, model_dict)
+            except:
+                print(foreign_model_name + " not found")
 
     model_js_tpl = MODEL_JS_TPL
     domestic_attributes = ""
@@ -95,7 +95,7 @@ def make_model_js(model, model_dict):
 
 # Make update form
 import json
-data_path = BASE_ROOT + '/frontend/tmpModel.json'
+data_path = BASE_ROOT + '/models.json'
 import ast
 with open(data_path) as fd:
     content = fd.read()
@@ -109,7 +109,11 @@ with open(data_path) as fd:
 
     # Traverse models
     for model in data:
-        print(make_model_js(model, model_dict))
+        directory = ROOT + '/public/app/' + to_snake_case(model[NAME_KEY]) + "s"
+        make_dir(directory)
+
+        model_js_path = directory + '/' + to_snake_case(model[NAME_KEY]) + '_model.js'
+        write_to_file(model_js_path, make_model_js(model, model_dict))
         #make_form(UPDATE_FORM, model)
         #make_listing_table(model)
         # # Properties of the current model
