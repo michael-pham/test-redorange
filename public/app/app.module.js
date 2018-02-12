@@ -26,14 +26,7 @@
         'app.permissions',
         'app.roles',
         'app.projects',
-'app.baiViets',
-'app.fileDinhKemBaiViets',
-'app.links',
-'app.linkTargets',
-'app.chungLoaiBais',
-'app.tinhTrangBinhLuans',
-'app.tinhTrangBaiViets',
-'app.binhLuans',
+        'app.fileManager',
 /* add_module */
     ]);
 })();

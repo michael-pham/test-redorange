@@ -6,10 +6,17 @@
         .controller('Projects', Projects)
         .controller('ProjectDetails', ProjectDetails);
 
-    Projects.$inject = ['$scope', 'crud', 'logger', 'projectModel', '$modal', '$location'];
+    Projects.$inject = ['$scope', 'crud', 'logger', 'projectModel', '$modal', '$location', '$http'];
 
     /* @ngInject */
-    function Projects($scope, crud, logger, projectModel, $modal, $location) {
+    function Projects($scope, crud, logger, projectModel, $modal, $location, $http) {
+
+        $http.get('/file-manager/jsonitems').then(function(successResponse) {
+          console.log(successResponse);
+        }, function(error) {
+          console.log(error);
+        });
+
         /*jshint validthis: true */
         $scope.projectModel = projectModel.init($scope);
         $scope.projectCrud = crud.make($scope.projectModel);

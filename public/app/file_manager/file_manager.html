@@ -1,0 +1,41 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="header">
+        <div class="row">
+          <div class="col-md-3">
+            <h5 style="text-transform: uppercase;" class="title col">Quản lý files</h5>
+          </div>
+          <div class="col-md-2 pull-right">
+            <a data-ng-click="roleCrud.openCreateForm('md')" class="btn btn-sm pull-right my-shadown">
+              <i class="fa fa-plus"></i>
+              Tạo files
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+          <div ng-repeat="directory in items.directories" class="col-xs-3 col-md-2 col-sm-4">
+            <div class="thumbnail" style="border: none">
+              <img src="/folder.ico" alt="...">
+              <div class="caption">
+                <p>{{directory.name}}</p>
+              </div>
+            </div>
+          </div>
+          <div ng-repeat="file in items.files" class="col-xs-3 col-md-2 col-sm-4">
+            <div class="thumbnail" style="border: none">
+              <img src="/file-icon.png" alt="...">
+              <div class="caption">
+                <p>{{file.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -156,6 +156,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        // Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         /*
          * Application Service Providers...
          */
