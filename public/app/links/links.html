@@ -4,7 +4,7 @@
       <div class="header">
         <div class="row">
           <div class="col-md-3">
-            <h5 style="text-transform: uppercase;" class="title text-uppercase">{{table_title}}</h5>
+            <h5 style="text-transform: uppercase;" class="title text-uppercase">Danh sách Đường dẫn</h5>
           </div>
           <div class="col-md-9 pull-right">
             <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
@@ -19,9 +19,9 @@
               <i class="fa fa-edit"></i>
               Chọn dòng
             </a>
-            <a data-ng-click="{{uncapitalised_model_name}}Crud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+            <a data-ng-click="linkCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              {{table_add_item_title}}
+              Thêm mới Đường dẫn
             </a>
           </div>
         </div>
@@ -33,14 +33,35 @@
               <input class="form-control" type="checkbox"/>
             </th>
             <!-- <th class="col-md-1"></th> -->
-            {{table_headers}}
+            <th>Đường dẫn</th><th>Tên link</th><th>Hình ảnh đại diện cho đường dẫn</th><th>ID đối tượng trỏ đến của đường dẫn</th><th>Mô tả về đường dẫn</th><th>Cho phép hiển thị đường dẫn</th><th>Người sở hữu đường dẫn</th><th>Số click vào đường dẫn</th>
             <th class="col-md-1">Tác vụ</th>
           </thead>
           <tbody>
             <tr>
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <!-- <td ng-show="showSelection" class="col-md-1"></td> -->
-              {{table_search_fields}}
+              <td><input name="link_url" ng-model="searchLink.link_url" type="text"
+  class="form-control" ng-maxlength='255' required ></input>
+</td><td><input name="link_url" ng-model="searchLink.link_url"
+  type="email" class="form-control" ng-maxlength='255' required ></input>
+</td><td><input name="link_name" ng-model="searchLink.link_name" type="text"
+  class="form-control" ng-maxlength='255' required ></input>
+</td><td><input name="link_name" ng-model="searchLink.link_name"
+  type="email" class="form-control" ng-maxlength='255' required ></input>
+</td><td><select name="link_target_id" class="form-control" ng-model="searchLink.link_target_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                             <option value=""></option>
+</select>
+</td><td><div ng-repeat="item in link_visible">
+  <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
+
+</td><td><select name="link_owner" class="form-control" ng-model="searchLink.link_owner"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" >
+                             <option value=""></option>
+</select>
+</td><td><input name="link_click_count" ng-model="searchLink.link_click_count" type="number"
+  class="form-control" ></input>
+</td>
               <td>
                 <div class="row">
                   <div class="col-md-8">
@@ -54,31 +75,31 @@
                 </div>
               </td>
             </tr>
-            <tr ng-repeat="(key, {{uncapitalised_model_name}}) in {{uncapitalised_model_name}}s | filter:searchText">
+            <tr ng-repeat="(key, link) in links | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <!-- <td>{{key + 1}}</td> -->
-              {{table_data}}
+              <td>{{link.link_url}}</td><td>{{link.link_name}}</td><td>{{link.link_image}}</td><td>{{link.link_target_id}}</td><td>{{link.link_description}}</td><td>{{link.link_visible}}</td><td>{{link.link_owner}}</td><td>{{link.link_click_count}}</td>
               <!-- <td><span class="label label-success">Duyệt</span></td> -->
               <!-- <td><span class="label label-danger">Duyệt</span></td>
               <td><span class="label label-warning">Duyệt</span></td>
               <td><span class="label label-info">Duyệt</span></td>
               <td><span class="label label-default">Duyệt</span></td> -->
-              <td>{{{{uncapitalised_model_name}}.created_at}}</td>
-              <td>{{{{uncapitalised_model_name}}.updated_at}}</td>
+              <td>{{link.created_at}}</td>
+              <td>{{link.updated_at}}</td>
               <td class="col-md-3">
                 <div class="row">
                   <div class="col-md-4  ">
-                    <a href="#/{{uncapitalised_model_name}}s/{{{{uncapitalised_model_name}}.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                    <a href="#/links/{{link.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
                       <i class="fa fa-eye"></i>
                     </a>
                   </div>
                   <div class="col-md-4">
-                    <a ng-click="openUpdateForm({{uncapitalised_model_name}}.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                    <a ng-click="openUpdateForm(link.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </div>
                   <div class="col-md-4">
-                    <a ng-click="{{uncapitalised_model_name}}Crud.deleteModel({{uncapitalised_model_name}}.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa {{uncapitalised_model_name}}">
+                    <a ng-click="linkCrud.deleteModel(link.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa link">
                       <i class="fa fa-trash"></i>
                     </a>
                   </div>

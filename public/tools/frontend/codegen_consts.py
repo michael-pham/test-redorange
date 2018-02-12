@@ -46,14 +46,6 @@ DATE_INPUT = 'date_input'
 NUMERIC_INPUT = 'numeric_input'
 TEXTAREA_INPUT = 'textarea_input'
 
-SELECTION_INPUT_TPL = 'selection_input.html'
-RADIO_INPUT_TPL = 'radio_input.html'
-DATALIST_INPUT_TPL = 'datalist_input.html'
-CHECKBOX_INPUT_TPL = 'checkbox_input.html'
-DATE_INPUT_TPL = 'date_input.html'
-NUMERIC_INPUT_TPL = 'numeric_input.html'
-TEXTAREA_INPUT_TPL = 'textarea_input.html'
-
 # Create form
 CREATE_FORM_TITLE_PREFIX = "Thêm mới"
 CREATE_FORM_TITLE_MARKER = "{{create_modal_title}}"
@@ -80,6 +72,7 @@ UPDATE_FORM_URL = BASE_URL + '/ui_components/update_modal.html'
 
 # Text input
 TEXT_INPUT_TPL = BASE_URL + '/ui_components/text_input.html'
+TEXT_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/text_input.html'
 TEXT_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 TEXT_INPUT_LABEL_MARKER = "{{input_label}}"
 TEXT_INPUT_NAME_MARKER = "{{input_name}}"
@@ -88,6 +81,7 @@ TEXT_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Numeric input
 NUMERIC_INPUT_TPL = BASE_URL + '/ui_components/numeric_input.html'
+NUMERIC_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/numeric_input.html'
 NUMERIC_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 NUMERIC_INPUT_LABEL_MARKER = "{{input_label}}"
 NUMERIC_INPUT_NAME_MARKER = "{{input_name}}"
@@ -96,6 +90,7 @@ NUMERIC_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Checkbox input
 CHECKBOX_INPUT_TPL = BASE_URL + '/ui_components/checkbox_input.html'
+CHECKBOX_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/checkbox_input.html'
 CHECKBOX_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 CHECKBOX_INPUT_LABEL_MARKER = "{{input_label}}"
 CHECKBOX_INPUT_NAME_MARKER = "{{input_name}}"
@@ -104,6 +99,7 @@ CHECKBOX_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Datalist input
 DATALIST_INPUT_TPL = BASE_URL + '/ui_components/datalist_input.html'
+DATALIST_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/datalist_input.html'
 DATALIST_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 DATALIST_INPUT_LABEL_MARKER = "{{input_label}}"
 DATALIST_INPUT_NAME_MARKER = "{{input_name}}"
@@ -112,6 +108,7 @@ DATALIST_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Radio input
 RADIO_INPUT_TPL = BASE_URL + '/ui_components/radio_input.html'
+RADIO_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/radio_input.html'
 RADIO_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 RADIO_INPUT_LABEL_MARKER = "{{input_label}}"
 RADIO_INPUT_NAME_MARKER = "{{input_name}}"
@@ -120,6 +117,7 @@ RADIO_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Date input
 DATE_INPUT_TPL = BASE_URL + '/ui_components/date_input.html'
+DATE_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/date_input.html'
 DATE_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 DATE_INPUT_LABEL_MARKER = "{{input_label}}"
 DATE_INPUT_NAME_MARKER = "{{input_name}}"
@@ -128,6 +126,7 @@ DATE_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Textarea input
 TEXTAREA_INPUT_TPL = BASE_URL + '/ui_components/textarea_input.html'
+TEXTAREA_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/textarea_input.html'
 TEXTAREA_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 TEXTAREA_INPUT_LABEL_MARKER = "{{input_label}}"
 TEXTAREA_INPUT_NAME_MARKER = "{{input_name}}"
@@ -136,6 +135,7 @@ TEXTAREA_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Selection input
 SELECTION_INPUT_TPL = BASE_URL + '/ui_components/selection_input.html'
+SELECTION_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/selection_input.html'
 SELECTION_INPUT_MODEL_NAME_MARKER = "{{input_model_name}}"
 SELECTION_INPUT_LABEL_MARKER = "{{input_label}}"
 SELECTION_INPUT_NAME_MARKER = "{{input_name}}"
@@ -144,6 +144,7 @@ SELECTION_INPUT_VALIDATION_NGMESSAGES_MARKER = "{{validation_ngmessages}}"
 
 # Email input
 EMAIL_INPUT_TPL = BASE_URL + '/ui_components/email_input.html'
+EMAIL_RAW_INPUT_TPL = BASE_URL + '/raw_ui_components/email_input.html'
 
 # ngmessages for validations
 MAX_NGMESSAGE_TPL = BASE_URL + '/ui_components/max_ngmessage.html'
@@ -165,7 +166,7 @@ EMAIL_NGMESSAGE_TPL = BASE_URL + '/ui_components/email_ngmessage.html'
 TABLE_LISTING_TPL =  BASE_URL +  "/ui_components/table_listing/listing.html"
 TABLE_TITLE_MARKER = "{{table_title}}"
 TABLE_SEARCH_QUICK_BOX_PLACEHOLDER_MARKER = "{{table_search_quick_box_placeholder}}"
-UNCAPITALSED_MODEL_NAME_MARKER = "{{uncapitalsed_model_name}}"
+UNCAPITALISED_MODEL_NAME_MARKER = "{{uncapitalised_model_name}}"
 TABLE_ADD_ITEM_TITLE_MARKER = "{{table_add_item_title}}"
 TABLE_SEARCH_FIELDS_MARKER = "{{table_search_fields}}"
 MODEL_NAME_MARKER = "{{model_name}}"

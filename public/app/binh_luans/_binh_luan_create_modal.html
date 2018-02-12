@@ -1,0 +1,196 @@
+<div>
+ <div class="card" style="border: none !important; box-shadow: 0px 0px 0px 0px white !important; padding: 25px 30px 10px 28px;">
+  <div class="header">
+   <h4 class="title text-uppercase">
+    Bình luận
+   </h4>
+  </div>
+  <div class="content">
+   <form>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        ID bài viết
+       </label>
+       <select class="form-control" name="bai_viet_id" ng-model="newBinhLuan.bai_viet_id" ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required>
+        <option value="">
+        </option>
+       </select>
+       <div ng-if="myForm.bai_viet_id.$dirty" ng-messages="myForm.bai_viet_id.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         ID bài viết là trường bắt buộc
+        </div>
+        <div ng-message="number">
+         ID bài viết phải là một số hợp lệ
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        ID người bình luận
+       </label>
+       <select class="form-control" name="nguoi_binh_luan_id" ng-model="newBinhLuan.nguoi_binh_luan_id" ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required>
+        <option value="">
+        </option>
+       </select>
+       <div ng-if="myForm.nguoi_binh_luan_id.$dirty" ng-messages="myForm.nguoi_binh_luan_id.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         ID người bình luận là trường bắt buộc
+        </div>
+        <div ng-message="number">
+         ID người bình luận phải là một số hợp lệ
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Tên người bình luận
+       </label>
+       <input class="form-control" name="ten_nguoi_binh_luan" ng-maxlength="255" ng-model="newBinhLuan.ten_nguoi_binh_luan" type="text"/>
+       <div ng-if="myForm.ten_nguoi_binh_luan.$dirty" ng-messages="myForm.ten_nguoi_binh_luan.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Tên người bình luận không được quá 255 ký tự
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Tên người bình luận
+       </label>
+       <input class="form-control" name="ten_nguoi_binh_luan" ng-maxlength="255" ng-model="newBinhLuan.ten_nguoi_binh_luan" type="email"/>
+       <div ng-if="myForm.ten_nguoi_binh_luan.$dirty" ng-messages="myForm.ten_nguoi_binh_luan.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Tên người bình luận không được quá 255 ký tự
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Đường dẫn đến trang thông tin của người bình luận
+       </label>
+       <input class="form-control" name="url_nguoi_binh_luan" ng-maxlength="255" ng-model="newBinhLuan.url_nguoi_binh_luan" type="text"/>
+       <div ng-if="myForm.url_nguoi_binh_luan.$dirty" ng-messages="myForm.url_nguoi_binh_luan.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Đường dẫn đến trang thông tin của người bình luận không được quá 255 ký tự
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Đường dẫn đến trang thông tin của người bình luận
+       </label>
+       <input class="form-control" name="url_nguoi_binh_luan" ng-maxlength="255" ng-model="newBinhLuan.url_nguoi_binh_luan" type="email"/>
+       <div ng-if="myForm.url_nguoi_binh_luan.$dirty" ng-messages="myForm.url_nguoi_binh_luan.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Đường dẫn đến trang thông tin của người bình luận không được quá 255 ký tự
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Địa chỉ ip của người bình luận
+       </label>
+       <input class="form-control" name="ip_nguoi_binh_luan" ng-maxlength="100" ng-model="newBinhLuan.ip_nguoi_binh_luan" type="text"/>
+       <div ng-if="myForm.ip_nguoi_binh_luan.$dirty" ng-messages="myForm.ip_nguoi_binh_luan.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Địa chỉ ip của người bình luận không được quá 100 ký tự
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Địa chỉ ip của người bình luận
+       </label>
+       <input class="form-control" name="ip_nguoi_binh_luan" ng-maxlength="100" ng-model="newBinhLuan.ip_nguoi_binh_luan" type="email"/>
+       <div ng-if="myForm.ip_nguoi_binh_luan.$dirty" ng-messages="myForm.ip_nguoi_binh_luan.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Địa chỉ ip của người bình luận không được quá 100 ký tự
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Nội dung bình luận
+       </label>
+       <textarea class="form-control" name="noi_dung_binh_luan" ng-model="newBinhLuan.noi_dung_binh_luan" required type="text"></textarea>
+       <div ng-if="myForm.noi_dung_binh_luan.$dirty" ng-messages="myForm.noi_dung_binh_luan.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         Nội dung bình luận là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Bình luận cha
+       </label>
+       <input class="form-control" name="binh_luan_cha_id" ng-model="newBinhLuan.binh_luan_cha_id" type="number"/>
+       <div ng-if="myForm.binh_luan_cha_id.$dirty" ng-messages="myForm.binh_luan_cha_id.$error" role="alert" style="color:maroon">
+        <div ng-message="number">
+         Bình luận cha phải là một số hợp lệ
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <div ng-repeat="item in binh_luan_duoc_chap_nhan">
+        <input ng-model="item.is_selected" type="radio"/>
+        {{item.display_name}}
+        <br/>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-6 col-md-offset-6">
+      <button class="btn btn-fill col-md-4 pull-right btn-success" ng-click="modelNameCrud.submitCreateForm(newModelName, '')">
+       Lưu
+      </button>
+      <button class="btn btn-fill col-md-4 pull-right" ng-click="modelNameCrud.dismissCreateForm()" style="margin-right: 0.5rem">
+       Trở lại
+      </button>
+     </div>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>

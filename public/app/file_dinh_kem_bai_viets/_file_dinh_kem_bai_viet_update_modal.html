@@ -1,0 +1,104 @@
+<div>
+ <div class="card" style="border: none !important; box-shadow: 0px 0px 0px 0px white !important; padding: 25px 30px 10px 28px;">
+  <div class="header">
+   <h4 class="title text-uppercase">
+    File đính kèm trong bài viết
+   </h4>
+  </div>
+  <div class="content">
+   <form>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        ID bài viết
+       </label>
+       <select class="form-control" name="bai_viet_id" ng-model="oldFileDinhKemBaiViet.bai_viet_id" ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required>
+        <option value="">
+        </option>
+       </select>
+       <div ng-if="myForm.bai_viet_id.$dirty" ng-messages="myForm.bai_viet_id.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         ID bài viết là trường bắt buộc
+        </div>
+        <div ng-message="number">
+         ID bài viết phải là một số hợp lệ
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Tên file
+       </label>
+       <input class="form-control" name="ten_file" ng-model="oldFileDinhKemBaiViet.ten_file" required type="text"/>
+       <div ng-if="myForm.ten_file.$dirty" ng-messages="myForm.ten_file.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         Tên file là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Tên file
+       </label>
+       <input class="form-control" name="ten_file" ng-model="oldFileDinhKemBaiViet.ten_file" required type="email"/>
+       <div ng-if="myForm.ten_file.$dirty" ng-messages="myForm.ten_file.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         Tên file là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Đường dẫn đến file
+       </label>
+       <input class="form-control" name="file_url" ng-model="oldFileDinhKemBaiViet.file_url" required type="text"/>
+       <div ng-if="myForm.file_url.$dirty" ng-messages="myForm.file_url.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         Đường dẫn đến file là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Đường dẫn đến file
+       </label>
+       <input class="form-control" name="file_url" ng-model="oldFileDinhKemBaiViet.file_url" required type="email"/>
+       <div ng-if="myForm.file_url.$dirty" ng-messages="myForm.file_url.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         Đường dẫn đến file là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-6 col-md-offset-6">
+      <button class="btn btn-fill col-md-4 pull-right btn-success" ng-click="modelNameCrud.submitupdateForm(newModelName, '')">
+       Lưu
+      </button>
+      <button class="btn btn-fill col-md-4 pull-right" ng-click="modelNameCrud.dismissupdateForm()" style="margin-right: 0.5rem">
+       Trở lại
+      </button>
+     </div>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>

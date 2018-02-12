@@ -1,0 +1,157 @@
+<div>
+ <div class="card" style="border: none !important; box-shadow: 0px 0px 0px 0px white !important; padding: 25px 30px 10px 28px;">
+  <div class="header">
+   <h4 class="title text-uppercase">
+    Đường dẫn
+   </h4>
+  </div>
+  <div class="content">
+   <form>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Đường dẫn
+       </label>
+       <input class="form-control" name="link_url" ng-maxlength="255" ng-model="oldLink.link_url" required type="text"/>
+       <div ng-if="myForm.link_url.$dirty" ng-messages="myForm.link_url.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Đường dẫn không được quá 255 ký tự
+        </div>
+        <div ng-message="required">
+         Đường dẫn là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Đường dẫn
+       </label>
+       <input class="form-control" name="link_url" ng-maxlength="255" ng-model="oldLink.link_url" required type="email"/>
+       <div ng-if="myForm.link_url.$dirty" ng-messages="myForm.link_url.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Đường dẫn không được quá 255 ký tự
+        </div>
+        <div ng-message="required">
+         Đường dẫn là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Tên link
+       </label>
+       <input class="form-control" name="link_name" ng-maxlength="255" ng-model="oldLink.link_name" required type="text"/>
+       <div ng-if="myForm.link_name.$dirty" ng-messages="myForm.link_name.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Tên link không được quá 255 ký tự
+        </div>
+        <div ng-message="required">
+         Tên link là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Tên link
+       </label>
+       <input class="form-control" name="link_name" ng-maxlength="255" ng-model="oldLink.link_name" required type="email"/>
+       <div ng-if="myForm.link_name.$dirty" ng-messages="myForm.link_name.$error" role="alert" style="color:maroon">
+        <div ng-message="maxlength">
+         Tên link không được quá 255 ký tự
+        </div>
+        <div ng-message="required">
+         Tên link là trường bắt buộc
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        ID đối tượng trỏ đến của đường dẫn
+       </label>
+       <select class="form-control" name="link_target_id" ng-model="oldLink.link_target_id" ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required>
+        <option value="">
+        </option>
+       </select>
+       <div ng-if="myForm.link_target_id.$dirty" ng-messages="myForm.link_target_id.$error" role="alert" style="color:maroon">
+        <div ng-message="required">
+         ID đối tượng trỏ đến của đường dẫn là trường bắt buộc
+        </div>
+        <div ng-message="number">
+         ID đối tượng trỏ đến của đường dẫn phải là một số hợp lệ
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <div ng-repeat="item in link_visible">
+        <input ng-model="item.is_selected" type="radio"/>
+        {{item.display_name}}
+        <br/>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Người sở hữu đường dẫn
+       </label>
+       <select class="form-control" name="link_owner" ng-model="oldLink.link_owner" ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items">
+        <option value="">
+        </option>
+       </select>
+       <div ng-if="myForm.link_owner.$dirty" ng-messages="myForm.link_owner.$error" role="alert" style="color:maroon">
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group">
+       <label>
+        Số click vào đường dẫn
+       </label>
+       <input class="form-control" name="link_click_count" ng-model="oldLink.link_click_count" type="number"/>
+       <div ng-if="myForm.link_click_count.$dirty" ng-messages="myForm.link_click_count.$error" role="alert" style="color:maroon">
+        <div ng-message="number">
+         Số click vào đường dẫn phải là một số hợp lệ
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-6 col-md-offset-6">
+      <button class="btn btn-fill col-md-4 pull-right btn-success" ng-click="modelNameCrud.submitupdateForm(newModelName, '')">
+       Lưu
+      </button>
+      <button class="btn btn-fill col-md-4 pull-right" ng-click="modelNameCrud.dismissupdateForm()" style="margin-right: 0.5rem">
+       Trở lại
+      </button>
+     </div>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>

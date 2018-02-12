@@ -1,0 +1,43 @@
+<div class="col-md-2">
+  <div class="form-group">
+    <label>Tên khách hàng</label>
+    <select class="form-control" ng-model="search.khach_hang_id">
+      <option></option>
+      <option ng-repeat="khachHang in khachHangs | orderBy:'ten_khach_hang_viet_tat'" value="{{khachHang.id}}">{{khachHang.ten_khach_hang_viet_tat}}</option>
+    </select>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="form-group">
+    <label>Dịch vụ</label>
+    <select class="form-control" ng-model="search.dich_vu_id">
+      <option></option>
+      <option ng-repeat="dichVu in dichVus" value="{{dichVu.id}}">{{dichVu.ten_dich_vu}}</option>
+    </select>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="form-group">
+    <label>Loại hợp đồng</label>
+    <select class="form-control" ng-model="search.loai_hop_dong_id">
+      <option></option>
+      <option ng-repeat="loaiHopDong in loaiHopDongs" value="{{loaiHopDong.id}}">{{loaiHopDong.ten}}</option>
+    </select>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="form-group">
+    <label class="control-label" for="date">Còn hiệu lực sau ngày</label>
+    <datepicker date-format="dd/MM/yyyy">
+      <input class="form-control" ng-model="search.co_hieu_luc_sau_ngay" type="text"/>
+    </datepicker>
+  </div>
+</div>
+<div class="col-md-2">
+  <div class="form-group">
+    <label class="control-label" for="date">Còn hiệu lực trước ngày</label>
+    <datepicker date-format="dd/MM/yyyy">
+      <input class="form-control" ng-model="search.co_hieu_luc_truoc_ngay" type="text"/>
+    </datepicker>
+  </div>
+</div>

@@ -4,7 +4,7 @@
       <div class="header">
         <div class="row">
           <div class="col-md-3">
-            <h5 style="text-transform: uppercase;" class="title text-uppercase">{{table_title}}</h5>
+            <h5 style="text-transform: uppercase;" class="title text-uppercase">Danh sách File đính kèm trong bài viết</h5>
           </div>
           <div class="col-md-9 pull-right">
             <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
@@ -19,9 +19,9 @@
               <i class="fa fa-edit"></i>
               Chọn dòng
             </a>
-            <a data-ng-click="{{uncapitalised_model_name}}Crud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+            <a data-ng-click="fileDinhKemBaiVietCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              {{table_add_item_title}}
+              Thêm mới File đính kèm trong bài viết
             </a>
           </div>
         </div>
@@ -33,14 +33,26 @@
               <input class="form-control" type="checkbox"/>
             </th>
             <!-- <th class="col-md-1"></th> -->
-            {{table_headers}}
+            <th>ID bài viết</th><th>Tên file</th><th>Đường dẫn đến file</th>
             <th class="col-md-1">Tác vụ</th>
           </thead>
           <tbody>
             <tr>
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <!-- <td ng-show="showSelection" class="col-md-1"></td> -->
-              {{table_search_fields}}
+              <td><select name="bai_viet_id" class="form-control" ng-model="searchFileDinhKemBaiViet.bai_viet_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                             <option value=""></option>
+</select>
+</td><td><input name="ten_file" ng-model="searchFileDinhKemBaiViet.ten_file" type="text"
+  class="form-control" required ></input>
+</td><td><input name="ten_file" ng-model="searchFileDinhKemBaiViet.ten_file"
+  type="email" class="form-control" required ></input>
+</td><td><input name="file_url" ng-model="searchFileDinhKemBaiViet.file_url" type="text"
+  class="form-control" required ></input>
+</td><td><input name="file_url" ng-model="searchFileDinhKemBaiViet.file_url"
+  type="email" class="form-control" required ></input>
+</td>
               <td>
                 <div class="row">
                   <div class="col-md-8">
@@ -54,31 +66,31 @@
                 </div>
               </td>
             </tr>
-            <tr ng-repeat="(key, {{uncapitalised_model_name}}) in {{uncapitalised_model_name}}s | filter:searchText">
+            <tr ng-repeat="(key, fileDinhKemBaiViet) in fileDinhKemBaiViets | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <!-- <td>{{key + 1}}</td> -->
-              {{table_data}}
+              <td>{{fileDinhKemBaiViet.bai_viet_id}}</td><td>{{fileDinhKemBaiViet.ten_file}}</td><td>{{fileDinhKemBaiViet.file_url}}</td>
               <!-- <td><span class="label label-success">Duyệt</span></td> -->
               <!-- <td><span class="label label-danger">Duyệt</span></td>
               <td><span class="label label-warning">Duyệt</span></td>
               <td><span class="label label-info">Duyệt</span></td>
               <td><span class="label label-default">Duyệt</span></td> -->
-              <td>{{{{uncapitalised_model_name}}.created_at}}</td>
-              <td>{{{{uncapitalised_model_name}}.updated_at}}</td>
+              <td>{{fileDinhKemBaiViet.created_at}}</td>
+              <td>{{fileDinhKemBaiViet.updated_at}}</td>
               <td class="col-md-3">
                 <div class="row">
                   <div class="col-md-4  ">
-                    <a href="#/{{uncapitalised_model_name}}s/{{{{uncapitalised_model_name}}.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                    <a href="#/fileDinhKemBaiViets/{{fileDinhKemBaiViet.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
                       <i class="fa fa-eye"></i>
                     </a>
                   </div>
                   <div class="col-md-4">
-                    <a ng-click="openUpdateForm({{uncapitalised_model_name}}.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                    <a ng-click="openUpdateForm(fileDinhKemBaiViet.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </div>
                   <div class="col-md-4">
-                    <a ng-click="{{uncapitalised_model_name}}Crud.deleteModel({{uncapitalised_model_name}}.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa {{uncapitalised_model_name}}">
+                    <a ng-click="fileDinhKemBaiVietCrud.deleteModel(fileDinhKemBaiViet.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa fileDinhKemBaiViet">
                       <i class="fa fa-trash"></i>
                     </a>
                   </div>

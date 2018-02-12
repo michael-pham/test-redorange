@@ -80,33 +80,33 @@ def make_search_form(model):
         ui_type = attribute[UI_TYPE_KEY]
 
         if ui_type == TEXT_INPUT:
-            input_content += search_input(form_model_name, TEXT_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, TEXT_RAW_INPUT_TPL, attribute) + "</td>"
 
         if ui_type == EMAIL_INPUT:
-            input_content += search_input(form_model_name, EMAIL_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, EMAIL_RAW_INPUT_TPL, attribute) + "</td>"
 
         if ui_type == NUMERIC_INPUT:
-            input_content += search_input(form_model_name, NUMERIC_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, NUMERIC_RAW_INPUT_TPL, attribute) + "</td>"
 
         if ui_type == CHECKBOX_INPUT:
-            input_content += search_input(form_model_name, CHECKBOX_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, CHECKBOX_RAW_INPUT_TPL, attribute)  + "</td>"
 
         if ui_type == RADIO_INPUT:
-            input_content += search_input(form_model_name, RADIO_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, RADIO_RAW_INPUT_TPL, attribute) + "</td>"
 
         if ui_type == TEXTAREA_INPUT:
-            input_content += search_input(form_model_name, TEXTAREA_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, TEXTAREA_RAW_INPUT_TPL, attribute) + "</td>"
 
         if ui_type == DATALIST_INPUT:
-            input_content += search_input(form_model_name, DATALIST_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, DATALIST_RAW_INPUT_TPL, attribute) + "</td>"
 
         if ui_type == SELECTION_INPUT:
-            input_content += search_input(form_model_name, SELECTION_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, SELECTION_RAW_INPUT_TPL, attribute) + "</td>"
 
         if ui_type == DATE_INPUT:
-            input_content += search_input(form_model_name, DATE_INPUT_TPL, attribute)
+            input_content += "<td>" + search_input(form_model_name, DATE_RAW_INPUT_TPL, attribute) + "</td>"
 
-        return input_content
+    return input_content
 
 def make_listing_table(model):
     table_headers = ""
@@ -114,7 +114,7 @@ def make_listing_table(model):
     render_markers = [
         TABLE_TITLE_MARKER,
         TABLE_SEARCH_QUICK_BOX_PLACEHOLDER_MARKER,
-        UNCAPITALSED_MODEL_NAME_MARKER,
+        UNCAPITALISED_MODEL_NAME_MARKER,
         TABLE_ADD_ITEM_TITLE_MARKER,
         TABLE_SEARCH_FIELDS_MARKER,
         MODEL_NAME_MARKER,
@@ -126,7 +126,7 @@ def make_listing_table(model):
 
     table_title = TABLE_TITLE_PREFIX + " " + model[DISPLAY_NAME_KEY]
     table_search_quick_box_placeholder = TABLE_SEARCH_QUICK_BOX_PLACEHOLDER
-    uncapitalsed_model_name = uncapitalise_txt(model[NAME_KEY])
+    uncapitalised_model_name = uncapitalise_txt(model[NAME_KEY])
     table_add_item_title = TABLE_ADD_ITEM_TITLE_PREFIX + " " + model[DISPLAY_NAME_KEY]
     model_name = model[NAME_KEY]
     snake_case_model_name = to_snake_case(model_name)
@@ -134,13 +134,13 @@ def make_listing_table(model):
     table_search_fields = make_search_form(model)
 
     for attribute in model[ATTRIBUTES_KEY]:
-        table_data += "<td>{{" + uncapitalsed_model_name + "." + attribute[NAME_KEY] + "}}</td>"
+        table_data += "<td>{{" + uncapitalised_model_name + "." + attribute[NAME_KEY] + "}}</td>"
         table_headers += "<th>" + attribute[DISPLAY_NAME_KEY] + "</th>"
 
     code_contents = {
         TABLE_TITLE_MARKER: table_title,
         TABLE_SEARCH_QUICK_BOX_PLACEHOLDER_MARKER: table_search_quick_box_placeholder,
-        UNCAPITALSED_MODEL_NAME_MARKER: uncapitalsed_model_name,
+        UNCAPITALISED_MODEL_NAME_MARKER: uncapitalised_model_name,
         TABLE_ADD_ITEM_TITLE_MARKER: table_add_item_title,
         TABLE_SEARCH_FIELDS_MARKER: table_search_fields,
         MODEL_NAME_MARKER: model_name,
@@ -150,18 +150,20 @@ def make_listing_table(model):
         MODEL_DISPLAY_NAME_MARKER: model_display_name
     }
 
-    # Read in the file
-    with open(TABLE_LISTING_TPL, 'r') as file :
-      file_data = file.read()
+    return render(TABLE_LISTING_TPL, render_markers, code_contents)
 
-    for render_marker in render_markers:
-        file_data = file_data.replace(render_marker, code_contents[render_marker])
+    # # Read in the file
+    # with open(TABLE_LISTING_TPL, 'r') as file :
+    #   file_data = file.read()
+    #
+    # for render_marker in render_markers:
+    #     file_data = file_data.replace(render_marker, code_contents[render_marker])
 
     # file_data = BeautifulSoup(file_data, 'html.parser').prettify()
     # file_data = file_data.replace('required=""', 'required')
     # print(file_data)
 
-    return file_data
+    # return file_data
 
 import json
 data_path = BASE_ROOT + '/models.json'
@@ -195,8 +197,10 @@ with open(data_path) as fd:
             MODEL_DISPLAY_NAME_MARKER: model[DISPLAY_NAME_KEY]
         }
 
-        dst_txt = render(INDEX_TPL, render_markers, code_contents) + MODEL_JS_MARKER
+        dst_txt = render(INDEX_TPL, render_markers, code_contents)
         search_and_replace_with_write(index_path, dst_txt, "")
+
+        dst_txt = dst_txt + MODEL_JS_MARKER
         search_and_replace_with_write(index_path, MODEL_JS_MARKER, dst_txt)
 
         # update sidebar menu
@@ -206,12 +210,14 @@ with open(data_path) as fd:
             MODEL_DISPLAY_NAME_MARKER: model[DISPLAY_NAME_KEY]
         }
 
-        dst_txt = render(SIDEBAR_TPL, render_markers, code_contents) + PROJECT_SIDEBAR_MARKER
+        dst_txt = render(SIDEBAR_TPL, render_markers, code_contents)
         search_and_replace_with_write(sidebar_path, dst_txt, "")
+
+        dst_txt = dst_txt + PROJECT_SIDEBAR_MARKER
         search_and_replace_with_write(sidebar_path, PROJECT_SIDEBAR_MARKER, dst_txt)
 
         # update module
-        search_and_replace_with_write(MODULE_PATH, "'app." + uncapitalise_txt(model[NAME_KEY]) + "s',\n/* add_module */", \
+        search_and_replace_with_write(MODULE_PATH, "'app." + uncapitalise_txt(model[NAME_KEY]) + "s',\n", \
             "")
         search_and_replace_with_write(MODULE_PATH, MODULE_MARKER, \
             "'app." + uncapitalise_txt(model[NAME_KEY]) + "s',\n/* add_module */")

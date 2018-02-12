@@ -4,7 +4,7 @@
       <div class="header">
         <div class="row">
           <div class="col-md-3">
-            <h5 style="text-transform: uppercase;" class="title text-uppercase">{{table_title}}</h5>
+            <h5 style="text-transform: uppercase;" class="title text-uppercase">Danh sách Bình luận</h5>
           </div>
           <div class="col-md-9 pull-right">
             <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
@@ -19,9 +19,9 @@
               <i class="fa fa-edit"></i>
               Chọn dòng
             </a>
-            <a data-ng-click="{{uncapitalised_model_name}}Crud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+            <a data-ng-click="binhLuanCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              {{table_add_item_title}}
+              Thêm mới Bình luận
             </a>
           </div>
         </div>
@@ -33,14 +33,41 @@
               <input class="form-control" type="checkbox"/>
             </th>
             <!-- <th class="col-md-1"></th> -->
-            {{table_headers}}
+            <th>ID bài viết</th><th>ID người bình luận</th><th>Tên người bình luận</th><th>Đường dẫn đến trang thông tin của người bình luận</th><th>Địa chỉ ip của người bình luận</th><th>Nội dung bình luận</th><th>Bình luận cha</th><th>Bình luận được chấp nhận</th>
             <th class="col-md-1">Tác vụ</th>
           </thead>
           <tbody>
             <tr>
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <!-- <td ng-show="showSelection" class="col-md-1"></td> -->
-              {{table_search_fields}}
+              <td><select name="bai_viet_id" class="form-control" ng-model="searchBinhLuan.bai_viet_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                             <option value=""></option>
+</select>
+</td><td><select name="nguoi_binh_luan_id" class="form-control" ng-model="searchBinhLuan.nguoi_binh_luan_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                             <option value=""></option>
+</select>
+</td><td><input name="ten_nguoi_binh_luan" ng-model="searchBinhLuan.ten_nguoi_binh_luan" type="text"
+  class="form-control" ng-maxlength='255' ></input>
+</td><td><input name="ten_nguoi_binh_luan" ng-model="searchBinhLuan.ten_nguoi_binh_luan"
+  type="email" class="form-control" ng-maxlength='255' ></input>
+</td><td><input name="url_nguoi_binh_luan" ng-model="searchBinhLuan.url_nguoi_binh_luan" type="text"
+  class="form-control" ng-maxlength='255' ></input>
+</td><td><input name="url_nguoi_binh_luan" ng-model="searchBinhLuan.url_nguoi_binh_luan"
+  type="email" class="form-control" ng-maxlength='255' ></input>
+</td><td><input name="ip_nguoi_binh_luan" ng-model="searchBinhLuan.ip_nguoi_binh_luan" type="text"
+  class="form-control" ng-maxlength='100' ></input>
+</td><td><input name="ip_nguoi_binh_luan" ng-model="searchBinhLuan.ip_nguoi_binh_luan"
+  type="email" class="form-control" ng-maxlength='100' ></input>
+</td><td><input name="noi_dung_binh_luan" ng-model="searchBinhLuan.noi_dung_binh_luan" type="text"
+  class="form-control" required  />
+</td><td><input name="binh_luan_cha_id" ng-model="searchBinhLuan.binh_luan_cha_id" type="number"
+  class="form-control" ></input>
+</td><td><div ng-repeat="item in binh_luan_duoc_chap_nhan">
+  <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
+
+</td>
               <td>
                 <div class="row">
                   <div class="col-md-8">
@@ -54,31 +81,31 @@
                 </div>
               </td>
             </tr>
-            <tr ng-repeat="(key, {{uncapitalised_model_name}}) in {{uncapitalised_model_name}}s | filter:searchText">
+            <tr ng-repeat="(key, binhLuan) in binhLuans | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <!-- <td>{{key + 1}}</td> -->
-              {{table_data}}
+              <td>{{binhLuan.bai_viet_id}}</td><td>{{binhLuan.nguoi_binh_luan_id}}</td><td>{{binhLuan.ten_nguoi_binh_luan}}</td><td>{{binhLuan.url_nguoi_binh_luan}}</td><td>{{binhLuan.ip_nguoi_binh_luan}}</td><td>{{binhLuan.noi_dung_binh_luan}}</td><td>{{binhLuan.binh_luan_cha_id}}</td><td>{{binhLuan.binh_luan_duoc_chap_nhan}}</td>
               <!-- <td><span class="label label-success">Duyệt</span></td> -->
               <!-- <td><span class="label label-danger">Duyệt</span></td>
               <td><span class="label label-warning">Duyệt</span></td>
               <td><span class="label label-info">Duyệt</span></td>
               <td><span class="label label-default">Duyệt</span></td> -->
-              <td>{{{{uncapitalised_model_name}}.created_at}}</td>
-              <td>{{{{uncapitalised_model_name}}.updated_at}}</td>
+              <td>{{binhLuan.created_at}}</td>
+              <td>{{binhLuan.updated_at}}</td>
               <td class="col-md-3">
                 <div class="row">
                   <div class="col-md-4  ">
-                    <a href="#/{{uncapitalised_model_name}}s/{{{{uncapitalised_model_name}}.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                    <a href="#/binhLuans/{{binhLuan.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
                       <i class="fa fa-eye"></i>
                     </a>
                   </div>
                   <div class="col-md-4">
-                    <a ng-click="openUpdateForm({{uncapitalised_model_name}}.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                    <a ng-click="openUpdateForm(binhLuan.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </div>
                   <div class="col-md-4">
-                    <a ng-click="{{uncapitalised_model_name}}Crud.deleteModel({{uncapitalised_model_name}}.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa {{uncapitalised_model_name}}">
+                    <a ng-click="binhLuanCrud.deleteModel(binhLuan.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa binhLuan">
                       <i class="fa fa-trash"></i>
                     </a>
                   </div>

@@ -5,9 +5,9 @@
         .module('app.{{uncapitalised_model_name}}s')
         .controller('{{model_name}}s', {{model_name}}s);
 
-    {{uncapitalised_model_name}}s.$inject = ['$scope', 'crud', 'logger', '{{uncapitalised_model_name}}Model', '$modal', 'utils'];
+    {{model_name}}s.$inject = ['$scope', 'crud', 'logger', '{{uncapitalised_model_name}}Model', '$modal', 'utils'];
     /* @ngInject */
-    function {{uncapitalised_model_name}}s($scope, crud, logger, {{uncapitalised_model_name}}Model, $modal, utils) {
+    function {{model_name}}s($scope, crud, logger, {{uncapitalised_model_name}}Model, $modal, utils) {
         /*jshint validthis: true */
         $scope.errMsg = "";
         $scope.{{uncapitalised_model_name}}Model = {{uncapitalised_model_name}}Model.init($scope);

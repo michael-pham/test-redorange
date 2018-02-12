@@ -1,0 +1,140 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="header">
+        <div class="row">
+          <div class="col-md-3">
+            <h5 style="text-transform: uppercase;" class="title text-uppercase">Danh sách Bài viết</h5>
+          </div>
+          <div class="col-md-9 pull-right">
+            <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
+              <i class="fa fa-undo"></i>
+              Trở lại
+            </a>
+            <a ng-show="showSelection" class="btn btn-fill btn-sm btn-danger pull-right">
+              <i class="fa fa-trash"></i>
+              Xóa
+            </a>
+            <a ng-show="!showSelection" data-ng-click="showSelection=true" class="btn btn-sm pull-right">
+              <i class="fa fa-edit"></i>
+              Chọn dòng
+            </a>
+            <a data-ng-click="baiVietCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+              <i class="fa fa-plus"></i>
+              Thêm mới Bài viết
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content table-responsive" ng-init="showSelection=false">
+        <table class="table table-hover table-striped">
+          <thead>
+            <th class="col-md-1" ng-show="showSelection">
+              <input class="form-control" type="checkbox"/>
+            </th>
+            <!-- <th class="col-md-1"></th> -->
+            <th>ID tác giả bài viết</th><th>Nội dung</th><th>Tiêu đề</th><th>Trích yếu</th><th>ID tình trạng bài viết</th><th>Tình trạng bình luận</th><th>ID bài viết cha</th><th>Thứ tự trên menu</th><th>ID chủng loại bài viết</th><th>Số lượng bình lượng</th><th>Đường dẫn đến hình ảnh đại diện</th><th>Đường dẫn đến hình ảnh đại diện thumbnail</th>
+            <th class="col-md-1">Tác vụ</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
+              <!-- <td ng-show="showSelection" class="col-md-1"></td> -->
+              <td><select name="tac_gia_bai_viet_id" class="form-control" ng-model="searchBaiViet.tac_gia_bai_viet_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                             <option value=""></option>
+</select>
+</td><td><input name="noi_dung" ng-model="searchBaiViet.noi_dung" type="text"
+  class="form-control" required  />
+</td><td><input name="tieu_de" ng-model="searchBaiViet.tieu_de" type="text"
+  class="form-control" required ></input>
+</td><td><input name="tieu_de" ng-model="searchBaiViet.tieu_de"
+  type="email" class="form-control" required ></input>
+</td><td><input name="trich_yeu" ng-model="searchBaiViet.trich_yeu" type="text"
+  class="form-control" required  />
+</td><td><select name="tinh_trang_bai_viet_id" class="form-control" ng-model="searchBaiViet.tinh_trang_bai_viet_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                             <option value=""></option>
+</select>
+</td><td><select name="tinh_trang_binh_luan_id" class="form-control" ng-model="searchBaiViet.tinh_trang_binh_luan_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+                             <option value=""></option>
+</select>
+</td><td><select name="bai_viet_cha_id" class="form-control" ng-model="searchBaiViet.bai_viet_cha_id"
+                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" >
+                             <option value=""></option>
+</select>
+</td><td><input name="thu_tu_tren_menu" ng-model="searchBaiViet.thu_tu_tren_menu" type="number"
+  class="form-control" ></input>
+</td><td><input name="so_luong_binh_luan" ng-model="searchBaiViet.so_luong_binh_luan" type="number"
+  class="form-control" ></input>
+</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-8">
+                    <input class="form-control" placeholder="Tìm kiếm chung" type="text" />
+                  </div>
+                  <div class="col-md-4">
+                    <a class="btn btn-sm btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
+                      <i class="fa fa-undo"></i>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr ng-repeat="(key, baiViet) in baiViets | filter:searchText">
+              <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
+              <!-- <td>{{key + 1}}</td> -->
+              <td>{{baiViet.tac_gia_bai_viet_id}}</td><td>{{baiViet.noi_dung}}</td><td>{{baiViet.tieu_de}}</td><td>{{baiViet.trich_yeu}}</td><td>{{baiViet.tinh_trang_bai_viet_id}}</td><td>{{baiViet.tinh_trang_binh_luan_id}}</td><td>{{baiViet.bai_viet_cha_id}}</td><td>{{baiViet.thu_tu_tren_menu}}</td><td>{{baiViet.chung_loai_bai_viet_id}}</td><td>{{baiViet.so_luong_binh_luan}}</td><td>{{baiViet.hinh_anh_dai_dien_url}}</td><td>{{baiViet.hinh_anh_dai_dien_thumbnail_url}}</td>
+              <!-- <td><span class="label label-success">Duyệt</span></td> -->
+              <!-- <td><span class="label label-danger">Duyệt</span></td>
+              <td><span class="label label-warning">Duyệt</span></td>
+              <td><span class="label label-info">Duyệt</span></td>
+              <td><span class="label label-default">Duyệt</span></td> -->
+              <td>{{baiViet.created_at}}</td>
+              <td>{{baiViet.updated_at}}</td>
+              <td class="col-md-3">
+                <div class="row">
+                  <div class="col-md-4  ">
+                    <a href="#/baiViets/{{baiViet.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a ng-click="openUpdateForm(baiViet.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a ng-click="baiVietCrud.deleteModel(baiViet.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa baiViet">
+                      <i class="fa fa-trash"></i>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-2">
+                <select class="form-control" type="text">
+                  <option style="outline: none">5 dòng </option>
+                  <option>10 dòng</option>
+                  <option>15 dòng</option>
+                </select>
+          </div>
+          <div class="col-md-8 col-md-offset-2 custom-pagination">
+            <ul>
+              <li><a href="#">«</a></li>
+              <li class="active"><a>1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">»</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

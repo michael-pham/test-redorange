@@ -10,12 +10,12 @@
 
     /* @ngInject */
     function Projects($scope, crud, logger, projectModel, $modal, $location, $http) {
-
-        $http.get('/file-manager/jsonitems').then(function(successResponse) {
-          console.log(successResponse);
-        }, function(error) {
-          console.log(error);
-        });
+        //
+        // $http.get('/file-manager/jsonitems').then(function(successResponse) {
+        //   console.log(successResponse);
+        // }, function(error) {
+        //   console.log(error);
+        // });
 
         /*jshint validthis: true */
         $scope.projectModel = projectModel.init($scope);
