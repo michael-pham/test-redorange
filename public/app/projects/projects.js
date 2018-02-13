@@ -10,23 +10,25 @@
 
     /* @ngInject */
     function Projects($scope, crud, logger, projectModel, $modal, $location, $http) {
+      $scope.projectParams = $scope.projectModel.params;
         $scope.resetProjectParams = function() {
           $scope.projectParams = {};
           $scope.projectParams.updated_at_range = {startDate: null, endDate: null};
           $scope.projectParams.created_at_range = {startDate: null, endDate: null};
           $scope.projectParams.pagination = {limit: 5, page: 0};
+          $scope.getProjects();
         }
-        $scope.resetProjectParams();
 
-        $scope.getProjects(projectParams);
+        $scope.resetProjectParams = projectService.resetProjectParams;
+        $scope.getProjects = projectService.getProjects;
+        $scope.projectParams = $scope.resetProjectParams();
+        $scope.getProjects($scope.projectParams);
 
-        var metaParams = [];
-        metaParams.push(["hieu_luc_den_ngay", co_hieu_luc_sau_ngay, "gt"]);
-        metaParams.push(["hieu_luc_den_ngay", co_hieu_luc_truoc_ngay, "lt"]);
+        $scope.openUpdateForm = projectService.openCreateForm;
+        $scope.submitUpdateForm = projectService.submitCreateForm;
 
-        metaParams.push(["khach_hang_id", $scope.search.khach_hang_id, "eq"]);
-        metaParams.push(["dich_vu_id", $scope.search.dich_vu_id, "eq"]);
-        metaParams.push(["loai_hop_dong_id", $scope.search.loai_hop_dong_id, "eq"]);
+        $scope.openCreateForm = projectService.openUpdateForm;
+        $scope.submitCreateForm = projectService.submitUpdateForm;
 
         /*jshint validthis: true */
         $scope.projectModel = projectModel.init($scope);
