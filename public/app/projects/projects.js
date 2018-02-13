@@ -10,16 +10,28 @@
 
     /* @ngInject */
     function Projects($scope, crud, logger, projectModel, $modal, $location, $http) {
-        //
-        // $http.get('/file-manager/jsonitems').then(function(successResponse) {
-        //   console.log(successResponse);
-        // }, function(error) {
-        //   console.log(error);
-        // });
+        $scope.resetProjectParams = function() {
+          $scope.projectParams = {};
+          $scope.projectParams.updated_at_range = {startDate: null, endDate: null};
+          $scope.projectParams.created_at_range = {startDate: null, endDate: null};
+          $scope.projectParams.pagination = {limit: 5, page: 0};
+        }
+        $scope.resetProjectParams();
+
+        $scope.getProjects(projectParams);
+
+        var metaParams = [];
+        metaParams.push(["hieu_luc_den_ngay", co_hieu_luc_sau_ngay, "gt"]);
+        metaParams.push(["hieu_luc_den_ngay", co_hieu_luc_truoc_ngay, "lt"]);
+
+        metaParams.push(["khach_hang_id", $scope.search.khach_hang_id, "eq"]);
+        metaParams.push(["dich_vu_id", $scope.search.dich_vu_id, "eq"]);
+        metaParams.push(["loai_hop_dong_id", $scope.search.loai_hop_dong_id, "eq"]);
 
         /*jshint validthis: true */
         $scope.projectModel = projectModel.init($scope);
         $scope.projectCrud = crud.make($scope.projectModel);
+
         $scope.projectCrud.getList("");
 
         $scope.openUpdateForm = openUpdateForm;

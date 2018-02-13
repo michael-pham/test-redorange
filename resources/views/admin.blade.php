@@ -19,6 +19,8 @@
 
     <!-- inject-vendor:css -->
     <link rel="stylesheet" href="/app/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" />
     <!-- <link href="https://bootswatch.com/3/lumen/bootstrap.min.css" rel="stylesheet" /> -->
@@ -82,6 +84,9 @@
     <script src="/app/bower_components/sweetalert/dist/sweetalert.min.js"></script>
     <script src='/app/bower_components/ngSweetAlert/SweetAlert.min.js'></script>
     <script src='/app/node_modules/zepto/dist/zepto.min.js'></script>
+
+    <script src="/app/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src='/app/bower_components/angular-daterangepicker/js/angular-daterangepicker.min.js'></script>
     <!-- endinject -->
 
     <!-- inject-assets:js -->
@@ -159,7 +164,7 @@
     <script src="/app/file_manager/config.route.js"></script>
     <script src="/app/file_manager/file_manager.js"></script>
     <script src="/app/file_manager/file_manager_service.js"></script>
-    
+
 <!-- Bài viết -->
     <script src="/app/bai_viets/bai_viets.module.js"></script>
 <script src="/app/bai_viets/config.route.js"></script>

@@ -135,7 +135,7 @@ def make_listing_table(model):
 
     for attribute in model[ATTRIBUTES_KEY]:
         table_data += "<td>{{" + uncapitalised_model_name + "." + attribute[NAME_KEY] + "}}</td>"
-        table_headers += "<th>" + attribute[DISPLAY_NAME_KEY] + "</th>"
+        table_headers += '<th><<i class="fa fa-fw fa-sort"></i>' + attribute[DISPLAY_NAME_KEY] + "</th>"
 
     code_contents = {
         TABLE_TITLE_MARKER: table_title,
