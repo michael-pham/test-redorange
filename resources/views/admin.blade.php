@@ -158,6 +158,7 @@
     <script src="/app/projects/config.route.js"></script>
     <script src="/app/projects/projects.js"></script>
     <script src="/app/projects/project_model.js"></script>
+    <script src="/app/projects/project_service.js"></script>
 
     <!-- file mananger -->
     <script src="/app/file_manager/file_manager.module.js"></script>

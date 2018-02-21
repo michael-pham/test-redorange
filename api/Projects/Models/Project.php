@@ -13,7 +13,7 @@ class Project extends Model
    */
   protected $fillable = [
     // start_fillable
-    "name","generating_data", "generating_data_refined"
+    "name","generating_data", "generating_data_refined", "is_valid"
     // end_fillable
   ];
 

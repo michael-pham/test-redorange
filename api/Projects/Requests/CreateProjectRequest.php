@@ -18,7 +18,8 @@ class CreateProjectRequest extends ApiRequest
 'project' => 'array|required',
 'project.name' => 'required|string|max:500|min:1',
 'project.generating_data' => 'nullable|string',
-'project.generating_data_refined' => 'nullable|string'
+'project.generating_data_refined' => 'nullable|string',
+'project.is_valid' => 'nullable|boolean'
 // end_rules
       ];
     }

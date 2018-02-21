@@ -7,9 +7,8 @@
         return {
           ctrlScope: scope,
           getList: {
-            url: 'http://localhost:8000/projects',
+            url: '/projects',
             name: 'projects',
-            param: {includes: []}
           },
           getSingle: {
             url: 'http://localhost:8000/projects',

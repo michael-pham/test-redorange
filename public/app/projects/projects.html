@@ -19,7 +19,7 @@
               <i class="fa fa-edit"></i>
               Chọn dòng
             </a>
-            <a data-ng-click="projectCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+            <a data-ng-click="openProjectCreateForm()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
               Thêm project
             </a>
@@ -31,10 +31,21 @@
           <thead>
             <th class="col-md-1" ng-show="showSelection"></th>
             <!-- <th class="col-md-1"></th> -->
-            <th><i class="fa fa-fw fa-sort"></i>Project</th>
-            <th><i class="fa fa-fw fa-sort"></i>Tình trạng</th>
-            <th><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
-            <th><i class="fa fa-fw fa-sort"></i>Cập nhật</th>
+            <th class="sortable" ng-click="projectParams.sorting.key = 'name'; projectParams.sorting.direction='DESC'; getProjects()" ng-show="projectParams.sorting.key != 'name'"><i class="fa fa-fw fa-sort"></i>Project</th>
+            <th class="sortable" ng-class="{'sortable-active': projectParams.sorting.key == 'name'}" ng-click="projectParams.sorting.direction='ASC'; getProjects()" ng-show="projectParams.sorting.key == 'name' && projectParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Project</th>
+            <th class="sortable" ng-class="{'sortable-active': projectParams.sorting.key == 'name'}" ng-click="projectParams.sorting.direction='DESC'; getProjects()" ng-show="projectParams.sorting.key == 'name' && projectParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Project</th>
+
+            <th class="sortable" ng-click="projectParams.sorting.key = 'created_at'; projectParams.sorting.direction='DESC'; getProjects()" ng-show="projectParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': projectParams.sorting.key == 'created_at'}" ng-click="projectParams.sorting.direction='ASC'; getProjects()" ng-show="projectParams.sorting.key == 'created_at' && projectParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': projectParams.sorting.key == 'created_at'}" ng-click="projectParams.sorting.direction='DESC'; getProjects()" ng-show="projectParams.sorting.key == 'created_at' && projectParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Khởi tạo</th>
+
+            <th class="sortable" ng-click="projectParams.sorting.key = 'updated_at'; projectParams.sorting.direction='DESC'; getProjects()" ng-show="projectParams.sorting.key != 'updated_at'"><i class="fa fa-fw fa-sort"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': projectParams.sorting.key == 'updated_at'}" ng-click="projectParams.sorting.direction='ASC'; getProjects()" ng-show="projectParams.sorting.key == 'updated_at' && projectParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': projectParams.sorting.key == 'updated_at'}" ng-click="projectParams.sorting.direction='DESC'; getProjects()" ng-show="projectParams.sorting.key == 'updated_at' && projectParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Cập nhật</th>
+
+            <th class="text-center">
+              <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button> -->
+            </th>
             <th class="col-md-2">Tác vụ</th>
           </thead>
           <tbody>
@@ -42,28 +53,30 @@
               <td ng-show="showSelection" class="col-md-1">
                 <input class="form-control" type="checkbox"/>
               </td>
-              <td><input class="form-control" type="text" ng-model="projectParams.name"/></td>
+              <td><input class="form-control" type="text" ng-model="projectParams.filtering.name"/></td>
               <td>
-                <select class="form-control" ng-model="projectParams.name"
-                  ng-options="tinhTrang.id as tinhTrang.ten for tinhTrang in tinhTrangs">
-                  <option value=""></option>
-                </select>
+                <input date-range-picker class="form-control date-picker" type="text"
+                                                                          ng-model="projectParams.filtering.created_at_range" options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" />
               </td>
               <td>
-                <input date-range-picker class="form-control date-picker" type="text" ng-model="projectParams.created_at_range" options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" />
+                <input date-range-picker class="form-control date-picker" type="text"
+                                                                          ng-model="projectParams.filtering.updated_at_range" options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" />
               </td>
               <td>
-                <input date-range-picker class="form-control date-picker" type="text" ng-model="projectParams.updated_at_range" options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" />
+                <!-- <select class="form&#45;control" ng&#45;model="projectParams.name" -->
+                <!--   ng&#45;options="tinhTrang.id as tinhTrang.ten for tinhTrang in tinhTrangs"> -->
+                <!--   <option value=""></option> -->
+                <!-- </select> -->
               </td>
               <td>
                 <div class="row">
                   <div class="col-md-8">
-                    <a ng-click="resetProjectParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
+                    <a ng-click="getProjects()" class="btn btn-md btn-block" data-toggle="tooltip" title="Tìm kiếm">
                       <i class="fa fa-search"></i>
                     </a>
                   </div>
                   <div class="col-md-4">
-                    <a ng-click="resetProjectParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
+                    <a ng-click="getProjectsWithInitialParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
                       <i class="fa fa-undo"></i>
                     </a>
                   </div>
@@ -73,51 +86,54 @@
             <tr ng-repeat="(key, project) in projects | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
               <td>{{project.name}}</td>
-              <td><span class="label label-success">Duyệt</span></td>
+              <!-- <td><span class="label label&#45;success">Duyệt</span></td> -->
               <!-- <td><span class="label label-danger">Duyệt</span></td>
-              <td><span class="label label-warning">Duyệt</span></td>
-              <td><span class="label label-info">Duyệt</span></td>
-              <td><span class="label label-default">Duyệt</span></td> -->
-              <td>{{project.created_at}}</td>
-              <td>{{project.updated_at}}</td>
-              <td class="col-md-3">
-                <div class="row">
-                  <div class="col-md-4  ">
-                    <a href="#/projects/{{project.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
-                      <i class="fa fa-eye"></i>
-                    </a>
+                <td><span class="label label-warning">Duyệt</span></td>
+                <td><span class="label label-info">Duyệt</span></td>
+                <td><span class="label label-default">Duyệt</span></td> -->
+                <td>{{project.created_at}}</td>
+                <td>{{project.updated_at}}</td>
+                <td class="text-center" ng-hide="project.is_valid" data-toggle="tooltip" title="Có thể đã xảy ra lỗi trong quá trình lưu dữ liệu. Xinh vui lòng kiểm tra lại dữ liệu.">
+                  <button type="button" class="btn btn-danger btn-fill btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+                </td>
+                <td class="text-center" ng-show="project.is_valid" data-toggle="tooltip" title="Dữ liệu liệu lưu thành công.">
+                  <button type="button" class="btn btn-success btn-fill btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+                </td>
+                <td class="col-md-3">
+                  <div class="row">
+                    <div class="col-md-4  ">
+                      <a href="#/projects/{{project.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="openProjectUpdateForm(project.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="deleteProject(project)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa project">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <a ng-click="openUpdateForm(project.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
-                      <i class="fa fa-pencil"></i>
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a ng-click="projectCrud.deleteModel(project.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa project">
-                      <i class="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </div>
-              </td>
+                </td>
             </tr>
           </tbody>
         </table>
         <div class="row">
           <div class="col-md-2">
-                <select class="form-control" type="text">
-                  <option style="outline: none">5 dòng</option>
-                  <option>10 dòng</option>
-                  <option>15 dòng</option>
-                </select>
+            <select class="form-control" type="text">
+              <option ng-click="projectParams.paging.limit=5; getProjects()">5 dòng</option>
+              <option ng-click="projectParams.paging.limit=10; getProjects()">10 dòng</option>
+              <option ng-click="projectParams.paging.limit=15; getProjects()">15 dòng</option>
+            </select>
           </div>
           <div class="col-md-8 col-md-offset-2 custom-pagination">
             <ul>
-              <li><a href="#">«</a></li>
-              <li class="active"><a>1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">»</a></li>
+              <li style="cursor: pointer" ng-click="getLeftMostPage(projectParams.paging, getProjects)"><a>«</a></li>
+              <li style="cursor: pointer" ng-class="{'active': page == projectParams.paging.page}" ng-click="projectParams.paging.page = page; getProjects()" ng-repeat="page in projectParams.paging.pages"><a>{{page}}</a></li>
+              <li style="cursor: pointer" ng-click="getRightMostPage(projectParams.paging, getProjects)"><a>»</a></li>
             </ul>
           </div>
         </div>

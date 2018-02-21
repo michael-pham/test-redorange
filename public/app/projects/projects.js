@@ -1,443 +1,479 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app.projects')
-        .controller('Projects', Projects)
-        .controller('ProjectDetails', ProjectDetails);
+  angular
+    .module('app.projects')
+    .controller('Projects', Projects)
+    .controller('ProjectDetails', ProjectDetails);
 
-    Projects.$inject = ['$scope', 'crud', 'logger', 'projectModel', '$modal', '$location', '$http'];
+  Projects.$inject = ['$scope', 'logger', '$location', 'utils', 'projectService'];
 
-    /* @ngInject */
-    function Projects($scope, crud, logger, projectModel, $modal, $location, $http) {
-      $scope.projectParams = $scope.projectModel.params;
-        $scope.resetProjectParams = function() {
-          $scope.projectParams = {};
-          $scope.projectParams.updated_at_range = {startDate: null, endDate: null};
-          $scope.projectParams.created_at_range = {startDate: null, endDate: null};
-          $scope.projectParams.pagination = {limit: 5, page: 0};
-          $scope.getProjects();
-        }
+  /* @ngInject */
+  function Projects($scope, logger, $location, utils, projectService) {
 
-        $scope.resetProjectParams = projectService.resetProjectParams;
-        $scope.getProjects = projectService.getProjects;
-        $scope.projectParams = $scope.resetProjectParams();
-        $scope.getProjects($scope.projectParams);
+    /* Get projects */
+    $scope.initProjectParams = initProjectParams;
+    $scope.getProjects = getProjects;
+    $scope.getProjectsWithInitialParams = getProjectsWithInitialParams;
+    $scope.getLeftMostPage = utils.makePagingNavigator.getLeftMostPage;
+    $scope.getRightMostPage = utils.makePagingNavigator.getRightMostPage;
 
-        $scope.openUpdateForm = projectService.openCreateForm;
-        $scope.submitUpdateForm = projectService.submitCreateForm;
 
-        $scope.openCreateForm = projectService.openUpdateForm;
-        $scope.submitCreateForm = projectService.submitUpdateForm;
+    /* Create projects */
+    $scope.openProjectCreateForm = openProjectCreateForm;
+    $scope.closeProjectCreateForm = closeProjectCreateForm;
+    $scope.submitProjectCreateForm = submitProjectCreateForm;
 
-        /*jshint validthis: true */
-        $scope.projectModel = projectModel.init($scope);
-        $scope.projectCrud = crud.make($scope.projectModel);
+    /* Update projects */
+    $scope.openProjectUpdateForm = openProjectUpdateForm;
+    $scope.closeProjectUpdateForm = openProjectUpdateForm;
+    $scope.submitProjecttUpdateForm = submitProjectUpdateForm;
 
-        $scope.projectCrud.getList("");
+    /* Delete projects */
+    $scope.deleteProject = deleteProject;
 
-        $scope.openUpdateForm = openUpdateForm;
-        $scope.submitUpdateForm = submitUpdateForm;
+    $scope.getProjectsWithInitialParams();
 
-        function openUpdateForm(projectId) {
-          $scope.projectCrud.openUpdateForm(projectId,
-            function(data) {$scope.oldProject = data}, 'md');
-        }
-
-        function submitUpdateForm(projectId, oldProject) {
-          $scope.projectCrud.updateModel(oldProject.id, oldProject,
-            submitUpdateFormComplete);
-
-          function submitUpdateFormComplete() {
-            $scope.projectCrud.getList("");
-            $scope.projectCrud.dismissCreateForm();
-          }
-        }
+    //////////////////////////////////////////////////////////////////////////
+    function initProjectParams() {
+      $scope.projectParams = projectService.initProjectParams();
     }
 
+    function getProjects() {
+      projectService.getProjects($scope.projectParams).then(function(projects) {
+        $scope.projects = projects;
+      });
+    }
 
-      ProjectDetails.$inject = ['$sce', '$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel', 'utils'];
+    function getProjectsWithInitialParams() {
+      $scope.initProjectParams();
+      $scope.getProjects();
+    }
 
-      /* @ngInject */
-      function ProjectDetails($sce, $scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel, utils) {
-          $scope.makeDanhMuc = function() {
-            for (var i = 0; i < $scope.currentModel.attributes.length; ++i) {
-              $scope.currentModel.attributes[i].show = false;
-            }
+    function openProjectCreateForm() {
+      projectService.openProjectCreateForm($scope).then(function(response) {
+        $scope.projectCreateForm = response.projectCreateForm;
+      });
+    }
 
-            $scope.currentModel.attributes.push({
-              name: "ten",
-              show: false,
-              display_name: "Tên",
-              type: "string",
-              ui_type: "text_input",
-              hidden: "",
-              constraints: {
-                max: "255",
-                min: "",
-                pattern: "",
-                pattern_message: "",
-                required: true,
-                nullable: "",
-                numeric: "",
-                unique: "",
-                email: "",
-              }
-            });
+    function closeProjectCreateForm() {
+      $scope.projectCreateForm.close();
+    }
 
-            $scope.currentModel.attributes.push({
-              name: "mo_ta",
-              show: false,
-              display_name: "Mô tả",
-              type: "text",
-              ui_type: "textarea_input",
-              hidden: "",
-              constraints: {
-                max: "500",
-                min: "",
-                pattern: "",
-                pattern_message: "",
-                required: "",
-                nullable: true,
-                numeric: "",
-                unique: "",
-                email: "",
-              }
-            });
-          }
+    function submitProjectCreateForm(newProject) {
+      projectService.createProject(newProject).then(function(response) {
+        $scope.getProjects();
+      });
+    }
 
-          // NEW GENERATION
+    function openProjectUpdateForm() {
+      projectService.openProjectUpdateForm($scope).then(function(response) {
+        $scope.projectUpdateForm = response.projectUpdateForm;
+        $scope.oldProject = response.oldProject;
+      });
+    }
 
-          $scope.showCreateFormCode = showCreateFormCode;
-          $scope.trustAsHtml = function(string) {
-            return $sce.trustAsHtml(string);
-          };
+    function closeProjectUpdateForm() {
+      $scope.projectUpdateForm.close();
+    }
 
-          function showCreateFormCode(model) {
-            function replacer(key, value) {
-              if (typeof value === "boolean"||typeof value === "number") {
-                return String(value);
-              }
-              return value;
-            }
+    function submitProjectUpdateForm(projectId) {
+      projectService.updateProject(projectId, $scope.oldProject)
+        .then(function(response) {
+        $scope.getProjects();
+      })
+    }
 
-            model = JSON.stringify([model], replacer);
+    function deleteProject(project) {
+      projectService.deleteProject(project, function() {
+        $scope.getProjects();
+      });
+    }
+  }
 
-            $http.post("http://localhost:8000/show_create_form_code",
-              {model: model}).then(function(successResponse) {
-                var modalUrl = "/app/projects/_source_code_viewer.html";
-                $scope.code = successResponse.data.create_form;
-                utils.openModal(modalUrl, $scope, 'lg');
-            }, function(error) {
-              console.log(error);
-            });
-          }
 
-          $scope.showUpdateFormCode = showUpdateFormCode;
-          function showUpdateFormCode(model) {
-            function replacer(key, value) {
-              if (typeof value === "boolean"||typeof value === "number") {
-                return String(value);
-              }
-              return value;
-            }
+  ProjectDetails.$inject = ['$sce', '$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel', 'utils'];
 
-            model = JSON.stringify([model], replacer);
+  /* @ngInject */
+  function ProjectDetails($sce, $scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel, utils) {
+    $scope.makeDanhMuc = function() {
+      for (var i = 0; i < $scope.currentModel.attributes.length; ++i) {
+        $scope.currentModel.attributes[i].show = false;
+      }
 
-            $http.post("http://localhost:8000/show_update_form_code",
-              {model: model}).then(function(successResponse) {
-                var modalUrl = "/app/projects/_source_code_viewer.html";
-                $scope.code = successResponse.data.update_form;
-                utils.openModal(modalUrl, $scope, 'lg');
-            }, function(error) {
-              console.log(error);
-            });
-          }
+      $scope.currentModel.attributes.push({
+        name: "ten",
+        show: false,
+        display_name: "Tên",
+        type: "string",
+        ui_type: "text_input",
+        hidden: "",
+        constraints: {
+          max: "255",
+          min: "",
+          pattern: "",
+          pattern_message: "",
+          required: true,
+          nullable: "",
+          numeric: "",
+          unique: "",
+          email: "",
+        }
+      });
 
-          $scope.showListingTableCode = showListingTableCode;
-          function showListingTableCode(model) {
-            function replacer(key, value) {
-              if (typeof value === "boolean"||typeof value === "number") {
-                return String(value);
-              }
-              return value;
-            }
+      $scope.currentModel.attributes.push({
+        name: "mo_ta",
+        show: false,
+        display_name: "Mô tả",
+        type: "text",
+        ui_type: "textarea_input",
+        hidden: "",
+        constraints: {
+          max: "500",
+          min: "",
+          pattern: "",
+          pattern_message: "",
+          required: "",
+          nullable: true,
+          numeric: "",
+          unique: "",
+          email: "",
+        }
+      });
+    }
 
-            model = JSON.stringify([model], replacer);
+    // NEW GENERATION
 
-            $http.post("http://localhost:8000/show_listing_table_code",
-              {model: model}).then(function(successResponse) {
-                var modalUrl = "/app/projects/_source_code_viewer.html";
-                $scope.code = successResponse.data.listing_table;
-                utils.openModal(modalUrl, $scope, 'lg');
-            }, function(error) {
-              console.log(error);
-            });
-          }
+    $scope.showCreateFormCode = showCreateFormCode;
+    $scope.trustAsHtml = function(string) {
+      return $sce.trustAsHtml(string);
+    };
 
-          /* jshint validthis: true */
-          $scope.projectModel = projectModel.init($scope);
-          $scope.projectCrud = crud.make($scope.projectModel);
-          $scope.projectId = $routeParams.id;
-          $scope.projectCrud.getSingle($scope.projectId, function(data) {
-            $scope.project = data;
-            if ($scope.project.generating_data) {
-              $scope.models = JSON.parse($scope.project.generating_data);
-            } else {
-              $scope.models = [];
+    function showCreateFormCode(model) {
+      function replacer(key, value) {
+        if (typeof value === "boolean"||typeof value === "number") {
+          return String(value);
+        }
+        return value;
+      }
+
+      model = JSON.stringify([model], replacer);
+
+      $http.post("http://localhost:8000/show_create_form_code",
+        {model: model}).then(function(successResponse) {
+          var modalUrl = "/app/projects/_source_code_viewer.html";
+          $scope.code = successResponse.data.create_form;
+          utils.openModal(modalUrl, $scope, 'lg');
+        }, function(error) {
+          console.log(error);
+        });
+    }
+
+    $scope.showUpdateFormCode = showUpdateFormCode;
+    function showUpdateFormCode(model) {
+      function replacer(key, value) {
+        if (typeof value === "boolean"||typeof value === "number") {
+          return String(value);
+        }
+        return value;
+      }
+
+      model = JSON.stringify([model], replacer);
+
+      $http.post("http://localhost:8000/show_update_form_code",
+        {model: model}).then(function(successResponse) {
+          var modalUrl = "/app/projects/_source_code_viewer.html";
+          $scope.code = successResponse.data.update_form;
+          utils.openModal(modalUrl, $scope, 'lg');
+        }, function(error) {
+          console.log(error);
+        });
+    }
+
+    $scope.showListingTableCode = showListingTableCode;
+    function showListingTableCode(model) {
+      function replacer(key, value) {
+        if (typeof value === "boolean"||typeof value === "number") {
+          return String(value);
+        }
+        return value;
+      }
+
+      model = JSON.stringify([model], replacer);
+
+      $http.post("http://localhost:8000/show_listing_table_code",
+        {model: model}).then(function(successResponse) {
+          var modalUrl = "/app/projects/_source_code_viewer.html";
+          $scope.code = successResponse.data.listing_table;
+          utils.openModal(modalUrl, $scope, 'lg');
+        }, function(error) {
+          console.log(error);
+        });
+    }
+
+    /* jshint validthis: true */
+    $scope.projectModel = projectModel.init($scope);
+    $scope.projectCrud = crud.make($scope.projectModel);
+    $scope.projectId = $routeParams.id;
+    $scope.projectCrud.getSingle($scope.projectId, function(data) {
+      $scope.project = data;
+      if ($scope.project.generating_data) {
+        $scope.models = JSON.parse($scope.project.generating_data);
+      } else {
+        $scope.models = [];
+      }
+    });
+
+    $scope.updateModel = function() {
+      $scope.project.generating_data = JSON.stringify($scope.models);
+      function replacer(key, value) {
+        if (typeof value === "boolean"||typeof value === "number") {
+          return String(value);
+        }
+        return value;
+      }
+
+      $scope.project.generating_data_refined =
+        JSON.stringify($scope.models, replacer);
+
+      $scope.projectCrud.updateModel($scope.project.id, $scope.project);
+
+      $http.post("http://localhost:8000/build_project/" +
+        $scope.project.id, {}).then(
+          function(successResponse) {
+            console.log(successResponse);
+          }, function(errorResponse) {
+            console.log(errorResponse);
+          });
+    }
+
+    $scope.content = null;
+    $scope.models = [];
+
+    $scope.editMode = false;
+
+    $scope.addModel = function() {
+      $scope.models.push($scope.currentModel);
+    }
+
+    $scope.initCurrentModel = function() {
+      $scope.currentModel = {
+        name: "",
+        attributes: [],
+        relationships: []
+      };
+    }
+    $scope.initCurrentModel();
+
+    $scope.addModel = function() {
+      $scope.models.push($scope.currentModel);
+      $scope.initCurrentModel();
+    }
+
+    $scope.editModel = function(model) {
+      if (!$scope.editMode) {
+        $scope.currentModelBak = $scope.currentModel;
+      }
+
+      $scope.currentModel = model;
+      $scope.editMode = true;
+    }
+
+    $scope.back = function() {
+      $scope.currentModel = $scope.currentModelBak;
+      $scope.editMode = false;
+    }
+
+    // Functions for the current model
+    $scope.removeModel = function(model) {
+      var modelIdx = $scope.models.indexOf(model);
+      if (modelIdx >= 0) {
+        SweetAlert.swal({
+          title: "Delete " + model.name,
+          text: "Are you sure?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Delete",
+          cancelButtonText: "Cancel",
+          closeOnConfirm: true,
+          closeOnCancel: true
+        },
+          function(isConfirm) {
+            if (isConfirm) {
+              $scope.models.splice(modelIdx, 1);
             }
           });
-
-          $scope.updateModel = function() {
-            $scope.project.generating_data = JSON.stringify($scope.models);
-            function replacer(key, value) {
-              if (typeof value === "boolean"||typeof value === "number") {
-                return String(value);
-              }
-              return value;
-            }
-
-            $scope.project.generating_data_refined =
-              JSON.stringify($scope.models, replacer);
-
-            $scope.projectCrud.updateModel($scope.project.id, $scope.project);
-
-            $http.post("http://localhost:8000/build_project/" +
-              $scope.project.id, {}).then(
-              function(successResponse) {
-              console.log(successResponse);
-            }, function(errorResponse) {
-              console.log(errorResponse);
-            });
-          }
-
-          $scope.content = null;
-          $scope.models = [];
-
-          $scope.editMode = false;
-
-          $scope.addModel = function() {
-            $scope.models.push($scope.currentModel);
-          }
-
-          $scope.initCurrentModel = function() {
-            $scope.currentModel = {
-              name: "",
-              attributes: [],
-              relationships: []
-            };
-          }
-          $scope.initCurrentModel();
-
-          $scope.addModel = function() {
-            $scope.models.push($scope.currentModel);
-            $scope.initCurrentModel();
-          }
-
-          $scope.editModel = function(model) {
-            if (!$scope.editMode) {
-              $scope.currentModelBak = $scope.currentModel;
-            }
-
-            $scope.currentModel = model;
-            $scope.editMode = true;
-          }
-
-          $scope.back = function() {
-            $scope.currentModel = $scope.currentModelBak;
-            $scope.editMode = false;
-          }
-
-          // Functions for the current model
-          $scope.removeModel = function(model) {
-            var modelIdx = $scope.models.indexOf(model);
-            if (modelIdx >= 0) {
-              SweetAlert.swal({
-                title: "Delete " + model.name,
-                text: "Are you sure?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Delete",
-                cancelButtonText: "Cancel",
-                closeOnConfirm: true,
-                closeOnCancel: true
-              },
-              function(isConfirm) {
-                if (isConfirm) {
-                  $scope.models.splice(modelIdx, 1);
-                }
-              });
-            }
-          }
-
-          // Functions for the current model
-          $scope.removeAttribute = function(attribute) {
-            var attrIdx = $scope.currentModel.attributes.indexOf(attribute);
-            if (attrIdx >= 0) {
-              SweetAlert.swal({
-                title: "Delete " + attribute.name,
-                text: "Are you sure?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Delete",
-                cancelButtonText: "Cancel",
-                closeOnConfirm: true,
-                closeOnCancel: true
-              },
-              function(isConfirm) {
-                if (isConfirm) {
-                  $scope.currentModel.attributes.splice(attrIdx, 1);
-                }
-              });
-            }
-          }
-
-          $scope.addAttribute = function() {
-            for (var i = 0; i < $scope.currentModel.attributes.length; ++i) {
-              $scope.currentModel.attributes[i].show = false;
-            }
-
-            $scope.currentModel.attributes.push({
-              name: "",
-              show: true,
-              display_name: "",
-              type: "",
-              ui_type: "",
-              hidden: "",
-              constraints: {
-                max: "",
-                min: "",
-                pattern: "",
-                pattern_message: "",
-                required: "",
-                nullable: "",
-                numeric: "",
-                unique: "",
-                email: "",
-              }
-            });
-          };
-
-          // Relationships
-          $scope.addRelationship = function() {
-            for (var i = 0; i < $scope.currentModel.relationships.length; ++i) {
-              $scope.currentModel.relationships[i].show = false;
-            }
-
-            $scope.currentModel.relationships.push({
-              show: true,
-              type: "",
-              with: "",
-            });
-          };
-
-          $scope.removeRelationship = function(relationship) {
-            var relationshipIdx =
-              $scope.currentModel.relationships.indexOf(relationship);
-
-            if (relationshipIdx >= 0) {
-              SweetAlert.swal({
-                title: "Delete " + relationship.with.name,
-                text: "Are you sure?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Delete",
-                cancelButtonText: "Cancel",
-                closeOnConfirm: true,
-                closeOnCancel: true
-              },
-
-              function(isConfirm) {
-                if (isConfirm) {
-                  $scope.currentModel.relationships.splice(relationshipIdx, 1);
-                  for (var i = 0; i < $scope.models.length; ++i) {
-                    if ($scope.models[i].name == relationship.with) {
-                      for (var j = 0; j < $scope.models[i].relationships.length; ++j) {
-                        var temp = $scope.models[i].relationships[j];
-                        if (temp.with == $scope.currentModel.name) {
-                          $scope.models[i].relationships.splice(j, 1);
-                          break;
-                        }
-                      }
-                    }
-                  }
-                }
-              });
-            }
-          }
-
-          $scope.saveToFile = function() {
-            function replacer(key, value) {
-              if (typeof value === "boolean"||typeof value === "number") {
-                return String(value);
-              }
-              return value;
-            }
-
-            var data = new Blob([JSON.stringify($scope.models, replacer)], { type: 'text/plain;charset=utf-8' });
-            FileSaver.saveAs(data, 'models.json');
-
-            data = new Blob([JSON.stringify($scope.models)], { type: 'text/plain;charset=utf-8' });
-            FileSaver.saveAs(data, 'models_js.json');
-          }
-
-          $scope.updateRelationship = function() {
-            for(var i = 0; i < $scope.models.length; ++i) {
-              for (var j = 0; j < $scope.currentModel.relationships.length; ++j) {
-                var temp1 = $scope.currentModel.relationships[j];
-                if (temp1.with != $scope.models[i].name) {
-                  continue;
-                }
-
-                var didUpdate = false;
-                for (var x = 0; x < $scope.models[i].relationships.length; x++) {
-                  var temp2 = $scope.models[i].relationships[x];
-                  if (temp2.with == $scope.currentModel.name) {
-                    didUpdate = true;
-                    if (temp1.type == "many-to-many") {
-                      temp2.type = "many-to-many";
-                    } else if (temp1.type == "many-to-one") {
-                      temp2.type = "one-to-many";
-                    } else if (temp1.type == "one-to-many") {
-                        temp2.type = "many-to-one";
-                    } else if (temp1.type == "one-to-one") {
-                      temp2.type = "one-to-one";
-                    }
-                  }
-                }
-
-                if (!didUpdate) {
-                  if (temp1.type == "many-to-many") {
-                    $scope.models[i].relationships.push({
-                      show: true,
-                      type: "many-to-many",
-                      with: $scope.currentModel.name,
-                    });
-                  } else if (temp1.type == "many-to-one") {
-                    $scope.models[i].relationships.push({
-                      show: true,
-                      type: "one-to-many",
-                      with: $scope.currentModel.name,
-                    });
-                  } else if (temp1.type == "one-to-many") {
-                    $scope.models[i].relationships.push({
-                      show: true,
-                      type: "many-to-one",
-                      with: $scope.currentModel.name,
-                    });
-                  } else if (temp1.type == "one-to-one") {
-                    $scope.models[i].relationships.push({
-                      show: true,
-                      type: "one-to-one",
-                      with: $scope.currentModel.name,
-                    });
-                  }
-                }
-              }
-            }
-          }
       }
+    }
+
+    // Functions for the current model
+    $scope.removeAttribute = function(attribute) {
+      var attrIdx = $scope.currentModel.attributes.indexOf(attribute);
+      if (attrIdx >= 0) {
+        SweetAlert.swal({
+          title: "Delete " + attribute.name,
+          text: "Are you sure?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Delete",
+          cancelButtonText: "Cancel",
+          closeOnConfirm: true,
+          closeOnCancel: true
+        },
+          function(isConfirm) {
+            if (isConfirm) {
+              $scope.currentModel.attributes.splice(attrIdx, 1);
+            }
+          });
+      }
+    }
+
+    $scope.addAttribute = function() {
+      for (var i = 0; i < $scope.currentModel.attributes.length; ++i) {
+        $scope.currentModel.attributes[i].show = false;
+      }
+
+      $scope.currentModel.attributes.push({
+        name: "",
+        show: true,
+        display_name: "",
+        type: "",
+        ui_type: "",
+        hidden: "",
+        constraints: {
+          max: "",
+          min: "",
+          pattern: "",
+          pattern_message: "",
+          required: "",
+          nullable: "",
+          numeric: "",
+          unique: "",
+          email: "",
+        }
+      });
+    };
+
+    // Relationships
+    $scope.addRelationship = function() {
+      for (var i = 0; i < $scope.currentModel.relationships.length; ++i) {
+        $scope.currentModel.relationships[i].show = false;
+      }
+
+      $scope.currentModel.relationships.push({
+        show: true,
+        type: "",
+        with: "",
+      });
+    };
+
+    $scope.removeRelationship = function(relationship) {
+      var relationshipIdx =
+        $scope.currentModel.relationships.indexOf(relationship);
+
+      if (relationshipIdx >= 0) {
+        SweetAlert.swal({
+          title: "Delete " + relationship.with.name,
+          text: "Are you sure?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Delete",
+          cancelButtonText: "Cancel",
+          closeOnConfirm: true,
+          closeOnCancel: true
+        },
+
+          function(isConfirm) {
+            if (isConfirm) {
+              $scope.currentModel.relationships.splice(relationshipIdx, 1);
+              for (var i = 0; i < $scope.models.length; ++i) {
+                if ($scope.models[i].name == relationship.with) {
+                  for (var j = 0; j < $scope.models[i].relationships.length; ++j) {
+                    var temp = $scope.models[i].relationships[j];
+                    if (temp.with == $scope.currentModel.name) {
+                      $scope.models[i].relationships.splice(j, 1);
+                      break;
+                    }
+                  }
+                }
+              }
+            }
+          });
+      }
+    }
+
+    $scope.saveToFile = function() {
+      function replacer(key, value) {
+        if (typeof value === "boolean"||typeof value === "number") {
+          return String(value);
+        }
+        return value;
+      }
+
+      var data = new Blob([JSON.stringify($scope.models, replacer)], { type: 'text/plain;charset=utf-8' });
+      FileSaver.saveAs(data, 'models.json');
+
+      data = new Blob([JSON.stringify($scope.models)], { type: 'text/plain;charset=utf-8' });
+      FileSaver.saveAs(data, 'models_js.json');
+    }
+
+    $scope.updateRelationship = function() {
+      for(var i = 0; i < $scope.models.length; ++i) {
+        for (var j = 0; j < $scope.currentModel.relationships.length; ++j) {
+          var temp1 = $scope.currentModel.relationships[j];
+          if (temp1.with != $scope.models[i].name) {
+            continue;
+          }
+
+          var didUpdate = false;
+          for (var x = 0; x < $scope.models[i].relationships.length; x++) {
+            var temp2 = $scope.models[i].relationships[x];
+            if (temp2.with == $scope.currentModel.name) {
+              didUpdate = true;
+              if (temp1.type == "many-to-many") {
+                temp2.type = "many-to-many";
+              } else if (temp1.type == "many-to-one") {
+                temp2.type = "one-to-many";
+              } else if (temp1.type == "one-to-many") {
+                temp2.type = "many-to-one";
+              } else if (temp1.type == "one-to-one") {
+                temp2.type = "one-to-one";
+              }
+            }
+          }
+
+          if (!didUpdate) {
+            if (temp1.type == "many-to-many") {
+              $scope.models[i].relationships.push({
+                show: true,
+                type: "many-to-many",
+                with: $scope.currentModel.name,
+              });
+            } else if (temp1.type == "many-to-one") {
+              $scope.models[i].relationships.push({
+                show: true,
+                type: "one-to-many",
+                with: $scope.currentModel.name,
+              });
+            } else if (temp1.type == "one-to-many") {
+              $scope.models[i].relationships.push({
+                show: true,
+                type: "many-to-one",
+                with: $scope.currentModel.name,
+              });
+            } else if (temp1.type == "one-to-one") {
+              $scope.models[i].relationships.push({
+                show: true,
+                type: "one-to-one",
+                with: $scope.currentModel.name,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
 })();
