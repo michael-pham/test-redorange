@@ -20,14 +20,14 @@
 
 
     /* Create projects */
-    $scope.openProjectCreateForm = openProjectCreateForm;
-    $scope.closeProjectCreateForm = closeProjectCreateForm;
-    $scope.submitProjectCreateForm = submitProjectCreateForm;
+    $scope.openProjectCreateModal = openProjectCreateModal;
+    $scope.closeProjectCreateModal = closeProjectCreateModal;
+    $scope.submitProjectCreateModal = submitProjectCreateModal;
 
     /* Update projects */
-    $scope.openProjectUpdateForm = openProjectUpdateForm;
-    $scope.closeProjectUpdateForm = openProjectUpdateForm;
-    $scope.submitProjecttUpdateForm = submitProjectUpdateForm;
+    $scope.openProjectUpdateModal = openProjectUpdateModal;
+    $scope.closeProjectUpdateModal = openProjectUpdateModal;
+    $scope.submitProjecttUpdateModal = submitProjectUpdateModal;
 
     /* Delete projects */
     $scope.deleteProject = deleteProject;
@@ -40,8 +40,8 @@
     }
 
     function getProjects() {
-      projectService.getProjects($scope.projectParams).then(function(projects) {
-        $scope.projects = projects;
+      projectService.getProjects($scope.projectParams).then(function(response) {
+        $scope.projects = response.data.projects;
       });
     }
 
@@ -50,38 +50,35 @@
       $scope.getProjects();
     }
 
-    function openProjectCreateForm() {
-      projectService.openProjectCreateForm($scope).then(function(response) {
-        $scope.projectCreateForm = response.projectCreateForm;
+    function openProjectCreateModal() {
+      projectService.openProjectCreateModal($scope).then(function(response) {
+        $scope.projectCreateModal = response.projectCreateModal;
       });
     }
 
-    function closeProjectCreateForm() {
-      $scope.projectCreateForm.close();
+    function closeProjectCreateModal() {
+      $scope.projectCreateModal.close();
     }
 
-    function submitProjectCreateForm(newProject) {
+    function submitProjectCreateModal(newProject) {
       projectService.createProject(newProject).then(function(response) {
         $scope.getProjects();
       });
     }
 
-    function openProjectUpdateForm() {
-      projectService.openProjectUpdateForm($scope).then(function(response) {
-        $scope.projectUpdateForm = response.projectUpdateForm;
-        $scope.oldProject = response.oldProject;
-      });
+    function openProjectUpdateModal(projectId) {
+      projectService.openProjectUpdateModal($scope, projectId);
     }
 
-    function closeProjectUpdateForm() {
-      $scope.projectUpdateForm.close();
+    function closeProjectUpdateModal() {
+      $scope.projectUpdateModal.close();
     }
 
-    function submitProjectUpdateForm(projectId) {
+    function submitProjectUpdateModal(projectId) {
       projectService.updateProject(projectId, $scope.oldProject)
         .then(function(response) {
         $scope.getProjects();
-      })
+      });
     }
 
     function deleteProject(project) {
@@ -144,12 +141,12 @@
 
     // NEW GENERATION
 
-    $scope.showCreateFormCode = showCreateFormCode;
+    $scope.showCreateModalCode = showCreateModalCode;
     $scope.trustAsHtml = function(string) {
       return $sce.trustAsHtml(string);
     };
 
-    function showCreateFormCode(model) {
+    function showCreateModalCode(model) {
       function replacer(key, value) {
         if (typeof value === "boolean"||typeof value === "number") {
           return String(value);
@@ -169,8 +166,8 @@
         });
     }
 
-    $scope.showUpdateFormCode = showUpdateFormCode;
-    function showUpdateFormCode(model) {
+    $scope.showUpdateModalCode = showUpdateModalCode;
+    function showUpdateModalCode(model) {
       function replacer(key, value) {
         if (typeof value === "boolean"||typeof value === "number") {
           return String(value);

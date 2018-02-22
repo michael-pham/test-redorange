@@ -9,13 +9,13 @@
           <div class="col-md-12">
             <div class="form-group">
               <label>Tên project</label>
-              <input ng-model="oldProject.ten" type="text" class="form-control"></input>
+              <input ng-model="oldProject.name" type="text" class="form-control"></input>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 col-md-offset-6">
-            <button ng-click="submitUpdateForm(oldProject.id, oldProject)" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>
+            <button ng-click="submitProjectUpdateModal(oldProject.id)" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>
             <button style="margin-right: 0.5rem" ng-click="projectCrud.dismissCreateForm()" class="btn btn-fill col-md-4 pull-right">Trở lại</button>
           </div>
         </div>

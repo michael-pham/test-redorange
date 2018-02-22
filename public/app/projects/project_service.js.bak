@@ -6,7 +6,7 @@
     .factory('projectService', projectService);
 
   /* @ngInject */
-  function projectService($http, $q, logger, exception, utils, crudService) {
+  function projectService($http, $q, logger, exception, utils, SweetAlert) {
     var projectMeta = {
       name: 'project',
       url: '/projects',
@@ -19,9 +19,9 @@
       initProjectParams: initProjectParams,
       getProjects: getProjects,
       getProject: getProject,
-      openProjectCreateModal: openProjectCreateModal,
+      openProjectCreateForm: openProjectCreateForm,
       createProject: createProject,
-      openProjectUpdateModal: openProjectUpdateModal,
+      openProjectUpdateForm: openProjectUpdateForm,
       updateProject: updateProject,
       deleteProject: deleteProject,
       validateProject: validateProject
@@ -83,35 +83,59 @@
         processedParams = "?" + filtering + paging + sorting;
       }
 
-      return crudService.getItems("/projects" + processedParams);
+      return $http.get("/projects" + processedParams)
+        .then(function(response) {
+          if (response.data.errors) {
+            return $q.reject(response.data.errors);
+          }
+
+          return response.data.projects;
+        })
+        .catch(function(response) {
+          logger.log(response);
+          return $q.reject(response);
+        });
     }
 
 
-    function getProject(projectId) {
-      return crudService.getItem(projectMeta, projectId);
+    function getProject(projectMeta, itemId, result) {
+      var includes = projectMeta.many_to_one;
+      angular.forEach(projectMeta.one_to_many, function(item, key) {
+        includes.push(item.name + "s");
+      });
+
+      var param = $.param({includes: includes});
+      return $http.get(projectMeta.url + "/" + itemId + "?" + param)
+        .then(function(successResp) {
+          if (successResp.data.errors) {
+            return $q.reject(successResp.data.errors);
+          }
+
+          result = Object.assign(result, successResp.data[projectMeta.name]);
+          var promises = [];
+          angular.forEach(projectMeta.one_to_many, function(metaItem, key1) {
+            utils.renameObjectKey(result, utils.camelToSnakeCase(metaItem.name)
+              + "s", metaItem.name + "s");
+            angular.forEach(result[metaItem.name + "s"],
+              function(dataItem, key2) {
+              promises.push(getSingle(metaItem, dataItem.id, dataItem));
+            });
+          });
+
+          return $q.all(promises);
+        })
+        .catch(function(response) {
+          var message = "Một lỗi nào đó đã xảy ra trong quá trình truy xuất dữ liệu project."
+          if (response.data.message) {
+            message = response.data.message;
+          }
+
+          logger.error(message);
+          return $q.reject(message);
+        });
     }
 
-    function openProjectUpdateModal(scope, projectId) {
-      var parameters = {
-        itemMeta: projectMeta,
-        itemId: projectId,
-        itemName: "oldProject",
-        openModalErrorMessage: "Tải biểu mẫu cập nhật không thành công.",
-        modalUrl: 'app/projects/_cap_nhat_project_modal.html',
-        updateModalName: "projectCreateModal",
-        scope: scope,
-        windowClass: "",
-        dependencies: projectMeta.many_to_one 
-      }
-      crudService.openItemUpdateModal(parameters);
-    }
-
-    function updateProject(projectId, updatedProjectData) {
-      return crudService.updateItem("/projects/" + projectId, 
-        {project: updatedProjectData});
-    }
-
-    function openProjectCreateModal(scope) {
+    function openProjectUpdateForm(scope) {
       var promises = [];
       var accumulatedResponse = {};
       // promises.push(statusService.getStatus().then(function(response) {
@@ -119,7 +143,37 @@
       // });
       return $q.all(promises)
         .then(function() {
-          accumulatedResponse.projectCreateModal =
+          accumulatedResponse.projectUpdateForm =
+            utils.openModal('app/projects/_cap_nhat_project_modal.html', scope);
+          return accumulatedResponse;
+        })
+        .catch(exception.catcher("Tải biểu mẫu cập nhật không thành công"));
+    }
+
+    function updateProject(projectId, updatedProjectData) {
+      return $http.put("/projects/" + projectId, {project: updatedProjectData})
+        .then(function(response) {
+          if (response.data.errors) {
+            return $q.reject(response.data.errors[0]);
+          }
+
+          return response.data.project;
+        })
+        .catch(function(response) {
+          logger.log(response);
+          return $q.reject(response);
+        });
+    }
+
+    function openProjectCreateForm(scope) {
+      var promises = [];
+      var accumulatedResponse = {};
+      // promises.push(statusService.getStatus().then(function(response) {
+      //   accumulatedResponse['tinh_trang'] = response;
+      // });
+      return $q.all(promises)
+        .then(function() {
+          accumulatedResponse.projectCreateForm =
             utils.openModal('app/projects/_them_project_modal.html', scope);
           return accumulatedResponse;
         })

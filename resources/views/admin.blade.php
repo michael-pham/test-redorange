@@ -107,6 +107,7 @@
     <script src="/app/blocks/router/routehelper.js"></script>
     <script src="/app/blocks/crud/crud.module.js"></script>
     <script src="/app/blocks/crud/crud.js"></script>
+    <script src="/app/blocks/crud/crud_service.js"></script>
     <script src="/app/blocks/utils/utils.module.js"></script>
     <script src="/app/blocks/utils/utils.js"></script>
 
