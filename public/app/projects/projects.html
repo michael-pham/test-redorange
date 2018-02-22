@@ -53,14 +53,24 @@
               <td ng-show="showSelection" class="col-md-1">
                 <input class="form-control" type="checkbox"/>
               </td>
-              <td><input class="form-control" type="text" ng-model="projectParams.filtering.name"/></td>
               <td>
-                <input date-range-picker class="form-control date-picker" type="text"
-                                                                          ng-model="projectParams.filtering.created_at_range" options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" />
+                <div class="has-feedback">
+                  <input class="form-control" type="text" ng-model="projectParams.filtering.name" clear-icon />
+                </div>
               </td>
               <td>
+                <div class="has-feedback">
                 <input date-range-picker class="form-control date-picker" type="text"
-                                                                          ng-model="projectParams.filtering.updated_at_range" options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" />
+                  ng-model="projectParams.filtering.created_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="projectParams.filtering.updated_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
               </td>
               <td>
                 <!-- <select class="form&#45;control" ng&#45;model="projectParams.name" -->
@@ -77,7 +87,7 @@
                   </div>
                   <div class="col-md-4">
                     <a ng-click="getProjectsWithInitialParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
-                      <i class="fa fa-undo"></i>
+                      <i class="fa fa-close"></i>
                     </a>
                   </div>
                 </div>

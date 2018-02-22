@@ -214,3 +214,31 @@ input[type="radio"], input[type="checkbox"] {
   line-height: 1.33;
   border-radius: 35px;
 }
+
+.clear-icon {
+  border-radius: 6px;
+  font-size: 14px;
+  font-style: normal;
+  color: grey;
+  margin-top: -7px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  vertical-align: middle;
+  display: block;
+  text-align: center;
+}
+
+.clear-icon:hover {
+  color: black;
+}
+
+::-ms-clear {
+  display: none;
+}
+
+.form-control-clear {
+  z-index: 10;
+  pointer-events: auto;
+  cursor: pointer;
+}
