@@ -1,0 +1,141 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="header">
+        <div class="row">
+          <div class="col-md-3">
+            <h5 style="text-transform: uppercase;" class="title col">Danh sách {{item_display_name}}</h5>
+          </div>
+          <div class="col-md-9 pull-right">
+            <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
+              <i class="fa fa-undo"></i>
+              Trở lại
+            </a>
+            <a ng-show="showSelection" class="btn btn-fill btn-sm btn-danger pull-right">
+              <i class="fa fa-trash"></i>
+              Xóa
+            </a>
+            <!-- <a ng&#45;show="!showSelection" data&#45;ng&#45;click="showSelection=true" class="btn btn&#45;sm pull&#45;right"> -->
+            <!--   <i class="fa fa&#45;edit"></i> -->
+            <!--   Chọn dòng -->
+            <!-- </a> -->
+            <a data-ng-click="open{{item_name_in_pascal_case}}CreateModal()" class="btn btn-sm btn-custom pull-right">
+              <i class="fa fa-plus"></i>
+              Thêm {{item_name_in_camel_case}}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content table-responsive" ng-init="showSelection=false">
+        <table class="table table-hover table-striped">
+          <thead>
+            <th class="col-md-1" ng-show="showSelection"></th>
+            {{_table_sortable_ths}}
+            <th class="sortable" ng-click="{{item_name_in_camel_case}}Params.sorting.key = 'created_at'; {{item_name_in_camel_case}}Params.sorting.direction='DESC'; get{{item_name_in_pascal_case}}s()" ng-show="{{item_name_in_camel_case}}Params.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': {{item_name_in_camel_case}}Params.sorting.key == 'created_at'}" ng-click="{{item_name_in_camel_case}}Params.sorting.direction='ASC'; get{{item_name_in_pascal_case}}s()" ng-show="{{item_name_in_camel_case}}Params.sorting.key == 'created_at' && {{item_name_in_camel_case}}Params.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': {{item_name_in_camel_case}}Params.sorting.key == 'created_at'}" ng-click="{{item_name_in_camel_case}}Params.sorting.direction='DESC'; get{{item_name_in_pascal_case}}s()" ng-show="{{item_name_in_camel_case}}Params.sorting.key == 'created_at' && {{item_name_in_camel_case}}Params.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Khởi tạo</th>
+
+            <th class="sortable" ng-click="{{item_name_in_camel_case}}Params.sorting.key = 'updated_at'; {{item_name_in_camel_case}}Params.sorting.direction='DESC'; get{{item_name_in_pascal_case}}s()" ng-show="{{item_name_in_camel_case}}Params.sorting.key != 'updated_at'"><i class="fa fa-fw fa-sort"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': {{item_name_in_camel_case}}Params.sorting.key == 'updated_at'}" ng-click="{{item_name_in_camel_case}}Params.sorting.direction='ASC'; get{{item_name_in_pascal_case}}s()" ng-show="{{item_name_in_camel_case}}Params.sorting.key == 'updated_at' && {{item_name_in_camel_case}}Params.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': {{item_name_in_camel_case}}Params.sorting.key == 'updated_at'}" ng-click="{{item_name_in_camel_case}}Params.sorting.direction='DESC'; get{{item_name_in_pascal_case}}s()" ng-show="{{item_name_in_camel_case}}Params.sorting.key == 'updated_at' && {{item_name_in_camel_case}}Params.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Cập nhật</th>
+
+            <th class="text-center">
+              <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button> -->
+            </th>
+            <th class="col-md-2">Tác vụ</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td ng-show="showSelection" class="col-md-1">
+                <input class="form-control" type="checkbox"/>
+              </td>
+              {{_table_search_tds}}
+              <td>
+                <div class="has-feedback">
+                  <input class="form-control" type="text" ng-model="{{item_name_in_camel_case}}Params.filtering.name" clear-icon />
+                </div>
+              </td>
+
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="{{item_name_in_camel_case}}Params.filtering.created_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="{{item_name_in_camel_case}}Params.filtering.updated_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td></td>
+              <td>
+                <div class="row">
+                  <div class="col-md-8">
+                    <a ng-click="get{{item_name_in_pascal_case}}s()" class="btn btn-md btn-block" data-toggle="tooltip" title="Tìm kiếm">
+                      <i class="fa fa-search"></i>
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a ng-click="get{{item_name_in_pascal_case}}sWithInitialParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
+                      <i class="fa fa-close"></i>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr ng-repeat="(key, {{item_name_in_camel_case}}) in {{item_name_in_camel_case}}s | filter:searchText">
+              <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
+                {{_table_tds}}
+                <td>{{{{item_name_in_camel_case}}.created_at}}</td>
+                <td>{{{{item_name_in_camel_case}}.updated_at}}</td>
+                <td class="text-center" ng-hide="{{item_name_in_camel_case}}.is_valid" data-toggle="tooltip" title="Có thể đã xảy ra lỗi trong quá trình lưu dữ liệu. Xinh vui lòng kiểm tra lại dữ liệu.">
+                  <button type="button" class="btn btn-danger btn-fill btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+                </td>
+                <td class="text-center" ng-show="{{item_name_in_camel_case}}.is_valid" data-toggle="tooltip" title="Dữ liệu liệu lưu thành công.">
+                  <button type="button" class="btn btn-success btn-fill btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+                </td>
+                <td class="col-md-3">
+                  <div class="row">
+                    <div class="col-md-4  ">
+                      <a href="#/{{item_name_in_camel_case}}s/{{{{item_name_in_camel_case}}.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="open{{item_name_in_pascal_case}}UpdateModal({{item_name_in_camel_case}}.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="delete{{item_name_in_pascal_case}}({{item_name_in_camel_case}})" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa {{item_name_in_camel_case}}">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </div>
+                  </div>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-2">
+            <select class="form-control" type="text">
+              <option ng-click="{{item_name_in_camel_case}}Params.paging.limit=5; get{{item_name_in_pascal_case}}s()">5 dòng</option>
+              <option ng-click="{{item_name_in_camel_case}}Params.paging.limit=10; get{{item_name_in_pascal_case}}s()">10 dòng</option>
+              <option ng-click="{{item_name_in_camel_case}}Params.paging.limit=15; get{{item_name_in_pascal_case}}s()">15 dòng</option>
+            </select>
+          </div>
+          <div class="col-md-8 col-md-offset-2 custom-pagination">
+            <ul>
+              <li style="cursor: pointer" ng-click="getLeftMostPage({{item_name_in_camel_case}}Params.paging, get{{item_name_in_pascal_case}}s)"><a>«</a></li>
+              <li style="cursor: pointer" ng-class="{'active': page == {{item_name_in_camel_case}}Params.paging.page}" ng-click="{{item_name_in_camel_case}}Params.paging.page = page; get{{item_name_in_pascal_case}}s()" ng-repeat="page in {{item_name_in_camel_case}}Params.paging.pages"><a>{{page}}</a></li>
+              <li style="cursor: pointer" ng-click="getRightMostPage({{item_name_in_camel_case}}Params.paging, get{{item_name_in_pascal_case}}s)"><a>»</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

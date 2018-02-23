@@ -6,7 +6,8 @@
     .factory('projectService', projectService);
 
   /* @ngInject */
-  function projectService($http, $q, logger, exception, utils, crudService, projectModel) {
+  function projectService($http, $q, logger, exception, utils, crudService,
+    projectModel) {
 
     var service = {
       initProjectParams: initProjectParams,
@@ -77,7 +78,6 @@
       return crudService.getItems(projectModel.baseUrl + processedParams);
     }
 
-
     function getProject(projectId) {
       return crudService.getItem(projectModel.meta , projectId);
     }
@@ -134,10 +134,11 @@
     function createProject(projectData) {
       return crudService.createItem(projectModel.meta, projectData)
         .then(function(response) {
-          return validateProject(response.data.id, true).then(function(response) {
-            logger.success(projectModel.createItemSuccessMessage);
-            return response;
-          })
+          return validateProject(response.data.id, true)
+            .then(function(response) {
+              logger.success(projectModel.createItemSuccessMessage);
+              return response;
+            })
         }).catch(function(errorMessages) {
           logger.error(projectModel.createItemErrorMessage);
           return $q.reject(errorMessages);
@@ -156,7 +157,6 @@
         successMessage: projectModel.deleteItemSuccessMessage,
         errorMessage: projectModel.deleteItemErrorMessage
       }
-
       crudService.deleteItem(parameters, callback);
     }
   }
