@@ -82,7 +82,6 @@
         });
     }
 
-
     function getSingle(itemMeta, itemId, result) {
       var includes = itemMeta.many_to_one;
       angular.forEach(itemMeta.one_to_many, function(item, key) {
@@ -323,8 +322,8 @@
       var errorMessage = parameters.errorMessages;
 
       SweetAlert.swal({
-        title: title,
-        text: text,
+        title: sweetAlertTitle,
+        text: sweetAlertText,
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",

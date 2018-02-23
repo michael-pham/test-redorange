@@ -18,16 +18,15 @@
     $scope.getLeftMostPage = utils.makePagingNavigator.getLeftMostPage;
     $scope.getRightMostPage = utils.makePagingNavigator.getRightMostPage;
 
-
     /* Create projects */
     $scope.openProjectCreateModal = openProjectCreateModal;
     $scope.closeProjectCreateModal = closeProjectCreateModal;
-    $scope.submitProjectCreateModal = submitProjectCreateModal;
+    $scope.createProject = createProject;
 
     /* Update projects */
     $scope.openProjectUpdateModal = openProjectUpdateModal;
-    $scope.closeProjectUpdateModal = openProjectUpdateModal;
-    $scope.submitProjecttUpdateModal = submitProjectUpdateModal;
+    $scope.closeProjectUpdateModal = closeProjectUpdateModal;
+    $scope.updateProject = updateProject;
 
     /* Delete projects */
     $scope.deleteProject = deleteProject;
@@ -51,17 +50,16 @@
     }
 
     function openProjectCreateModal() {
-      projectService.openProjectCreateModal($scope).then(function(response) {
-        $scope.projectCreateModal = response.projectCreateModal;
-      });
+      projectService.openProjectCreateModal($scope);
     }
 
     function closeProjectCreateModal() {
-      $scope.projectCreateModal.close();
+      $scope.projectCreateModal.dismiss();
     }
 
-    function submitProjectCreateModal(newProject) {
+    function createProject(newProject) {
       projectService.createProject(newProject).then(function(response) {
+        $scope.projectCreateModal.dismiss();
         $scope.getProjects();
       });
     }
@@ -71,13 +69,14 @@
     }
 
     function closeProjectUpdateModal() {
-      $scope.projectUpdateModal.close();
+      $scope.projectUpdateModal.dismiss();
     }
 
-    function submitProjectUpdateModal(projectId) {
-      projectService.updateProject(projectId, $scope.oldProject)
+    function updateProject() {
+      projectService.updateProject($scope.oldProject)
         .then(function(response) {
         $scope.getProjects();
+        $scope.closeProjectUpdateModal();
       });
     }
 
@@ -87,7 +86,6 @@
       });
     }
   }
-
 
   ProjectDetails.$inject = ['$sce', '$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel', 'utils'];
 

@@ -6,14 +6,7 @@
     .factory('projectService', projectService);
 
   /* @ngInject */
-  function projectService($http, $q, logger, exception, utils, crudService) {
-    var projectMeta = {
-      name: 'project',
-      url: '/projects',
-      domestic: ["name", "generating_data", "generating_data_refined"],
-      many_to_one: [],
-      many_to_one: []
-    }
+  function projectService($http, $q, logger, exception, utils, crudService, projectModel) {
 
     var service = {
       initProjectParams: initProjectParams,
@@ -29,7 +22,6 @@
 
     return service;
 
-    ///////////////////////////////////////////////////////////////////////////
     function initProjectParams() {
       return {
         paging: {limit: 5, page: 0, pages: [0, 1, 2, 3, 4]},
@@ -43,7 +35,6 @@
     }
 
     function getProjects(projectParams) {
-
       var processedParams = "";
 
       if (projectParams) {
@@ -83,96 +74,90 @@
         processedParams = "?" + filtering + paging + sorting;
       }
 
-      return crudService.getItems("/projects" + processedParams);
+      return crudService.getItems(projectModel.baseUrl + processedParams);
     }
 
 
     function getProject(projectId) {
-      return crudService.getItem(projectMeta, projectId);
+      return crudService.getItem(projectModel.meta , projectId);
     }
 
     function openProjectUpdateModal(scope, projectId) {
       var parameters = {
-        itemMeta: projectMeta,
+        itemMeta: projectModel.meta,
         itemId: projectId,
-        itemName: "oldProject",
-        openModalErrorMessage: "Tải biểu mẫu cập nhật không thành công.",
-        modalUrl: 'app/projects/_cap_nhat_project_modal.html',
-        updateModalName: "projectCreateModal",
+        itemName: projectModel.updateModalItemName,
+        openModalErrorMessage: projectModel.updateModalOpenErrorMessage,
+        modalUrl: projectModel.updateModalUrl,
+        updateModalName: projectModel.updateModalName,
         scope: scope,
-        windowClass: "",
-        dependencies: projectMeta.many_to_one 
+        size: projectModel.updateModalSize,
+        windowClass: projectModel.updateModalWindowClass,
+        dependencies: projectModel.meta.many_to_one 
       }
+
       crudService.openItemUpdateModal(parameters);
     }
 
-    function updateProject(projectId, updatedProjectData) {
-      return crudService.updateItem("/projects/" + projectId, 
-        {project: updatedProjectData});
+    function updateProject(updatedProject, silentOnSucess) {
+      updatedProject.is_valid = true;
+      return crudService.updateItem(projectModel.baseUrl + "/" +
+        updatedProject.id, {project: updatedProject})
+        .then(function(response) {
+          if (!silentOnSucess) {
+            logger.success(projectModel.updateItemSuccessMessage + " " +
+              response.name);
+          }
+
+          return response;
+        })
+        .catch(function(errorMessages) {
+          logger.error(projectModel.updateItemErrorMessage);
+          return $q.reject(errorMessages);
+        });
     }
 
     function openProjectCreateModal(scope) {
-      var promises = [];
-      var accumulatedResponse = {};
-      // promises.push(statusService.getStatus().then(function(response) {
-      //   accumulatedResponse['tinh_trang'] = response;
-      // });
-      return $q.all(promises)
-        .then(function() {
-          accumulatedResponse.projectCreateModal =
-            utils.openModal('app/projects/_them_project_modal.html', scope);
-          return accumulatedResponse;
-        })
-        .catch(exception.catcher("Tải biểu mẫu cập nhật không thành công"));
+      var parameters = {
+        openModalErrorMessage: projectModel.createModalOpenErrorMessage,
+        modalUrl: projectModel.createModalUrl,
+        createModalName: projectModel.createModalName,
+        scope: scope,
+        size: projectModel.createModalSize,
+        windowClass: projectModel.createModalWindowClass,
+        dependencies: projectModel.meta.many_to_one 
+      }
+
+      crudService.openItemCreateModal(parameters);
     }
 
     function createProject(projectData) {
-      return utils.createModel(projectMeta, projectData)
+      return crudService.createItem(projectModel.meta, projectData)
         .then(function(response) {
-          var newProjectId = response.data.id;
-          return validateProject(newProjectId);
-        })
-        .catch(exception.catcher("Lỗi xảy ra trong quá trình tạo project."));
+          return validateProject(response.data.id, true).then(function(response) {
+            logger.success(projectModel.createItemSuccessMessage);
+            return response;
+          })
+        }).catch(function(errorMessages) {
+          logger.error(projectModel.createItemErrorMessage);
+          return $q.reject(errorMessages);
+        });
     }
 
-    function validateProject(projectId) {
-      return updateProject(projectId, {is_valid: true});
+    function validateProject(projectId, silentOnSucess) {
+      return updateProject({id: projectId}, silentOnSucess);
     }
 
     function deleteProject(project, callback) {
-        SweetAlert.swal({
-          title: "Xóa project " + project.name + "?",
-          text: "Dữ liệu sẽ không thể khôi phục được sau khi xóa.",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "Xoá",
-          cancelButtonText: "Trở lại",
-          closeOnConfirm: true,
-          closeOnCancel: true
-        },
-        function(isConfirm) {
-          if (isConfirm) {
-            $http.delete("/projects/" + project.id)
-            .then(function(successResponse) {
-              if (!successResponse.data.errors) {
-                logger.success("Xóa thành công project " + project.name);
-                callback();
-              } else {
-                return $q.reject(response.data.errors[0]);
-              }
-            })
-            .catch(function(response) {
-              var message = "Một lỗi nào đó đã xảy ra trong quá trình xóa project."
-              if (response.data.message) {
-                message = response.data.message;
-              }
-
-              logger.error(message);
-              return $q.reject(message);
-            });
-          };
-        });
+      var parameters = {
+        url: projectModel.baseUrl + "/" + project.id,
+        sweetAlertTitle: projectModel.deleteSweetAlertTitle + " " + project.name,
+        sweetAlertText: projectModel.deleteSweetAlertText,
+        successMessage: projectModel.deleteItemSuccessMessage,
+        errorMessage: projectModel.deleteItemErrorMessage
       }
+
+      crudService.deleteItem(parameters, callback);
+    }
   }
 })();
