@@ -87,10 +87,10 @@
     }
   }
 
-  ProjectDetails.$inject = ['$sce', '$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectModel', 'utils'];
+  ProjectDetails.$inject = ['$sce', '$scope', '$http', '$routeParams', 'SweetAlert', 'FileSaver', 'crud', 'projectService', 'utils'];
 
   /* @ngInject */
-  function ProjectDetails($sce, $scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectModel, utils) {
+  function ProjectDetails($sce, $scope, $http, $routeParams, SweetAlert, FileSaver, crud, projectService, utils) {
     $scope.makeDanhMuc = function() {
       for (var i = 0; i < $scope.currentModel.attributes.length; ++i) {
         $scope.currentModel.attributes[i].show = false;
@@ -207,11 +207,9 @@
     }
 
     /* jshint validthis: true */
-    $scope.projectModel = projectModel.init($scope);
-    $scope.projectCrud = crud.make($scope.projectModel);
     $scope.projectId = $routeParams.id;
-    $scope.projectCrud.getSingle($scope.projectId, function(data) {
-      $scope.project = data;
+    projectService.getProject($scope.projectId).then(function(response) {
+      $scope.project = response;
       if ($scope.project.generating_data) {
         $scope.models = JSON.parse($scope.project.generating_data);
       } else {

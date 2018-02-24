@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>{{input_label}}</label>
+      <textarea name="{{input_name}}" ng-model="{{input_model_name}}.{{input_name}}" type="text"
+        class="form-control" {{input_validation}}></textarea>
+      <div ng-messages="myForm.{{input_name}}.$error"
+        style="color:maroon" role="alert" ng-if='myForm.{{input_name}}.$dirty'>
+        {{input_validation_ngmessages}}
+      </div>
+    </div>
+  </div>
+</div>

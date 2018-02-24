@@ -30,7 +30,7 @@
         filtering: {
           created_at_range: {startDate: "", endDate: ""},
           updated_at_range: {startDate: "", endDate: ""},
-          name: "",
+          {{item_filtering_attributes}}
         }
       }
     }
@@ -65,7 +65,7 @@
         }
 
         {{_parameter_processing}}
-        
+
         var including = utls.makeParams.including({{item_name_in_camel_case}}Model.includes);
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging({{item_name_in_camel_case}}Params.paging);

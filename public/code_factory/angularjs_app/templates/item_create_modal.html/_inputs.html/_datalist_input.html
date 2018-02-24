@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>{{input_label}}</label>
+      <input autocomplete="off" name="{{input_name}}" list="{{selection_list}}" type="text" class="form-control"
+        ng-model="{{input_model_name}}.{{input_name}}" {{input_validation}}>
+      <datalist id="{{selection_list}}">
+        <option ng-repeat="{{selection_item}} in selection_list" value="{{selection_item}}.{{selection_item_value}}">
+      </datalist>
+      <!-- <div ng-messages="myForm.ten_khach_hang.$error" style="color:maroon" role="alert" ng-if='myForm.ten_khach_hang.$dirty'>
+        <div ng-show="!doesItemExists(oldHopDong.ten_khach_hang, khachHangs, 'ten_khach_hang') && myForm.ten_khach_hang.$dirty && (oldHopDong.ten_khach_hang.length > 0)">
+          Khách hàng không tồn tại
+        </div>
+      </div> -->
+      <div ng-messages="myForm.{{input_name}}.$error"
+        style="color:maroon" role="alert" ng-if='myForm.{{input_name}}.$dirty'>
+        {{input_validation_ngmessages}}
+      </div>
+    </div>
+  </div>
+</div>
