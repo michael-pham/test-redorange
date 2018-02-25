@@ -91,6 +91,14 @@
                   <input ng-model="attribute.display_name" class="form-control" placeholder="Display name"></input>
                 </div>
                 <div class="form-group col-md-4">
+                  <label>Dependency name</label>
+                  <input ng-model="attribute.dependency_name" class="form-control" placeholder="Dependency name"></input>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Dependency display name</label>
+                  <input ng-model="attribute.dependency_display_name" class="form-control" placeholder="Dependency display name"></input>
+                </div>
+                <div class="form-group col-md-4">
                   <label>Type</label>
                   <input ng-model="attribute.type" class="form-control" placeholder="Type" list="types"></input>
                   <datalist id="types">
@@ -104,7 +112,7 @@
                   </datalist>
                 </div>
                 <div class="form-group col-md-4">
-                  <label>UI type</label>
+                  <label>UI input type</label>
                   <input ng-model="attribute.ui_type" class="form-control" placeholder="UI type" list="ui-types"></input>
                   <datalist id="ui-types">
                     <option value="text_input">
@@ -120,6 +128,16 @@
                   </datalist>
                 </div>
                 <div class="form-group col-md-4">
+                  <label>UI display type</label>
+                  <input ng-model="attribute.ui_display_type" class="form-control" placeholder="UI type" list="ui-display-types"></input>
+                  <datalist id="ui-display-types">
+                    <option value="label">
+                    <option value="file">
+                    <option value="image">
+                    <option value="plain">
+                  </datalist>
+                </div>
+                <div class="form-group col-md-4">
                   <label>Max</label>
                   <input ng-model="attribute.constraints.max" class="form-control" placeholder="Max"></input>
                 </div>
@@ -127,7 +145,7 @@
                   <label>Min</label>
                   <input ng-model="attribute.constraints.min" class="form-control" placeholder="Min"></input>
                 </div>
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-4">
                   <label>Pattern</label>
                   <input ng-model="attribute.constraints.pattern" class="form-control" placeholder="Pattern"></input>
                 </div>

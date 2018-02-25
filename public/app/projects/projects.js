@@ -102,6 +102,9 @@
         display_name: "Tên",
         type: "string",
         ui_type: "text_input",
+        ui_display_type: "plain",
+        dependency_name: "",
+        dependency_display_name: "",
         hidden: "",
         constraints: {
           max: "255",
@@ -334,6 +337,9 @@
         display_name: "",
         type: "",
         ui_type: "",
+        ui_display_type: "",
+        dependency_name: "",
+        dependency_display_name: "",
         hidden: "",
         constraints: {
           max: "",
