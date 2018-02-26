@@ -5,8 +5,8 @@ import sys
 import re
 path_base = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/code_factory/'
 
-file_relative_path = "angularjs_app/templates/items.html/_table_search_tds/_plain_search_td.html"
-file_name_constant_var = '_plain_search_td_html'
+file_relative_path = "angularjs_app/templates/item_create_modal.html/_inputs.html/_email_input.html"
+file_name_constant_var = '_email_input_html'
 data_name = 'model'
 file_name_constant_var += '_tpl'
 file_name_constant_var = file_name_constant_var.upper()

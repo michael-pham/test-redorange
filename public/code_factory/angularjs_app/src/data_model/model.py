@@ -5,5 +5,5 @@ class Model:
     def __init__(self, model_data):
         self.name = model_data[NAME_KEY]
         self.attributes = []
-        for attribute in model_data[ATTRIBUTES]:
+        for attribute in model_data[ATTRIBUTES_KEY]:
             self.attributes.append(Attribute(attribute))

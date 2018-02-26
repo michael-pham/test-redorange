@@ -19,7 +19,7 @@ def input_validation(input_label, constraints):
     if len(max_constraint) > 0 and int(max_constraint) > 0:
         validation += "ng-maxlength='" + max_constraint + "' "
         render_markers = [INPUT_LABEL_MARKER, MAX_NGMESSAGE_VALUE_MARKER]
-        code_contents = {INPUT_LABEL_MARKER: input_label, MAX_NGMESSAGE_VALUE_MARKER:  max_constraint}
+        code_contents = {INPUT_LABEL_MARKER: input_label, MAX_NGMESSAGE_VALUE_MARKER: max_constraint}
         ngmessages += ng_messages(MAX_NGMESSAGE_TPL, render_markers,
             code_contents)
 
