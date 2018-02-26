@@ -8,10 +8,10 @@
 
   function {{item_name_in_camel_case}}Model() {
     return {
-      baseUrl: '/{{item_name_in_camel_case}}s',
+      baseUrl: '/{{item_name_in_snake_case}}s',
       meta: {
         name: '{{item_name_in_camel_case}}',
-        url: '/{{item_name_in_camel_case}}s',
+        url: '/{{item_name_in_snake_case}}s',
         domestic: [
           {{domestic_attributes}}
         ],
@@ -20,7 +20,7 @@
       },
       includes: [],
       updateModalOpenErrorMessage: "Tải biểu mẫu cập nhật không thành công",
-      updateModalUrl: '/app/{{item_name_in_camel_case}}s/_{{item_name_in_camel_case}}_update_modal.html',
+      updateModalUrl: '/app/{{item_name_in_snake_case}}s/_{{item_name_in_snake_case}}_update_modal.html',
       updateModalName: '{{item_name_in_camel_case}}UpdateModal',
       updateModalSize: 'md',
       updateModalItemName: 'old{{item_name_in_pascal_case}}',
@@ -29,7 +29,7 @@
       updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật {{item_display_name}}",
 
       createModalOpenErrorMessage: "Tải biểu mẫu không thành công",
-      createModalUrl: '/app/{{item_name_in_camel_case}}s/_{{item_name_in_camel_case}}_create_modal.html',
+      createModalUrl: '/app/{{item_name_in_snake_case}}s/_{{item_name_in_snake_case}}_create_modal.html',
       createModalName: '{{item_name_in_camel_case}}CreateModal',
       createModalSize: 'md',
       createModalItemName: 'new{{item_name_in_pascal_case}}',

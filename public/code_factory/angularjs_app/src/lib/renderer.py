@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 def make(file_path, render_markers, code_contents):
     with open(file_path, 'r') as file :
@@ -14,17 +17,21 @@ def render(data):
     if type(data) is list:
         ret = ""
         for item in data:
-            ret += render(item);
+            ret += render(item)
 
         return ret
 
     if type(data) is dict:
+        if data == {}:
+            return ""
+
         data_keys = list(data.keys())
 
         for key in data_keys:
-            if data[key] is list or data[key] is dict:
+            if type(data[key]) is list or type(data[key]) is dict:
                 data[key] = render(data[key])
 
+        # print(data_keys)
         return make(data['tpl_path'], data_keys, data)
 
     return ""

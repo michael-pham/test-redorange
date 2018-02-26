@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from data_model_constants import *
 from constraint import *
 

@@ -1,28 +1,30 @@
 from lib.helper_functions import *
 from lib.renderer import *
+from data_model.data_model_constants import *
 from constants import *
 
 def render_items_html(model):
+    data = dict()
     data[TPL_PATH_KEY] = PATH_BASE + ITEMS_HTML_TPL
     data[ITEM_DISPLAY_NAME_KEY] = model.display_name
     data[ITEM_NAME_IN_PASCAL_CASE_KEY] = model.name
     data[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
 
-    data[_TABLE_SORTABLE_THS_KEY] = []
+    data[TABLE_SORTABLE_THS_KEY] = []
     for attribute in model.attributes:
         subdata = dict()
-        subdata[TPL_PATH_KEY] = PATH_BASE + _SORTABLE_TH_HTML_TPL
+        subdata[TPL_PATH_KEY] = PATH_BASE + SORTABLE_TH_HTML_TPL
         subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
         subdata[ATTRIBUTE_NAME_KEY] = attribute.name
         subdata[ITEM_NAME_IN_PASCAL_CASE_KEY] = model.name
         subdata[ATTRIBUTE_DISPLAY_NAME_KEY] = attribute.display_name
-        data[_TABLE_SORTABLE_THS_KEY].append(subdata)
+        data[TABLE_SORTABLE_THS_KEY].append(subdata)
 
-    data[_TABLE_TDS_KEY] = []
+    data[TABLE_TDS_KEY] = []
     for attribute in model.attributes:
         subdata = dict()
         if attribute.ui_display_type == PLAIN:
-            subdata[TPL_PATH_KEY] = PATH_BASE + _PLAIN_TD_HTML_TPL
+            subdata[TPL_PATH_KEY] = PATH_BASE + PLAIN_TD_HTML_TPL
             subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
@@ -41,9 +43,9 @@ def render_items_html(model):
             subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
-        data[_TABLE_TDS_KEY].append(subdata)
+        data[TABLE_TDS_KEY].append(subdata)
 
-    data[_TABLE_SEARCH_TDS_KEY] = []
+    data[TABLE_SEARCH_TDS_KEY] = []
     for attribute in model.attributes:
         subdata = dict()
         for attribute in model.attributes:
@@ -64,6 +66,6 @@ def render_items_html(model):
                 subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
                 subdata[ATTRIBUTE_NAME_KEY] = model.attribute.name
 
-        data[_TABLE_SEARCH_TDS_KEY].append(subdata)
+        data[TABLE_SEARCH_TDS_KEY].append(subdata)
 
     return render(data)
