@@ -78,26 +78,27 @@ class ProjectService
 
     public function buildProject($projectId) {
       $project = $this->getRequestedProject($projectId);
+      // echo ($project->generating_data_refined);
 
       File::put(env("TOOL_PATH").'/models.json', $project->generating_data_refined);
 
-      $command =
-        escapeshellcmd(env("TOOL_PATH").'/codegen.py');
-      $output = shell_exec($command);
-
-      $command =
-        escapeshellcmd(env("TOOL_PATH").'/frontend/codegen_ui.py');
-      $output = shell_exec($command);
-
-      $command =
-        escapeshellcmd(env("TOOL_PATH").'/frontend/model_js/codegen_ui_model_js.py');
-      $output = shell_exec($command);
-
-      $command =
-        escapeshellcmd(env("TOOL_PATH").'/frontend/controller_js/codegen_ui_controller_js.py');
-      $output = shell_exec($command);
-
-      echo $output;
+      // $command =
+      //   escapeshellcmd(env("TOOL_PATH").'/codegen.py');
+      // $output = shell_exec($command);
+      //
+      // $command =
+      //   escapeshellcmd(env("TOOL_PATH").'/frontend/codegen_ui.py');
+      // $output = shell_exec($command);
+      //
+      // $command =
+      //   escapeshellcmd(env("TOOL_PATH").'/frontend/model_js/codegen_ui_model_js.py');
+      // $output = shell_exec($command);
+      //
+      // $command =
+      //   escapeshellcmd(env("TOOL_PATH").'/frontend/controller_js/codegen_ui_controller_js.py');
+      // $output = shell_exec($command);
+      //
+      // echo $output;
     }
 
     public function showCreateFormCode($model) {

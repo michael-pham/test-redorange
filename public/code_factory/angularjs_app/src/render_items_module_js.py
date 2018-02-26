@@ -1,3 +1,7 @@
+from lib.helper_functions import *
+from lib.renderer import *
+from constants import *
+
 def render_items_module_js(model):
     data = dict()
     data[TPL_PATH_KEY] = PATH_BASE + ITEM_MODULE_JS_TPL

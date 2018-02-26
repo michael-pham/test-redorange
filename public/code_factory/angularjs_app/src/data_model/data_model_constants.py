@@ -21,3 +21,5 @@ FILE = 'file'
 IMAGE = 'image'
 LABEL = 'label'
 PLAIN = 'plain'
+DEPENDENCY_NAME_KEY = "dependency_name"
+DEPENDENCY_DISPLAY_NAME_KEY = "dependency_display_name"

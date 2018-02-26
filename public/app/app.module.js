@@ -27,14 +27,6 @@
         'app.roles',
         'app.projects',
         'app.fileManager',
-// 'app.baiViets',
-// 'app.fileDinhKemBaiViets',
-// 'app.links',
-// 'app.linkTargets',
-// 'app.chungLoaiBais',
-// 'app.tinhTrangBinhLuans',
-// 'app.tinhTrangBaiViets',
-// 'app.binhLuans',
 /* add_module */
     ]);
 })();

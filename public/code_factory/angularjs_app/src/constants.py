@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
-PATH_BASE = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/code_factory/'
+PATH_BASE = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/code_factory/'
+# PATH_BASE = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/code_factory/'
+TPL_PATH_KEY = "tpl_path"
 
 ITEM_MODULE_JS_TPL = "angularjs_app/templates/items.module.js/items.module.js"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 
 CONFIG_ROUTE_JS_TPL = "angularjs_app/templates/config.route.js/config.route.js"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
+ITEM_NAME_IN_SNAKE_CASE_KEY = "{{item_name_in_snake_case}}"
 ITEM_NAME_IN_PASCAL_CASE_KEY = "{{item_name_in_pascal_case}}"
 
 ITEM_JS_TPL = "angularjs_app/templates/items.js/items.js"

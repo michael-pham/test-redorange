@@ -232,15 +232,16 @@
       $scope.project.generating_data_refined =
         JSON.stringify($scope.models, replacer);
 
-      $scope.projectCrud.updateModel($scope.project.id, $scope.project);
-
-      $http.post("http://localhost:8000/build_project/" +
-        $scope.project.id, {}).then(
-          function(successResponse) {
-            console.log(successResponse);
-          }, function(errorResponse) {
-            console.log(errorResponse);
-          });
+      projectService.updateProject($scope.project, false)
+        .then(function(response) {
+          $http.post("http://localhost:8000/build_project/" +
+            $scope.project.id, {}).then(
+            function(successResponse) {
+              console.log(successResponse);
+            }, function(errorResponse) {
+              console.log(errorResponse);
+            });
+        });
     }
 
     $scope.content = null;

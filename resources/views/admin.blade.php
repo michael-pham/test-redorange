@@ -167,48 +167,7 @@
     <script src="/app/file_manager/config.route.js"></script>
     <script src="/app/file_manager/file_manager.js"></script>
     <script src="/app/file_manager/file_manager_service.js"></script>
-
-<!-- <!&#45;&#45; Bài viết &#45;&#45;> -->
-<!--     <script src="/app/bai_viets/bai_viets.module.js"></script> -->
-<!-- <script src="/app/bai_viets/config.route.js"></script> -->
-<!-- <script src="/app/bai_viets/bai_viets.js"></script> -->
-<!-- <script src="/app/bai_viets/bai_viet_model.js"></script> -->
-<!-- <!&#45;&#45; File đính kèm trong bài viết &#45;&#45;> -->
-<!--     <script src="/app/file_dinh_kem_bai_viets/file_dinh_kem_bai_viets.module.js"></script> -->
-<!-- <script src="/app/file_dinh_kem_bai_viets/config.route.js"></script> -->
-<!-- <script src="/app/file_dinh_kem_bai_viets/file_dinh_kem_bai_viets.js"></script> -->
-<!-- <script src="/app/file_dinh_kem_bai_viets/file_dinh_kem_bai_viet_model.js"></script> -->
-<!-- <!&#45;&#45; Đường dẫn &#45;&#45;> -->
-<!--     <script src="/app/links/links.module.js"></script> -->
-<!-- <script src="/app/links/config.route.js"></script> -->
-<!-- <script src="/app/links/links.js"></script> -->
-<!-- <script src="/app/links/link_model.js"></script> -->
-<!-- <!&#45;&#45; Đối tượng trỏ tới của đường dẫn &#45;&#45;> -->
-<!--     <script src="/app/link_targets/link_targets.module.js"></script> -->
-<!-- <script src="/app/link_targets/config.route.js"></script> -->
-<!-- <script src="/app/link_targets/link_targets.js"></script> -->
-<!-- <script src="/app/link_targets/link_target_model.js"></script> -->
-<!-- <!&#45;&#45; Chủng loại bài viết &#45;&#45;> -->
-<!--     <script src="/app/chung_loai_bais/chung_loai_bais.module.js"></script> -->
-<!-- <script src="/app/chung_loai_bais/config.route.js"></script> -->
-<!-- <script src="/app/chung_loai_bais/chung_loai_bais.js"></script> -->
-<!-- <script src="/app/chung_loai_bais/chung_loai_bai_model.js"></script> -->
-<!-- <!&#45;&#45; Tình trạng bình luận &#45;&#45;> -->
-<!--     <script src="/app/tinh_trang_binh_luans/tinh_trang_binh_luans.module.js"></script> -->
-<!-- <script src="/app/tinh_trang_binh_luans/config.route.js"></script> -->
-<!-- <script src="/app/tinh_trang_binh_luans/tinh_trang_binh_luans.js"></script> -->
-<!-- <script src="/app/tinh_trang_binh_luans/tinh_trang_binh_luan_model.js"></script> -->
-<!-- <!&#45;&#45; Tình trạng bài viết &#45;&#45;> -->
-<!--     <script src="/app/tinh_trang_bai_viets/tinh_trang_bai_viets.module.js"></script> -->
-<!-- <script src="/app/tinh_trang_bai_viets/config.route.js"></script> -->
-<!-- <script src="/app/tinh_trang_bai_viets/tinh_trang_bai_viets.js"></script> -->
-<!-- <script src="/app/tinh_trang_bai_viets/tinh_trang_bai_viet_model.js"></script> -->
-<!-- <!&#45;&#45; Bình luận &#45;&#45;> -->
-<!--     <script src="/app/binh_luans/binh_luans.module.js"></script> -->
-<!-- <script src="/app/binh_luans/config.route.js"></script> -->
-<!-- <script src="/app/binh_luans/binh_luans.js"></script> -->
-<!-- <script src="/app/binh_luans/binh_luan_model.js"></script> -->
-<!-- <!&#45;&#45; modeljs &#45;&#45;> -->
+<!-- modeljs -->
     <!-- endinject -->
 </body>
 </html>
