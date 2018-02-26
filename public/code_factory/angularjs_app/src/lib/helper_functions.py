@@ -1,6 +1,8 @@
 
 def uncapitalise_txt(txt):
-    return txt[0].lower() + txt[1:]
+    if len(txt) > 0:
+        return txt[0].lower() + txt[1:]
+    return ""
 
 def to_camel_from_pascal(word):
     return uncapitalise_txt(word)

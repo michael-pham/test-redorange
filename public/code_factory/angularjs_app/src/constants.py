@@ -55,29 +55,29 @@ PLAIN_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_tds/_plain_td.htm
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 ATTRIBUTE_NAME_KEY = "{{attribute_name}}"
 
-_LABEL_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_tds/_label_td.html"
+LABEL_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_tds/_label_td.html"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 ATTRIBUTE_NAME_KEY = "{{attribute_name}}"
 
-_IMAGE_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_tds/_image_td.html"
+IMAGE_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_tds/_image_td.html"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 ATTRIBUTE_NAME_KEY = "{{attribute_name}}"
 
-_FILE_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_tds/_file_td.html"
+FILE_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_tds/_file_td.html"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 ATTRIBUTE_NAME_KEY = "{{attribute_name}}"
 
-_DATE_SEARCH_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_search_tds/_date_search_td.html"
+DATE_SEARCH_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_search_tds/_date_search_td.html"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 ATTRIBUTE_NAME_KEY = "{{attribute_name}}"
 
-_SELECTION_SEARCH_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_search_tds/_selection_search_td.html"
+SELECTION_SEARCH_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_search_tds/_selection_search_td.html"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 ATTRIBUTE_NAME_KEY = "{{attribute_name}}"
 DEPENDENCY_IN_CAMEL_CASE_KEY = "{{dependency_in_camel_case}}"
 DEPENDENCY_DISPLAY_ATTRIBUTE_KEY = "{{dependency_display_attribute}}"
 
-_PLAIN_SEARCH_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_search_tds/_plain_search_td.html"
+PLAIN_SEARCH_TD_HTML_TPL = "angularjs_app/templates/items.html/_table_search_tds/_plain_search_td.html"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
 ATTRIBUTE_NAME_KEY = "{{attribute_name}}"
 
@@ -103,6 +103,15 @@ SELECTION_INPUT = 'selection_input'
 DATE_INPUT = 'date_input'
 
 TEXT_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_text_input.html"
+SELECTION_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_selection_input.html"
+CHECKBOX_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_checkbox_input.html"
+DATALIST_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_datalist_input.html"
+DATE_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_date_input.html"
+EMAIL_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_email_input.html"
+FILE_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_file_input.html"
+NUMERIC_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_numeric_input.html"
+RADIO_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_radio_input.html"
+TEXTAREA_INPUT_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_textarea_input.html"
 INPUT_LABEL_KEY = "{{input_label}}"
 INPUT_NAME_KEY = "{{input_name}}"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
@@ -120,7 +129,7 @@ MIN_NGMESSAGE_VALUE_KEY = "{{min_ngmessage_value}}"
 REQUIRED_NGMESSAGE_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_ngmessages.html/_required_ngmessage.html"
 INPUT_LABEL_KEY = "{{input_label}}"
 
-_NUMERIC_NGMESSAGE_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_ngmessages.html/_numeric_ngmessage.html"
+NUMERIC_NGMESSAGE_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_ngmessages.html/_numeric_ngmessage.html"
 INPUT_LABEL_KEY = "{{input_label}}"
 
 _EMAIL_NGMESSAGE_HTML_TPL = "angularjs_app/templates/item_create_modal.html/_inputs.html/_ngmessages.html/_email_ngmessage.html"

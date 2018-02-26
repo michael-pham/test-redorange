@@ -46,7 +46,7 @@ def _render_ngmessages_html(input_label, constraints):
     numeric_constraint = constraints.numeric
     if numeric_constraint == "true":
         data = dict()
-        data[TPL_PATH_KEY] = PATH_BASE + _NUMERIC_NGMESSAGE_HTML_TPL
+        data[TPL_PATH_KEY] = PATH_BASE + NUMERIC_NGMESSAGE_HTML_TPL
         data[INPUT_LABEL_KEY] = input_label
         ngmessages.append(data)
 
@@ -86,7 +86,7 @@ def _render_inputs_html(model):
 
         if attribute.ui_type == NUMERIC_INPUT:
             data = input(form_model_name, attribute)
-            data[TPL_PATH_KEY] = PATH_BASE + _NUMERIC_INPUT_HTML_TPL
+            data[TPL_PATH_KEY] = PATH_BASE + NUMERIC_INPUT_HTML_TPL
             inputs.append(data)
 
         if attribute.ui_type == CHECKBOX_INPUT:
@@ -96,7 +96,7 @@ def _render_inputs_html(model):
 
         if attribute.ui_type == RADIO_INPUT:
             data = input(form_model_name, attribute)
-            data[TPL_PATH_KEY] = PATH_BASE + _RADIO_INPUT_HTML_TPL
+            data[TPL_PATH_KEY] = PATH_BASE + RADIO_INPUT_HTML_TPL
             inputs.append(data)
 
         if attribute.ui_type == TEXTAREA_INPUT:
@@ -111,7 +111,7 @@ def _render_inputs_html(model):
 
         if attribute.ui_type == SELECTION_INPUT:
             data = input(form_model_name, attribute)
-            data[TPL_PATH_KEY] = PATH_BASE + _SELECTION_INPUT_HTML_TPL
+            data[TPL_PATH_KEY] = PATH_BASE + SELECTION_INPUT_HTML_TPL
             inputs.append(data)
 
         if attribute.ui_type == DATE_INPUT:

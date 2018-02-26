@@ -30,11 +30,11 @@ with open(data_path) as fd:
 
     for model_data in data:
         model = Model(model_data)
-        # print(render_config_route_js(model))
-        # print(render_items_js(model))
-        # print(render_items_module_js(model))
-        # print(render_item_model_js(model))
-        # print(render_item_service_js(model))
-        # print(render_items_html(model))
-        # print(render_item_create_modal_html(model))
+        print(render_config_route_js(model))
+        print(render_items_js(model))
+        print(render_items_module_js(model))
+        print(render_item_model_js(model))
+        print(render_item_service_js(model))
+        print(render_items_html(model))
+        print(render_item_create_modal_html(model))
         print(render_item_update_modal_html(model))

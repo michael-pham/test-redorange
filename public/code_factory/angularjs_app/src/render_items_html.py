@@ -29,17 +29,17 @@ def render_items_html(model):
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
         if attribute.ui_display_type == LABEL:
-            subdata[TPL_PATH_KEY] = PATH_BASE + _LABEL_TD_HTML_TPL
+            subdata[TPL_PATH_KEY] = PATH_BASE + LABEL_TD_HTML_TPL
             subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
         if attribute.ui_display_type == IMAGE:
-            subdata[TPL_PATH_KEY] = PATH_BASE + _IMAGE_TD_HTML_TPL
+            subdata[TPL_PATH_KEY] = PATH_BASE + IMAGE_TD_HTML_TPL
             subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
         if attribute.ui_display_type == FILE:
-            subdata[TPL_PATH_KEY] = PATH_BASE + _FILE_TD_HTML_TPL
+            subdata[TPL_PATH_KEY] = PATH_BASE + RADIO_INPUT_HTML_TPL
             subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
@@ -50,19 +50,19 @@ def render_items_html(model):
         subdata = dict()
         for attribute in model.attributes:
             if attribute.ui_type == "date_input":
-                subdata[TPL_PATH_KEY] = PATH_BASE + _DATE_SEARCH_TD_HTML_TPL
+                subdata[TPL_PATH_KEY] = PATH_BASE + DATE_SEARCH_TD_HTML_TPL
                 subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
                 subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
             if attribute.ui_type == "selection_input" or attribute.ui_type == "datalist_input":
-                subdata[TPL_PATH_KEY] = PATH_BASE + _SELECTION_SEARCH_TD_HTML_TPL
+                subdata[TPL_PATH_KEY] = PATH_BASE + SELECTION_SEARCH_TD_HTML_TPL
                 subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
                 subdata[ATTRIBUTE_NAME_KEY] = attribute.name
                 subdata[DEPENDENCY_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(attribute.dependency_name)
                 subdata[DEPENDENCY_DISPLAY_ATTRIBUTE_KEY] = attribute.dependency_display_name
 
             if attribute.ui_type == "plain_input":
-                subdata[TPL_PATH_KEY] = PATH_BASE + _PLAIN_SEARCH_TD_HTML_TPL
+                subdata[TPL_PATH_KEY] = PATH_BASE + PLAIN_SEARCH_TD_HTML_TPL
                 subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
                 subdata[ATTRIBUTE_NAME_KEY] = model.attribute.name
 
