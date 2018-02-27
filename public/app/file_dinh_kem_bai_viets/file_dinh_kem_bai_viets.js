@@ -1,45 +1,95 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app.fileDinhKemBaiViets')
-        .controller('FileDinhKemBaiViets', FileDinhKemBaiViets);
+  angular
+    .module('app.fileDinhKemBaiViets')
+    .controller('FileDinhKemBaiViets', FileDinhKemBaiViets)
+    .controller('FileDinhKemBaiVietDetails', FileDinhKemBaiVietDetails);
 
-    FileDinhKemBaiViets.$inject = ['$scope', 'crud', 'logger', 'fileDinhKemBaiVietModel', '$modal', 'utils'];
-    /* @ngInject */
-    function FileDinhKemBaiViets($scope, crud, logger, fileDinhKemBaiVietModel, $modal, utils) {
-        /*jshint validthis: true */
-        $scope.errMsg = "";
-        $scope.fileDinhKemBaiVietModel = fileDinhKemBaiVietModel.init($scope);
-        $scope.fileDinhKemBaiVietCrud = crud.make($scope.fileDinhKemBaiVietModel);
-        $scope.fileDinhKemBaiVietCrud.getList("?" + $.param($scope.fileDinhKemBaiVietModel.getList.param));
-        $scope.filefileDinhKemBaiViet = {};
-        $scope.openUpdateForm = openUpdateForm;
-        $scope.submitCreateForm = submitCreateForm;
-        $scope.submitUpdateForm = submitUpdateForm;
+  FileDinhKemBaiViets.$inject = ['$scope', 'logger', 'utils', 'fileDinhKemBaiVietService'];
 
-        function openUpdateForm(fileDinhKemBaiVietId) {
-          $scope.errMsg = "";
-          $scope.fileDinhKemBaiVietCrud.openUpdateForm(fileDinhKemBaiVietId, function(data) {$scope.oldfileDinhKemBaiViet = data}, 'lg');
-        }
+  /* @ngInject */
+  function FileDinhKemBaiViets($scope, logger, utils, fileDinhKemBaiVietService) {
 
-        function submitCreateForm(newfileDinhKemBaiViet, pdfFile) {
-          if (!pdfFile) {
-            $scope.errMsg = "File văn bản là trường bắt buộc."
-          } else {
-            utils.uploadFile(pdfFile, function(successResponse) {
-              newfileDinhKemBaiViet.file_uri = successResponse.data.file.file_uri;
-              newfileDinhKemBaiViet.file_id =  successResponse.data.file.file_id;
-              $scope.fileDinhKemBaiVietCrud.submitCreateForm(newfileDinhKemBaiViet, '');
-            });
-          }
-        }
+    /* Get fileDinhKemBaiViets */
+    $scope.initFileDinhKemBaiVietParams = initFileDinhKemBaiVietParams;
+    $scope.getFileDinhKemBaiViets = getFileDinhKemBaiViets;
+    $scope.getFileDinhKemBaiVietsWithInitialParams = getFileDinhKemBaiVietsWithInitialParams;
+    $scope.getLeftMostPage = utils.makePagingNavigator.getLeftMostPage;
+    $scope.getRightMostPage = utils.makePagingNavigator.getRightMostPage;
 
-        function submitUpdateForm(fileDinhKemBaiVietId, oldfileDinhKemBaiViet) {
-          $scope.fileDinhKemBaiVietCrud.updateModel(oldfileDinhKemBaiViet.id, oldfileDinhKemBaiViet, submitUpdateFormComplete);
-          function submitUpdateFormComplete() {
-            $scope.fileDinhKemBaiVietCrud.getList(""); $scope.fileDinhKemBaiVietCrud.dismissCreateForm()
-          }
-        }
+    /* Create fileDinhKemBaiViets */
+    $scope.openFileDinhKemBaiVietCreateModal = openFileDinhKemBaiVietCreateModal;
+    $scope.closeFileDinhKemBaiVietCreateModal = closeFileDinhKemBaiVietCreateModal;
+    $scope.createFileDinhKemBaiViet = createFileDinhKemBaiViet;
+
+    /* Update fileDinhKemBaiViets */
+    $scope.openFileDinhKemBaiVietUpdateModal = openFileDinhKemBaiVietUpdateModal;
+    $scope.closeFileDinhKemBaiVietUpdateModal = closeFileDinhKemBaiVietUpdateModal;
+    $scope.updateFileDinhKemBaiViet = updateFileDinhKemBaiViet;
+
+    /* Delete fileDinhKemBaiViets */
+    $scope.deleteFileDinhKemBaiViet = deleteFileDinhKemBaiViet;
+
+    $scope.getFileDinhKemBaiVietsWithInitialParams();
+
+    //////////////////////////////////////////////////////////////////////////
+    function initFileDinhKemBaiVietParams() {
+      $scope.fileDinhKemBaiVietParams = fileDinhKemBaiVietService.initFileDinhKemBaiVietParams();
     }
+
+    function getFileDinhKemBaiViets() {
+      fileDinhKemBaiVietService.getFileDinhKemBaiViets($scope.fileDinhKemBaiVietParams).then(function(response) {
+        $scope.fileDinhKemBaiViets = response.data.fileDinhKemBaiViets;
+      });
+    }
+
+    function getFileDinhKemBaiVietsWithInitialParams() {
+      $scope.initFileDinhKemBaiVietParams();
+      $scope.getFileDinhKemBaiViets();
+    }
+
+    function openFileDinhKemBaiVietCreateModal() {
+      fileDinhKemBaiVietService.openFileDinhKemBaiVietCreateModal($scope);
+    }
+
+    function closeFileDinhKemBaiVietCreateModal() {
+      $scope.fileDinhKemBaiVietCreateModal.dismiss();
+    }
+
+    function createFileDinhKemBaiViet(newFileDinhKemBaiViet) {
+      fileDinhKemBaiVietService.createFileDinhKemBaiViet(newFileDinhKemBaiViet).then(function(response) {
+        $scope.fileDinhKemBaiVietCreateModal.dismiss();
+        $scope.getFileDinhKemBaiViets();
+      });
+    }
+
+    function openFileDinhKemBaiVietUpdateModal(fileDinhKemBaiVietId) {
+      fileDinhKemBaiVietService.openFileDinhKemBaiVietUpdateModal($scope, fileDinhKemBaiVietId);
+    }
+
+    function closeFileDinhKemBaiVietUpdateModal() {
+      $scope.fileDinhKemBaiVietUpdateModal.dismiss();
+    }
+
+    function updateFileDinhKemBaiViet() {
+      fileDinhKemBaiVietService.updateFileDinhKemBaiViet($scope.oldFileDinhKemBaiViet)
+        .then(function(response) {
+        $scope.getFileDinhKemBaiViets();
+        $scope.closeFileDinhKemBaiVietUpdateModal();
+      });
+    }
+
+    function deleteFileDinhKemBaiViet(fileDinhKemBaiViet) {
+      fileDinhKemBaiVietService.deleteFileDinhKemBaiViet(fileDinhKemBaiViet, function() {
+        $scope.getFileDinhKemBaiViets();
+      });
+    }
+  }
+
+  FileDinhKemBaiVietDetails.$inject = ['$scope', '$routeParams'];
+
+  /* @ngInject */
+  function FileDinhKemBaiVietDetails($scope, $routeParams) {
+  }
 })();

@@ -1,45 +1,95 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app.tinhTrangBaiViets')
-        .controller('TinhTrangBaiViets', TinhTrangBaiViets);
+  angular
+    .module('app.tinhTrangBaiViets')
+    .controller('TinhTrangBaiViets', TinhTrangBaiViets)
+    .controller('TinhTrangBaiVietDetails', TinhTrangBaiVietDetails);
 
-    TinhTrangBaiViets.$inject = ['$scope', 'crud', 'logger', 'tinhTrangBaiVietModel', '$modal', 'utils'];
-    /* @ngInject */
-    function TinhTrangBaiViets($scope, crud, logger, tinhTrangBaiVietModel, $modal, utils) {
-        /*jshint validthis: true */
-        $scope.errMsg = "";
-        $scope.tinhTrangBaiVietModel = tinhTrangBaiVietModel.init($scope);
-        $scope.tinhTrangBaiVietCrud = crud.make($scope.tinhTrangBaiVietModel);
-        $scope.tinhTrangBaiVietCrud.getList("?" + $.param($scope.tinhTrangBaiVietModel.getList.param));
-        $scope.filetinhTrangBaiViet = {};
-        $scope.openUpdateForm = openUpdateForm;
-        $scope.submitCreateForm = submitCreateForm;
-        $scope.submitUpdateForm = submitUpdateForm;
+  TinhTrangBaiViets.$inject = ['$scope', 'logger', 'utils', 'tinhTrangBaiVietService'];
 
-        function openUpdateForm(tinhTrangBaiVietId) {
-          $scope.errMsg = "";
-          $scope.tinhTrangBaiVietCrud.openUpdateForm(tinhTrangBaiVietId, function(data) {$scope.oldtinhTrangBaiViet = data}, 'lg');
-        }
+  /* @ngInject */
+  function TinhTrangBaiViets($scope, logger, utils, tinhTrangBaiVietService) {
 
-        function submitCreateForm(newtinhTrangBaiViet, pdfFile) {
-          if (!pdfFile) {
-            $scope.errMsg = "File văn bản là trường bắt buộc."
-          } else {
-            utils.uploadFile(pdfFile, function(successResponse) {
-              newtinhTrangBaiViet.file_uri = successResponse.data.file.file_uri;
-              newtinhTrangBaiViet.file_id =  successResponse.data.file.file_id;
-              $scope.tinhTrangBaiVietCrud.submitCreateForm(newtinhTrangBaiViet, '');
-            });
-          }
-        }
+    /* Get tinhTrangBaiViets */
+    $scope.initTinhTrangBaiVietParams = initTinhTrangBaiVietParams;
+    $scope.getTinhTrangBaiViets = getTinhTrangBaiViets;
+    $scope.getTinhTrangBaiVietsWithInitialParams = getTinhTrangBaiVietsWithInitialParams;
+    $scope.getLeftMostPage = utils.makePagingNavigator.getLeftMostPage;
+    $scope.getRightMostPage = utils.makePagingNavigator.getRightMostPage;
 
-        function submitUpdateForm(tinhTrangBaiVietId, oldtinhTrangBaiViet) {
-          $scope.tinhTrangBaiVietCrud.updateModel(oldtinhTrangBaiViet.id, oldtinhTrangBaiViet, submitUpdateFormComplete);
-          function submitUpdateFormComplete() {
-            $scope.tinhTrangBaiVietCrud.getList(""); $scope.tinhTrangBaiVietCrud.dismissCreateForm()
-          }
-        }
+    /* Create tinhTrangBaiViets */
+    $scope.openTinhTrangBaiVietCreateModal = openTinhTrangBaiVietCreateModal;
+    $scope.closeTinhTrangBaiVietCreateModal = closeTinhTrangBaiVietCreateModal;
+    $scope.createTinhTrangBaiViet = createTinhTrangBaiViet;
+
+    /* Update tinhTrangBaiViets */
+    $scope.openTinhTrangBaiVietUpdateModal = openTinhTrangBaiVietUpdateModal;
+    $scope.closeTinhTrangBaiVietUpdateModal = closeTinhTrangBaiVietUpdateModal;
+    $scope.updateTinhTrangBaiViet = updateTinhTrangBaiViet;
+
+    /* Delete tinhTrangBaiViets */
+    $scope.deleteTinhTrangBaiViet = deleteTinhTrangBaiViet;
+
+    $scope.getTinhTrangBaiVietsWithInitialParams();
+
+    //////////////////////////////////////////////////////////////////////////
+    function initTinhTrangBaiVietParams() {
+      $scope.tinhTrangBaiVietParams = tinhTrangBaiVietService.initTinhTrangBaiVietParams();
     }
+
+    function getTinhTrangBaiViets() {
+      tinhTrangBaiVietService.getTinhTrangBaiViets($scope.tinhTrangBaiVietParams).then(function(response) {
+        $scope.tinhTrangBaiViets = response.data.tinhTrangBaiViets;
+      });
+    }
+
+    function getTinhTrangBaiVietsWithInitialParams() {
+      $scope.initTinhTrangBaiVietParams();
+      $scope.getTinhTrangBaiViets();
+    }
+
+    function openTinhTrangBaiVietCreateModal() {
+      tinhTrangBaiVietService.openTinhTrangBaiVietCreateModal($scope);
+    }
+
+    function closeTinhTrangBaiVietCreateModal() {
+      $scope.tinhTrangBaiVietCreateModal.dismiss();
+    }
+
+    function createTinhTrangBaiViet(newTinhTrangBaiViet) {
+      tinhTrangBaiVietService.createTinhTrangBaiViet(newTinhTrangBaiViet).then(function(response) {
+        $scope.tinhTrangBaiVietCreateModal.dismiss();
+        $scope.getTinhTrangBaiViets();
+      });
+    }
+
+    function openTinhTrangBaiVietUpdateModal(tinhTrangBaiVietId) {
+      tinhTrangBaiVietService.openTinhTrangBaiVietUpdateModal($scope, tinhTrangBaiVietId);
+    }
+
+    function closeTinhTrangBaiVietUpdateModal() {
+      $scope.tinhTrangBaiVietUpdateModal.dismiss();
+    }
+
+    function updateTinhTrangBaiViet() {
+      tinhTrangBaiVietService.updateTinhTrangBaiViet($scope.oldTinhTrangBaiViet)
+        .then(function(response) {
+        $scope.getTinhTrangBaiViets();
+        $scope.closeTinhTrangBaiVietUpdateModal();
+      });
+    }
+
+    function deleteTinhTrangBaiViet(tinhTrangBaiViet) {
+      tinhTrangBaiVietService.deleteTinhTrangBaiViet(tinhTrangBaiViet, function() {
+        $scope.getTinhTrangBaiViets();
+      });
+    }
+  }
+
+  TinhTrangBaiVietDetails.$inject = ['$scope', '$routeParams'];
+
+  /* @ngInject */
+  function TinhTrangBaiVietDetails($scope, $routeParams) {
+  }
 })();

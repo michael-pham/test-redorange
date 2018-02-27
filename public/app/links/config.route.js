@@ -17,7 +17,7 @@
                 url: '/links',
                 config: {
                     templateUrl: 'app/links/links.html',
-                    controller: 'Projects',
+                    controller: 'Links',
                     controllerAs: 'vm',
                     title: 'link',
                     settings: {
@@ -26,6 +26,19 @@
                     }
                 }
             },
+            {
+                url: '/links/:id',
+                config: {
+                    templateUrl: 'app/links/details.html',
+                    controller: 'LinkDetails',
+                    controllerAs: 'vm',
+                    title: 'link details',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-lock"></i> details'
+                    }
+                }
+            }
         ];
     }
 })();

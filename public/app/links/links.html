@@ -4,7 +4,7 @@
       <div class="header">
         <div class="row">
           <div class="col-md-3">
-            <h5 style="text-transform: uppercase;" class="title text-uppercase">Danh sách Đường dẫn</h5>
+            <h5 style="text-transform: uppercase;" class="title col">Danh sách Đường dẫn</h5>
           </div>
           <div class="col-md-9 pull-right">
             <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
@@ -15,13 +15,13 @@
               <i class="fa fa-trash"></i>
               Xóa
             </a>
-            <a ng-show="!showSelection" data-ng-click="showSelection=true" class="btn btn-sm pull-right">
-              <i class="fa fa-edit"></i>
-              Chọn dòng
-            </a>
-            <a data-ng-click="linkCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+            <!-- <a ng&#45;show="!showSelection" data&#45;ng&#45;click="showSelection=true" class="btn btn&#45;sm pull&#45;right"> -->
+            <!--   <i class="fa fa&#45;edit"></i> -->
+            <!--   Chọn dòng -->
+            <!-- </a> -->
+            <a data-ng-click="openLinkCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              Thêm mới Đường dẫn
+              Thêm link
             </a>
           </div>
         </div>
@@ -29,47 +29,130 @@
       <div class="content table-responsive" ng-init="showSelection=false">
         <table class="table table-hover table-striped">
           <thead>
-            <th class="col-md-1" ng-show="showSelection">
-              <input class="form-control" type="checkbox"/>
+            <th class="col-md-1" ng-show="showSelection"></th>
+            <th class="sortable" ng-click="linkParams.sorting.key = link_url; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_url}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_url && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_url}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_url && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn</th>
+<th class="sortable" ng-click="linkParams.sorting.key = link_name; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_name'"><i class="fa fa-fw fa-sort"></i>Tên link</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_name}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_name && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên link</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_name}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_name && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên link</th>
+<th class="sortable" ng-click="linkParams.sorting.key = link_image; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_image'"><i class="fa fa-fw fa-sort"></i>Hình ảnh đại diện cho đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_image}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_image && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Hình ảnh đại diện cho đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_image}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_image && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Hình ảnh đại diện cho đường dẫn</th>
+<th class="sortable" ng-click="linkParams.sorting.key = link_target_id; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_target_id'"><i class="fa fa-fw fa-sort"></i>ID đối tượng trỏ đến của đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_target_id}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_target_id && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID đối tượng trỏ đến của đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_target_id}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_target_id && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID đối tượng trỏ đến của đường dẫn</th>
+<th class="sortable" ng-click="linkParams.sorting.key = link_description; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_description'"><i class="fa fa-fw fa-sort"></i>Mô tả về đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_description}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_description && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Mô tả về đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_description}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_description && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Mô tả về đường dẫn</th>
+<th class="sortable" ng-click="linkParams.sorting.key = link_visible; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_visible'"><i class="fa fa-fw fa-sort"></i>Cho phép hiển thị đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_visible}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_visible && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Cho phép hiển thị đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_visible}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_visible && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Cho phép hiển thị đường dẫn</th>
+<th class="sortable" ng-click="linkParams.sorting.key = link_owner; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_owner'"><i class="fa fa-fw fa-sort"></i>Người sở hữu đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_owner}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_owner && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Người sở hữu đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_owner}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_owner && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Người sở hữu đường dẫn</th>
+<th class="sortable" ng-click="linkParams.sorting.key = link_click_count; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_click_count'"><i class="fa fa-fw fa-sort"></i>Số click vào đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_click_count}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == link_click_count && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Số click vào đường dẫn</th>
+<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_click_count}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == link_click_count && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Số click vào đường dẫn</th>
+
+            <th class="sortable" ng-click="linkParams.sorting.key = 'created_at'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == 'created_at'}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == 'created_at' && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == 'created_at'}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == 'created_at' && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Khởi tạo</th>
+
+            <th class="sortable" ng-click="linkParams.sorting.key = 'updated_at'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'updated_at'"><i class="fa fa-fw fa-sort"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == 'updated_at'}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == 'updated_at' && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == 'updated_at'}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == 'updated_at' && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Cập nhật</th>
+
+            <th class="text-center">
+              <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button> -->
             </th>
-            <!-- <th class="col-md-1"></th> -->
-            <th>Đường dẫn</th><th>Tên link</th><th>Hình ảnh đại diện cho đường dẫn</th><th>ID đối tượng trỏ đến của đường dẫn</th><th>Mô tả về đường dẫn</th><th>Cho phép hiển thị đường dẫn</th><th>Người sở hữu đường dẫn</th><th>Số click vào đường dẫn</th>
-            <th class="col-md-1">Tác vụ</th>
+            <th class="col-md-2">Tác vụ</th>
           </thead>
           <tbody>
             <tr>
-              <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
-              <!-- <td ng-show="showSelection" class="col-md-1"></td> -->
-              <td><input name="link_url" ng-model="searchLink.link_url" type="text"
-  class="form-control" ng-maxlength='255' required ></input>
-</td><td><input name="link_url" ng-model="searchLink.link_url"
-  type="email" class="form-control" ng-maxlength='255' required ></input>
-</td><td><input name="link_name" ng-model="searchLink.link_name" type="text"
-  class="form-control" ng-maxlength='255' required ></input>
-</td><td><input name="link_name" ng-model="searchLink.link_name"
-  type="email" class="form-control" ng-maxlength='255' required ></input>
-</td><td><select name="link_target_id" class="form-control" ng-model="searchLink.link_target_id"
-                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
-                             <option value=""></option>
-</select>
-</td><td><div ng-repeat="item in link_visible">
-  <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
-
-</td><td><select name="link_owner" class="form-control" ng-model="searchLink.link_owner"
-                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" >
-                             <option value=""></option>
-</select>
-</td><td><input name="link_click_count" ng-model="searchLink.link_click_count" type="number"
-  class="form-control" ></input>
+              <td ng-show="showSelection" class="col-md-1">
+                <input class="form-control" type="checkbox"/>
+              </td>
+              <td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
 </td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_owner"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+
+              <td>
+                <div class="has-feedback">
+                  <input class="form-control" type="text" ng-model="linkParams.filtering.name" clear-icon />
+                </div>
+              </td>
+
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="linkParams.filtering.created_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="linkParams.filtering.updated_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td></td>
               <td>
                 <div class="row">
                   <div class="col-md-8">
-                    <input class="form-control" placeholder="Tìm kiếm chung" type="text" />
+                    <a ng-click="getLinks()" class="btn btn-md btn-block" data-toggle="tooltip" title="Tìm kiếm">
+                      <i class="fa fa-search"></i>
+                    </a>
                   </div>
                   <div class="col-md-4">
-                    <a class="btn btn-sm btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
-                      <i class="fa fa-undo"></i>
+                    <a ng-click="getLinksWithInitialParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
+                      <i class="fa fa-close"></i>
                     </a>
                   </div>
                 </div>
@@ -77,53 +160,66 @@
             </tr>
             <tr ng-repeat="(key, link) in links | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
-              <!-- <td>{{key + 1}}</td> -->
-              <td>{{link.link_url}}</td><td>{{link.link_name}}</td><td>{{link.link_image}}</td><td>{{link.link_target_id}}</td><td>{{link.link_description}}</td><td>{{link.link_visible}}</td><td>{{link.link_owner}}</td><td>{{link.link_click_count}}</td>
-              <!-- <td><span class="label label-success">Duyệt</span></td> -->
-              <!-- <td><span class="label label-danger">Duyệt</span></td>
-              <td><span class="label label-warning">Duyệt</span></td>
-              <td><span class="label label-info">Duyệt</span></td>
-              <td><span class="label label-default">Duyệt</span></td> -->
-              <td>{{link.created_at}}</td>
-              <td>{{link.updated_at}}</td>
-              <td class="col-md-3">
-                <div class="row">
-                  <div class="col-md-4  ">
-                    <a href="#/links/{{link.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
-                      <i class="fa fa-eye"></i>
-                    </a>
+                <td>{{link.link_url}}</td>
+<td>{{link.link_name}}</td>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div ng-repeat="item in {{input_name}}">
+        <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
+      </div>
+    </div>
+  </div>
+</div>
+<td>{{link.link_target_id}}</td>
+<td>{{link.link_description}}</td>
+<td>{{link.link_visible}}</td>
+<td>{{link.link_owner}}</td>
+<td>{{link.link_click_count}}</td>
+
+                <td>{{link.created_at}}</td>
+                <td>{{link.updated_at}}</td>
+                <td class="text-center" ng-hide="link.is_valid" data-toggle="tooltip" title="Có thể đã xảy ra lỗi trong quá trình lưu dữ liệu. Xinh vui lòng kiểm tra lại dữ liệu.">
+                  <button type="button" class="btn btn-danger btn-fill btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+                </td>
+                <td class="text-center" ng-show="link.is_valid" data-toggle="tooltip" title="Dữ liệu liệu lưu thành công.">
+                  <button type="button" class="btn btn-success btn-fill btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+                </td>
+                <td class="col-md-3">
+                  <div class="row">
+                    <div class="col-md-4  ">
+                      <a href="#/links/{{link.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="openLinkUpdateModal(link.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="deleteLink(link)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa link">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <a ng-click="openUpdateForm(link.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
-                      <i class="fa fa-pencil"></i>
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a ng-click="linkCrud.deleteModel(link.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa link">
-                      <i class="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </div>
-              </td>
+                </td>
             </tr>
           </tbody>
         </table>
         <div class="row">
           <div class="col-md-2">
-                <select class="form-control" type="text">
-                  <option style="outline: none">5 dòng </option>
-                  <option>10 dòng</option>
-                  <option>15 dòng</option>
-                </select>
+            <select class="form-control" type="text">
+              <option ng-click="linkParams.paging.limit=5; getLinks()">5 dòng</option>
+              <option ng-click="linkParams.paging.limit=10; getLinks()">10 dòng</option>
+              <option ng-click="linkParams.paging.limit=15; getLinks()">15 dòng</option>
+            </select>
           </div>
           <div class="col-md-8 col-md-offset-2 custom-pagination">
             <ul>
-              <li><a href="#">«</a></li>
-              <li class="active"><a>1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">»</a></li>
+              <li style="cursor: pointer" ng-click="getLeftMostPage(linkParams.paging, getLinks)"><a>«</a></li>
+              <li style="cursor: pointer" ng-class="{'active': page == linkParams.paging.page}" ng-click="linkParams.paging.page = page; getLinks()" ng-repeat="page in linkParams.paging.pages"><a>{{page}}</a></li>
+              <li style="cursor: pointer" ng-click="getRightMostPage(linkParams.paging, getLinks)"><a>»</a></li>
             </ul>
           </div>
         </div>

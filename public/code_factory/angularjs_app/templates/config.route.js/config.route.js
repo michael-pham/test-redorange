@@ -14,7 +14,7 @@
     function getRoutes() {
         return [
             {
-                url: '/{{item_name_in_camel_case}}s',
+                url: '/{{item_name_in_snake_case}}s',
                 config: {
                     templateUrl: 'app/{{item_name_in_snake_case}}s/{{item_name_in_snake_case}}s.html',
                     controller: '{{item_name_in_pascal_case}}s',

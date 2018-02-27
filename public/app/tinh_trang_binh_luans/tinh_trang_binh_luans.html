@@ -4,7 +4,7 @@
       <div class="header">
         <div class="row">
           <div class="col-md-3">
-            <h5 style="text-transform: uppercase;" class="title text-uppercase">Danh sách Tình trạng bình luận</h5>
+            <h5 style="text-transform: uppercase;" class="title col">Danh sách Tình trạng bình luận</h5>
           </div>
           <div class="col-md-9 pull-right">
             <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
@@ -15,13 +15,13 @@
               <i class="fa fa-trash"></i>
               Xóa
             </a>
-            <a ng-show="!showSelection" data-ng-click="showSelection=true" class="btn btn-sm pull-right">
-              <i class="fa fa-edit"></i>
-              Chọn dòng
-            </a>
-            <a data-ng-click="tinhTrangBinhLuanCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+            <!-- <a ng&#45;show="!showSelection" data&#45;ng&#45;click="showSelection=true" class="btn btn&#45;sm pull&#45;right"> -->
+            <!--   <i class="fa fa&#45;edit"></i> -->
+            <!--   Chọn dòng -->
+            <!-- </a> -->
+            <a data-ng-click="openTinhTrangBinhLuanCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              Thêm mới Tình trạng bình luận
+              Thêm tinhTrangBinhLuan
             </a>
           </div>
         </div>
@@ -29,32 +29,64 @@
       <div class="content table-responsive" ng-init="showSelection=false">
         <table class="table table-hover table-striped">
           <thead>
-            <th class="col-md-1" ng-show="showSelection">
-              <input class="form-control" type="checkbox"/>
+            <th class="col-md-1" ng-show="showSelection"></th>
+            <th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = ten; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'ten'"><i class="fa fa-fw fa-sort"></i>Tên</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == ten}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == ten && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == ten}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == ten && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên</th>
+<th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = mo_ta; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'mo_ta'"><i class="fa fa-fw fa-sort"></i>Mô tả</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == mo_ta}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == mo_ta && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Mô tả</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == mo_ta}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == mo_ta && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Mô tả</th>
+
+            <th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = 'created_at'; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == 'created_at'}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'created_at' && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == 'created_at'}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'created_at' && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Khởi tạo</th>
+
+            <th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = 'updated_at'; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'updated_at'"><i class="fa fa-fw fa-sort"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == 'updated_at'}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'updated_at' && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == 'updated_at'}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'updated_at' && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Cập nhật</th>
+
+            <th class="text-center">
+              <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button> -->
             </th>
-            <!-- <th class="col-md-1"></th> -->
-            <th>Tên</th><th>Mô tả</th>
-            <th class="col-md-1">Tác vụ</th>
+            <th class="col-md-2">Tác vụ</th>
           </thead>
           <tbody>
             <tr>
-              <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
-              <!-- <td ng-show="showSelection" class="col-md-1"></td> -->
-              <td><input name="ten" ng-model="searchTinhTrangBinhLuan.ten" type="text"
-  class="form-control" ng-maxlength='255' required ></input>
-</td><td><input name="ten" ng-model="searchTinhTrangBinhLuan.ten"
-  type="email" class="form-control" ng-maxlength='255' required ></input>
-</td><td><input name="mo_ta" ng-model="searchTinhTrangBinhLuan.mo_ta" type="text"
-  class="form-control" ng-maxlength='500'  />
-</td>
+              <td ng-show="showSelection" class="col-md-1">
+                <input class="form-control" type="checkbox"/>
+              </td>
+              
+              <td>
+                <div class="has-feedback">
+                  <input class="form-control" type="text" ng-model="tinhTrangBinhLuanParams.filtering.name" clear-icon />
+                </div>
+              </td>
+
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="tinhTrangBinhLuanParams.filtering.created_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="tinhTrangBinhLuanParams.filtering.updated_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td></td>
               <td>
                 <div class="row">
                   <div class="col-md-8">
-                    <input class="form-control" placeholder="Tìm kiếm chung" type="text" />
+                    <a ng-click="getTinhTrangBinhLuans()" class="btn btn-md btn-block" data-toggle="tooltip" title="Tìm kiếm">
+                      <i class="fa fa-search"></i>
+                    </a>
                   </div>
                   <div class="col-md-4">
-                    <a class="btn btn-sm btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
-                      <i class="fa fa-undo"></i>
+                    <a ng-click="getTinhTrangBinhLuansWithInitialParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
+                      <i class="fa fa-close"></i>
                     </a>
                   </div>
                 </div>
@@ -62,53 +94,52 @@
             </tr>
             <tr ng-repeat="(key, tinhTrangBinhLuan) in tinhTrangBinhLuans | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
-              <!-- <td>{{key + 1}}</td> -->
-              <td>{{tinhTrangBinhLuan.ten}}</td><td>{{tinhTrangBinhLuan.mo_ta}}</td>
-              <!-- <td><span class="label label-success">Duyệt</span></td> -->
-              <!-- <td><span class="label label-danger">Duyệt</span></td>
-              <td><span class="label label-warning">Duyệt</span></td>
-              <td><span class="label label-info">Duyệt</span></td>
-              <td><span class="label label-default">Duyệt</span></td> -->
-              <td>{{tinhTrangBinhLuan.created_at}}</td>
-              <td>{{tinhTrangBinhLuan.updated_at}}</td>
-              <td class="col-md-3">
-                <div class="row">
-                  <div class="col-md-4  ">
-                    <a href="#/tinhTrangBinhLuans/{{tinhTrangBinhLuan.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
-                      <i class="fa fa-eye"></i>
-                    </a>
+                <td>{{tinhTrangBinhLuan.ten}}</td>
+<td>{{tinhTrangBinhLuan.mo_ta}}</td>
+
+                <td>{{tinhTrangBinhLuan.created_at}}</td>
+                <td>{{tinhTrangBinhLuan.updated_at}}</td>
+                <td class="text-center" ng-hide="tinhTrangBinhLuan.is_valid" data-toggle="tooltip" title="Có thể đã xảy ra lỗi trong quá trình lưu dữ liệu. Xinh vui lòng kiểm tra lại dữ liệu.">
+                  <button type="button" class="btn btn-danger btn-fill btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+                </td>
+                <td class="text-center" ng-show="tinhTrangBinhLuan.is_valid" data-toggle="tooltip" title="Dữ liệu liệu lưu thành công.">
+                  <button type="button" class="btn btn-success btn-fill btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+                </td>
+                <td class="col-md-3">
+                  <div class="row">
+                    <div class="col-md-4  ">
+                      <a href="#/tinhTrangBinhLuans/{{tinhTrangBinhLuan.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="openTinhTrangBinhLuanUpdateModal(tinhTrangBinhLuan.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="deleteTinhTrangBinhLuan(tinhTrangBinhLuan)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa tinhTrangBinhLuan">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <a ng-click="openUpdateForm(tinhTrangBinhLuan.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
-                      <i class="fa fa-pencil"></i>
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a ng-click="tinhTrangBinhLuanCrud.deleteModel(tinhTrangBinhLuan.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa tinhTrangBinhLuan">
-                      <i class="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </div>
-              </td>
+                </td>
             </tr>
           </tbody>
         </table>
         <div class="row">
           <div class="col-md-2">
-                <select class="form-control" type="text">
-                  <option style="outline: none">5 dòng </option>
-                  <option>10 dòng</option>
-                  <option>15 dòng</option>
-                </select>
+            <select class="form-control" type="text">
+              <option ng-click="tinhTrangBinhLuanParams.paging.limit=5; getTinhTrangBinhLuans()">5 dòng</option>
+              <option ng-click="tinhTrangBinhLuanParams.paging.limit=10; getTinhTrangBinhLuans()">10 dòng</option>
+              <option ng-click="tinhTrangBinhLuanParams.paging.limit=15; getTinhTrangBinhLuans()">15 dòng</option>
+            </select>
           </div>
           <div class="col-md-8 col-md-offset-2 custom-pagination">
             <ul>
-              <li><a href="#">«</a></li>
-              <li class="active"><a>1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">»</a></li>
+              <li style="cursor: pointer" ng-click="getLeftMostPage(tinhTrangBinhLuanParams.paging, getTinhTrangBinhLuans)"><a>«</a></li>
+              <li style="cursor: pointer" ng-class="{'active': page == tinhTrangBinhLuanParams.paging.page}" ng-click="tinhTrangBinhLuanParams.paging.page = page; getTinhTrangBinhLuans()" ng-repeat="page in tinhTrangBinhLuanParams.paging.pages"><a>{{page}}</a></li>
+              <li style="cursor: pointer" ng-click="getRightMostPage(tinhTrangBinhLuanParams.paging, getTinhTrangBinhLuans)"><a>»</a></li>
             </ul>
           </div>
         </div>

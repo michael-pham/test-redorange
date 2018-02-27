@@ -1,45 +1,95 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app.chungLoaiBais')
-        .controller('ChungLoaiBais', ChungLoaiBais);
+  angular
+    .module('app.chungLoaiBais')
+    .controller('ChungLoaiBais', ChungLoaiBais)
+    .controller('ChungLoaiBaiDetails', ChungLoaiBaiDetails);
 
-    ChungLoaiBais.$inject = ['$scope', 'crud', 'logger', 'chungLoaiBaiModel', '$modal', 'utils'];
-    /* @ngInject */
-    function ChungLoaiBais($scope, crud, logger, chungLoaiBaiModel, $modal, utils) {
-        /*jshint validthis: true */
-        $scope.errMsg = "";
-        $scope.chungLoaiBaiModel = chungLoaiBaiModel.init($scope);
-        $scope.chungLoaiBaiCrud = crud.make($scope.chungLoaiBaiModel);
-        $scope.chungLoaiBaiCrud.getList("?" + $.param($scope.chungLoaiBaiModel.getList.param));
-        $scope.filechungLoaiBai = {};
-        $scope.openUpdateForm = openUpdateForm;
-        $scope.submitCreateForm = submitCreateForm;
-        $scope.submitUpdateForm = submitUpdateForm;
+  ChungLoaiBais.$inject = ['$scope', 'logger', 'utils', 'chungLoaiBaiService'];
 
-        function openUpdateForm(chungLoaiBaiId) {
-          $scope.errMsg = "";
-          $scope.chungLoaiBaiCrud.openUpdateForm(chungLoaiBaiId, function(data) {$scope.oldchungLoaiBai = data}, 'lg');
-        }
+  /* @ngInject */
+  function ChungLoaiBais($scope, logger, utils, chungLoaiBaiService) {
 
-        function submitCreateForm(newchungLoaiBai, pdfFile) {
-          if (!pdfFile) {
-            $scope.errMsg = "File văn bản là trường bắt buộc."
-          } else {
-            utils.uploadFile(pdfFile, function(successResponse) {
-              newchungLoaiBai.file_uri = successResponse.data.file.file_uri;
-              newchungLoaiBai.file_id =  successResponse.data.file.file_id;
-              $scope.chungLoaiBaiCrud.submitCreateForm(newchungLoaiBai, '');
-            });
-          }
-        }
+    /* Get chungLoaiBais */
+    $scope.initChungLoaiBaiParams = initChungLoaiBaiParams;
+    $scope.getChungLoaiBais = getChungLoaiBais;
+    $scope.getChungLoaiBaisWithInitialParams = getChungLoaiBaisWithInitialParams;
+    $scope.getLeftMostPage = utils.makePagingNavigator.getLeftMostPage;
+    $scope.getRightMostPage = utils.makePagingNavigator.getRightMostPage;
 
-        function submitUpdateForm(chungLoaiBaiId, oldchungLoaiBai) {
-          $scope.chungLoaiBaiCrud.updateModel(oldchungLoaiBai.id, oldchungLoaiBai, submitUpdateFormComplete);
-          function submitUpdateFormComplete() {
-            $scope.chungLoaiBaiCrud.getList(""); $scope.chungLoaiBaiCrud.dismissCreateForm()
-          }
-        }
+    /* Create chungLoaiBais */
+    $scope.openChungLoaiBaiCreateModal = openChungLoaiBaiCreateModal;
+    $scope.closeChungLoaiBaiCreateModal = closeChungLoaiBaiCreateModal;
+    $scope.createChungLoaiBai = createChungLoaiBai;
+
+    /* Update chungLoaiBais */
+    $scope.openChungLoaiBaiUpdateModal = openChungLoaiBaiUpdateModal;
+    $scope.closeChungLoaiBaiUpdateModal = closeChungLoaiBaiUpdateModal;
+    $scope.updateChungLoaiBai = updateChungLoaiBai;
+
+    /* Delete chungLoaiBais */
+    $scope.deleteChungLoaiBai = deleteChungLoaiBai;
+
+    $scope.getChungLoaiBaisWithInitialParams();
+
+    //////////////////////////////////////////////////////////////////////////
+    function initChungLoaiBaiParams() {
+      $scope.chungLoaiBaiParams = chungLoaiBaiService.initChungLoaiBaiParams();
     }
+
+    function getChungLoaiBais() {
+      chungLoaiBaiService.getChungLoaiBais($scope.chungLoaiBaiParams).then(function(response) {
+        $scope.chungLoaiBais = response.data.chungLoaiBais;
+      });
+    }
+
+    function getChungLoaiBaisWithInitialParams() {
+      $scope.initChungLoaiBaiParams();
+      $scope.getChungLoaiBais();
+    }
+
+    function openChungLoaiBaiCreateModal() {
+      chungLoaiBaiService.openChungLoaiBaiCreateModal($scope);
+    }
+
+    function closeChungLoaiBaiCreateModal() {
+      $scope.chungLoaiBaiCreateModal.dismiss();
+    }
+
+    function createChungLoaiBai(newChungLoaiBai) {
+      chungLoaiBaiService.createChungLoaiBai(newChungLoaiBai).then(function(response) {
+        $scope.chungLoaiBaiCreateModal.dismiss();
+        $scope.getChungLoaiBais();
+      });
+    }
+
+    function openChungLoaiBaiUpdateModal(chungLoaiBaiId) {
+      chungLoaiBaiService.openChungLoaiBaiUpdateModal($scope, chungLoaiBaiId);
+    }
+
+    function closeChungLoaiBaiUpdateModal() {
+      $scope.chungLoaiBaiUpdateModal.dismiss();
+    }
+
+    function updateChungLoaiBai() {
+      chungLoaiBaiService.updateChungLoaiBai($scope.oldChungLoaiBai)
+        .then(function(response) {
+        $scope.getChungLoaiBais();
+        $scope.closeChungLoaiBaiUpdateModal();
+      });
+    }
+
+    function deleteChungLoaiBai(chungLoaiBai) {
+      chungLoaiBaiService.deleteChungLoaiBai(chungLoaiBai, function() {
+        $scope.getChungLoaiBais();
+      });
+    }
+  }
+
+  ChungLoaiBaiDetails.$inject = ['$scope', '$routeParams'];
+
+  /* @ngInject */
+  function ChungLoaiBaiDetails($scope, $routeParams) {
+  }
 })();

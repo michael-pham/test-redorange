@@ -17,7 +17,7 @@
                 url: '/tinh_trang_bai_viets',
                 config: {
                     templateUrl: 'app/tinh_trang_bai_viets/tinh_trang_bai_viets.html',
-                    controller: 'Projects',
+                    controller: 'TinhTrangBaiViets',
                     controllerAs: 'vm',
                     title: 'tinh_trang_bai_viet',
                     settings: {
@@ -26,6 +26,19 @@
                     }
                 }
             },
+            {
+                url: '/tinh_trang_bai_viets/:id',
+                config: {
+                    templateUrl: 'app/tinh_trang_bai_viets/details.html',
+                    controller: 'TinhTrangBaiVietDetails',
+                    controllerAs: 'vm',
+                    title: 'tinh_trang_bai_viet details',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-lock"></i> details'
+                    }
+                }
+            }
         ];
     }
 })();

@@ -273,7 +273,6 @@ def generate_migration_code(model, src_path, dst_path, src_name_portion):
             code += "$table->boolean('" + attribute['name'] + "')"
         if attribute['type'] == "decimal":
             code += "$table->decimal('" + attribute['name'] + "')"
-
         if attribute["constraints"]['nullable'] == "true":
             code += "->nullable();"
         code += ";\n"

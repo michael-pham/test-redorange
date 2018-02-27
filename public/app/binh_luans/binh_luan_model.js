@@ -1,52 +1,46 @@
 (function() {
   'use strict';
-  angular.module('app.binhLuans')
-  .factory('binhLuanModel', function($http, SweetAlert) {
+
+  angular
+    .module('app.binhLuans')
+    .factory('binhLuanModel', binhLuanModel);
+
+
+  function binhLuanModel() {
     return {
-      init: function(scope) {
-        return {
-          ctrlScope: scope,
-          getList: {
-            url: 'http://localhost:8000/binh_luans',
-            name: 'binhLuans',
-            param: {includes: []}
-          },
-          getSingle: {
-            url: 'http://localhost:8000/binh_luans',
-            name: 'binhLuan',
-            many_to_one: [],
-            one_to_many: []
-          },
-          update: {
-            url: 'http://localhost:8000/binh_luans',
-            name: 'binhLuan',
-            modalUrl: '/app/binh_luans/_cap_nhat_binh_luan_modal.html',
-            successMessage: 'Cập nhật thành công Bình luận',
-            errorMessage: 'Lỗi xảy ra trong quá trình cập nhật Bình luận'
-          },
-          create: {
-            name: 'modelName',
-            modalUrl: '/app/model_names/_them_binh_luan_modal.html',
-            successMessage: 'Tạo mới Bình luận thành công!',
-            errorMessage: 'Sự cố xảy ra trong quá trình tạo mới Bình luận!',
-            activeModalInstance: '',
-            meta: {
-              name: 'binhLuan',
-              url: 'http://localhost:8000/binh_luans',
-              domestic: [bai_viet_id, nguoi_binh_luan_id, ten_nguoi_binh_luan, url_nguoi_binh_luan, ip_nguoi_binh_luan, noi_dung_binh_luan, binh_luan_cha_id, binh_luan_duoc_chap_nhan, ],
-              many_to_one: [],
-              one_to_many: []
-            }
-          },
-          delete: {
-            url: "http://localhost:8000/binh_luans",
-            titleSweetAlert: "Xóa Bình luận!",
-            textSweetAlert: "Dữ liệu không thể  khôi phục sau khi xóa!",
-            successMessage: "Xóa Bình luận thành công",
-            errorMessage: "Sự cố xảy ra trong quá trình xóa Bình luận!"
-          }
-        }
-      }
+      baseUrl: '/binh_luans',
+      meta: {
+        name: 'binhLuan',
+        url: '/binh_luans',
+        domestic: [
+          "bai_viet_id","nguoi_binh_luan_id","ten_nguoi_binh_luan","url_nguoi_binh_luan","ip_nguoi_binh_luan","noi_dung_binh_luan","binh_luan_cha_id","binh_luan_duoc_chap_nhan",
+        ],
+        many_to_one: [],
+        one_to_many: []
+      },
+      includes: [],
+      updateModalOpenErrorMessage: "Tải biểu mẫu cập nhật không thành công",
+      updateModalUrl: '/app/binh_luans/_binh_luan_update_modal.html',
+      updateModalName: 'binhLuanUpdateModal',
+      updateModalSize: 'md',
+      updateModalItemName: 'oldBinhLuan',
+      updateModalWindowClass: "",
+      updateItemSuccessMessage: "Cập nhật thành công Bình luận",
+      updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật Bình luận",
+
+      createModalOpenErrorMessage: "Tải biểu mẫu không thành công",
+      createModalUrl: '/app/binh_luans/_binh_luan_create_modal.html',
+      createModalName: 'binhLuanCreateModal',
+      createModalSize: 'md',
+      createModalItemName: 'newBinhLuan',
+      createModalWindowClass: "",
+      createItemErrorMessage: "Lỗi xảy ra trong quá trình tạo mới Bình luận",
+      createItemSuccessMessage: "Tạo binhLuan mới thành công",
+
+      deleteSweetAlertTitle: "Xóa",
+      deleteSweetAlertText: "Dữ liệu không thể  khôi phục sau khi xóa",
+      deleteItemSuccessMessage: "Xóa Bình luận thành công",
+      deleteItemErrorMessage: "Sự cố xảy ra trong quá trình xóa Bình luận"
     }
-  });
+  }
 })();

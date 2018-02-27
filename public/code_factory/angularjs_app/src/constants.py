@@ -1,8 +1,27 @@
 # -*- coding: utf-8 -*-
 
 # PATH_BASE = '/home/hbk/workspace/workspace/laravel-angularjs-creator/public/code_factory/'
+ROOT = '/home/hbkhanh/workspace/laravel-angularjs-creator/'
 PATH_BASE = '/home/hbkhanh/workspace/laravel-angularjs-creator/public/code_factory/'
 TPL_PATH_KEY = "tpl_path"
+
+APP_BASE_PATH = "/home/hbkhanh/workspace/laravel-angularjs-creator/public/app/"
+APP_MODULE_PATH = APP_BASE_PATH + 'app.module.js'
+SIDE_BAR_PATH = APP_BASE_PATH + 'layout/sidebar.html'
+ADMIN_PATH = ROOT + "resources/views/admin.blade.php"
+
+INCLUDED_MODULES_MARKER = "/* add_module */"
+INCLUDED_SIDEBAR_LINKS = "<!-- project_links -->"
+INCLUDED_JS_FILES = "<!-- modeljs -->"
+
+CONFIG_ROUTE_JS_DST_FILE_NAME = "config.route.js"
+ITEMS_JS_DST_FILE_NAME_SUFFIX = "s.js"
+ITEM_MODULE_JS_DST_FILE_NAME_SUFFIX = "s.module.js"
+ITEM_MODEL_JS_DST_FILE_NAME_SUFFIX= "_model.js"
+ITEM_SERVICE_JS_DST_FILE_NAME_SUFFIX= "_service.js"
+ITEMS_HTML_DST_FILE_NAME_SUFFIX= "s.html"
+ITEM_CREATE_MODAL_HTML_DST_FILE_NAME_SUFFIX= "i_create_modal.html"
+ITEM_UPDATE_MODAL_HTML_DST_FILE_NAME_SUFFIX = "_update_modal.html"
 
 ITEM_MODULE_JS_TPL = "angularjs_app/templates/items.module.js/items.module.js"
 ITEM_NAME_IN_CAMEL_CASE_KEY = "{{item_name_in_camel_case}}"
@@ -148,4 +167,5 @@ INPUT_LABEL_KEY = "{{input_label}}"
 INPUT_NAME_KEY = "{{input_name}}"
 INPUT_MODEL_NAME_KEY = "{{input_model_name}}"
 INPUT_VALIDATION_KEY = "{{input_validation}}"
+
 INPUT_VALIDATION_NGMESSAGES_KEY = "{{input_validation_ngmessages}}"

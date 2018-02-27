@@ -1,45 +1,95 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app.links')
-        .controller('Links', Links);
+  angular
+    .module('app.links')
+    .controller('Links', Links)
+    .controller('LinkDetails', LinkDetails);
 
-    Links.$inject = ['$scope', 'crud', 'logger', 'linkModel', '$modal', 'utils'];
-    /* @ngInject */
-    function Links($scope, crud, logger, linkModel, $modal, utils) {
-        /*jshint validthis: true */
-        $scope.errMsg = "";
-        $scope.linkModel = linkModel.init($scope);
-        $scope.linkCrud = crud.make($scope.linkModel);
-        $scope.linkCrud.getList("?" + $.param($scope.linkModel.getList.param));
-        $scope.filelink = {};
-        $scope.openUpdateForm = openUpdateForm;
-        $scope.submitCreateForm = submitCreateForm;
-        $scope.submitUpdateForm = submitUpdateForm;
+  Links.$inject = ['$scope', 'logger', 'utils', 'linkService'];
 
-        function openUpdateForm(linkId) {
-          $scope.errMsg = "";
-          $scope.linkCrud.openUpdateForm(linkId, function(data) {$scope.oldlink = data}, 'lg');
-        }
+  /* @ngInject */
+  function Links($scope, logger, utils, linkService) {
 
-        function submitCreateForm(newlink, pdfFile) {
-          if (!pdfFile) {
-            $scope.errMsg = "File văn bản là trường bắt buộc."
-          } else {
-            utils.uploadFile(pdfFile, function(successResponse) {
-              newlink.file_uri = successResponse.data.file.file_uri;
-              newlink.file_id =  successResponse.data.file.file_id;
-              $scope.linkCrud.submitCreateForm(newlink, '');
-            });
-          }
-        }
+    /* Get links */
+    $scope.initLinkParams = initLinkParams;
+    $scope.getLinks = getLinks;
+    $scope.getLinksWithInitialParams = getLinksWithInitialParams;
+    $scope.getLeftMostPage = utils.makePagingNavigator.getLeftMostPage;
+    $scope.getRightMostPage = utils.makePagingNavigator.getRightMostPage;
 
-        function submitUpdateForm(linkId, oldlink) {
-          $scope.linkCrud.updateModel(oldlink.id, oldlink, submitUpdateFormComplete);
-          function submitUpdateFormComplete() {
-            $scope.linkCrud.getList(""); $scope.linkCrud.dismissCreateForm()
-          }
-        }
+    /* Create links */
+    $scope.openLinkCreateModal = openLinkCreateModal;
+    $scope.closeLinkCreateModal = closeLinkCreateModal;
+    $scope.createLink = createLink;
+
+    /* Update links */
+    $scope.openLinkUpdateModal = openLinkUpdateModal;
+    $scope.closeLinkUpdateModal = closeLinkUpdateModal;
+    $scope.updateLink = updateLink;
+
+    /* Delete links */
+    $scope.deleteLink = deleteLink;
+
+    $scope.getLinksWithInitialParams();
+
+    //////////////////////////////////////////////////////////////////////////
+    function initLinkParams() {
+      $scope.linkParams = linkService.initLinkParams();
     }
+
+    function getLinks() {
+      linkService.getLinks($scope.linkParams).then(function(response) {
+        $scope.links = response.data.links;
+      });
+    }
+
+    function getLinksWithInitialParams() {
+      $scope.initLinkParams();
+      $scope.getLinks();
+    }
+
+    function openLinkCreateModal() {
+      linkService.openLinkCreateModal($scope);
+    }
+
+    function closeLinkCreateModal() {
+      $scope.linkCreateModal.dismiss();
+    }
+
+    function createLink(newLink) {
+      linkService.createLink(newLink).then(function(response) {
+        $scope.linkCreateModal.dismiss();
+        $scope.getLinks();
+      });
+    }
+
+    function openLinkUpdateModal(linkId) {
+      linkService.openLinkUpdateModal($scope, linkId);
+    }
+
+    function closeLinkUpdateModal() {
+      $scope.linkUpdateModal.dismiss();
+    }
+
+    function updateLink() {
+      linkService.updateLink($scope.oldLink)
+        .then(function(response) {
+        $scope.getLinks();
+        $scope.closeLinkUpdateModal();
+      });
+    }
+
+    function deleteLink(link) {
+      linkService.deleteLink(link, function() {
+        $scope.getLinks();
+      });
+    }
+  }
+
+  LinkDetails.$inject = ['$scope', '$routeParams'];
+
+  /* @ngInject */
+  function LinkDetails($scope, $routeParams) {
+  }
 })();

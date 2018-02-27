@@ -66,7 +66,7 @@
 
         {{_parameter_processing}}
 
-        var including = utls.makeParams.including({{item_name_in_camel_case}}Model.includes);
+        var including = utils.makeParams.including({{item_name_in_camel_case}}Model.includes);
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging({{item_name_in_camel_case}}Params.paging);
         var sorting = utils.makeParams.sorting({{item_name_in_camel_case}}Params.sorting);

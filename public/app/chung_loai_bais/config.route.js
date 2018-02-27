@@ -17,7 +17,7 @@
                 url: '/chung_loai_bais',
                 config: {
                     templateUrl: 'app/chung_loai_bais/chung_loai_bais.html',
-                    controller: 'Projects',
+                    controller: 'ChungLoaiBais',
                     controllerAs: 'vm',
                     title: 'chung_loai_bai',
                     settings: {
@@ -26,6 +26,19 @@
                     }
                 }
             },
+            {
+                url: '/chung_loai_bais/:id',
+                config: {
+                    templateUrl: 'app/chung_loai_bais/details.html',
+                    controller: 'ChungLoaiBaiDetails',
+                    controllerAs: 'vm',
+                    title: 'chung_loai_bai details',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-lock"></i> details'
+                    }
+                }
+            }
         ];
     }
 })();

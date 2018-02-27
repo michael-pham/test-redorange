@@ -17,7 +17,7 @@
                 url: '/binh_luans',
                 config: {
                     templateUrl: 'app/binh_luans/binh_luans.html',
-                    controller: 'Projects',
+                    controller: 'BinhLuans',
                     controllerAs: 'vm',
                     title: 'binh_luan',
                     settings: {
@@ -26,6 +26,19 @@
                     }
                 }
             },
+            {
+                url: '/binh_luans/:id',
+                config: {
+                    templateUrl: 'app/binh_luans/details.html',
+                    controller: 'BinhLuanDetails',
+                    controllerAs: 'vm',
+                    title: 'binh_luan details',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-lock"></i> details'
+                    }
+                }
+            }
         ];
     }
 })();

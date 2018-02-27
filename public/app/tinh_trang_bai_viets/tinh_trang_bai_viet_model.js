@@ -1,52 +1,46 @@
 (function() {
   'use strict';
-  angular.module('app.tinhTrangBaiViets')
-  .factory('tinhTrangBaiVietModel', function($http, SweetAlert) {
+
+  angular
+    .module('app.tinhTrangBaiViets')
+    .factory('tinhTrangBaiVietModel', tinhTrangBaiVietModel);
+
+
+  function tinhTrangBaiVietModel() {
     return {
-      init: function(scope) {
-        return {
-          ctrlScope: scope,
-          getList: {
-            url: 'http://localhost:8000/tinh_trang_bai_viets',
-            name: 'tinhTrangBaiViets',
-            param: {includes: []}
-          },
-          getSingle: {
-            url: 'http://localhost:8000/tinh_trang_bai_viets',
-            name: 'tinhTrangBaiViet',
-            many_to_one: [],
-            one_to_many: []
-          },
-          update: {
-            url: 'http://localhost:8000/tinh_trang_bai_viets',
-            name: 'tinhTrangBaiViet',
-            modalUrl: '/app/tinh_trang_bai_viets/_cap_nhat_tinh_trang_bai_viet_modal.html',
-            successMessage: 'Cập nhật thành công Tình trạng bài viết',
-            errorMessage: 'Lỗi xảy ra trong quá trình cập nhật Tình trạng bài viết'
-          },
-          create: {
-            name: 'modelName',
-            modalUrl: '/app/model_names/_them_tinh_trang_bai_viet_modal.html',
-            successMessage: 'Tạo mới Tình trạng bài viết thành công!',
-            errorMessage: 'Sự cố xảy ra trong quá trình tạo mới Tình trạng bài viết!',
-            activeModalInstance: '',
-            meta: {
-              name: 'tinhTrangBaiViet',
-              url: 'http://localhost:8000/tinh_trang_bai_viets',
-              domestic: [ten, mo_ta, ],
-              many_to_one: [],
-              one_to_many: []
-            }
-          },
-          delete: {
-            url: "http://localhost:8000/tinh_trang_bai_viets",
-            titleSweetAlert: "Xóa Tình trạng bài viết!",
-            textSweetAlert: "Dữ liệu không thể  khôi phục sau khi xóa!",
-            successMessage: "Xóa Tình trạng bài viết thành công",
-            errorMessage: "Sự cố xảy ra trong quá trình xóa Tình trạng bài viết!"
-          }
-        }
-      }
+      baseUrl: '/tinh_trang_bai_viets',
+      meta: {
+        name: 'tinhTrangBaiViet',
+        url: '/tinh_trang_bai_viets',
+        domestic: [
+          "ten","mo_ta",
+        ],
+        many_to_one: [],
+        one_to_many: []
+      },
+      includes: [],
+      updateModalOpenErrorMessage: "Tải biểu mẫu cập nhật không thành công",
+      updateModalUrl: '/app/tinh_trang_bai_viets/_tinh_trang_bai_viet_update_modal.html',
+      updateModalName: 'tinhTrangBaiVietUpdateModal',
+      updateModalSize: 'md',
+      updateModalItemName: 'oldTinhTrangBaiViet',
+      updateModalWindowClass: "",
+      updateItemSuccessMessage: "Cập nhật thành công Tình trạng bài viết",
+      updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật Tình trạng bài viết",
+
+      createModalOpenErrorMessage: "Tải biểu mẫu không thành công",
+      createModalUrl: '/app/tinh_trang_bai_viets/_tinh_trang_bai_viet_create_modal.html',
+      createModalName: 'tinhTrangBaiVietCreateModal',
+      createModalSize: 'md',
+      createModalItemName: 'newTinhTrangBaiViet',
+      createModalWindowClass: "",
+      createItemErrorMessage: "Lỗi xảy ra trong quá trình tạo mới Tình trạng bài viết",
+      createItemSuccessMessage: "Tạo tinhTrangBaiViet mới thành công",
+
+      deleteSweetAlertTitle: "Xóa",
+      deleteSweetAlertText: "Dữ liệu không thể  khôi phục sau khi xóa",
+      deleteItemSuccessMessage: "Xóa Tình trạng bài viết thành công",
+      deleteItemErrorMessage: "Sự cố xảy ra trong quá trình xóa Tình trạng bài viết"
     }
-  });
+  }
 })();

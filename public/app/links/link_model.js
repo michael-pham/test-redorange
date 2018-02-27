@@ -1,52 +1,46 @@
 (function() {
   'use strict';
-  angular.module('app.links')
-  .factory('linkModel', function($http, SweetAlert) {
+
+  angular
+    .module('app.links')
+    .factory('linkModel', linkModel);
+
+
+  function linkModel() {
     return {
-      init: function(scope) {
-        return {
-          ctrlScope: scope,
-          getList: {
-            url: 'http://localhost:8000/links',
-            name: 'links',
-            param: {includes: []}
-          },
-          getSingle: {
-            url: 'http://localhost:8000/links',
-            name: 'link',
-            many_to_one: [],
-            one_to_many: []
-          },
-          update: {
-            url: 'http://localhost:8000/links',
-            name: 'link',
-            modalUrl: '/app/links/_cap_nhat_link_modal.html',
-            successMessage: 'Cập nhật thành công Đường dẫn',
-            errorMessage: 'Lỗi xảy ra trong quá trình cập nhật Đường dẫn'
-          },
-          create: {
-            name: 'modelName',
-            modalUrl: '/app/model_names/_them_link_modal.html',
-            successMessage: 'Tạo mới Đường dẫn thành công!',
-            errorMessage: 'Sự cố xảy ra trong quá trình tạo mới Đường dẫn!',
-            activeModalInstance: '',
-            meta: {
-              name: 'link',
-              url: 'http://localhost:8000/links',
-              domestic: [link_url, link_name, link_image, link_target_id, link_description, link_visible, link_owner, link_click_count, ],
-              many_to_one: [],
-              one_to_many: []
-            }
-          },
-          delete: {
-            url: "http://localhost:8000/links",
-            titleSweetAlert: "Xóa Đường dẫn!",
-            textSweetAlert: "Dữ liệu không thể  khôi phục sau khi xóa!",
-            successMessage: "Xóa Đường dẫn thành công",
-            errorMessage: "Sự cố xảy ra trong quá trình xóa Đường dẫn!"
-          }
-        }
-      }
+      baseUrl: '/links',
+      meta: {
+        name: 'link',
+        url: '/links',
+        domestic: [
+          "link_url","link_name","link_image","link_target_id","link_description","link_visible","link_owner","link_click_count",
+        ],
+        many_to_one: [],
+        one_to_many: []
+      },
+      includes: [],
+      updateModalOpenErrorMessage: "Tải biểu mẫu cập nhật không thành công",
+      updateModalUrl: '/app/links/_link_update_modal.html',
+      updateModalName: 'linkUpdateModal',
+      updateModalSize: 'md',
+      updateModalItemName: 'oldLink',
+      updateModalWindowClass: "",
+      updateItemSuccessMessage: "Cập nhật thành công Đường dẫn",
+      updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật Đường dẫn",
+
+      createModalOpenErrorMessage: "Tải biểu mẫu không thành công",
+      createModalUrl: '/app/links/_link_create_modal.html',
+      createModalName: 'linkCreateModal',
+      createModalSize: 'md',
+      createModalItemName: 'newLink',
+      createModalWindowClass: "",
+      createItemErrorMessage: "Lỗi xảy ra trong quá trình tạo mới Đường dẫn",
+      createItemSuccessMessage: "Tạo link mới thành công",
+
+      deleteSweetAlertTitle: "Xóa",
+      deleteSweetAlertText: "Dữ liệu không thể  khôi phục sau khi xóa",
+      deleteItemSuccessMessage: "Xóa Đường dẫn thành công",
+      deleteItemErrorMessage: "Sự cố xảy ra trong quá trình xóa Đường dẫn"
     }
-  });
+  }
 })();

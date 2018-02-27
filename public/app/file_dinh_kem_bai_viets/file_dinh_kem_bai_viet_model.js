@@ -1,52 +1,46 @@
 (function() {
   'use strict';
-  angular.module('app.fileDinhKemBaiViets')
-  .factory('fileDinhKemBaiVietModel', function($http, SweetAlert) {
+
+  angular
+    .module('app.fileDinhKemBaiViets')
+    .factory('fileDinhKemBaiVietModel', fileDinhKemBaiVietModel);
+
+
+  function fileDinhKemBaiVietModel() {
     return {
-      init: function(scope) {
-        return {
-          ctrlScope: scope,
-          getList: {
-            url: 'http://localhost:8000/file_dinh_kem_bai_viets',
-            name: 'fileDinhKemBaiViets',
-            param: {includes: []}
-          },
-          getSingle: {
-            url: 'http://localhost:8000/file_dinh_kem_bai_viets',
-            name: 'fileDinhKemBaiViet',
-            many_to_one: [],
-            one_to_many: []
-          },
-          update: {
-            url: 'http://localhost:8000/file_dinh_kem_bai_viets',
-            name: 'fileDinhKemBaiViet',
-            modalUrl: '/app/file_dinh_kem_bai_viets/_cap_nhat_file_dinh_kem_bai_viet_modal.html',
-            successMessage: 'Cập nhật thành công File đính kèm trong bài viết',
-            errorMessage: 'Lỗi xảy ra trong quá trình cập nhật File đính kèm trong bài viết'
-          },
-          create: {
-            name: 'modelName',
-            modalUrl: '/app/model_names/_them_file_dinh_kem_bai_viet_modal.html',
-            successMessage: 'Tạo mới File đính kèm trong bài viết thành công!',
-            errorMessage: 'Sự cố xảy ra trong quá trình tạo mới File đính kèm trong bài viết!',
-            activeModalInstance: '',
-            meta: {
-              name: 'fileDinhKemBaiViet',
-              url: 'http://localhost:8000/file_dinh_kem_bai_viets',
-              domestic: [bai_viet_id, ten_file, file_url, ],
-              many_to_one: [],
-              one_to_many: []
-            }
-          },
-          delete: {
-            url: "http://localhost:8000/file_dinh_kem_bai_viets",
-            titleSweetAlert: "Xóa File đính kèm trong bài viết!",
-            textSweetAlert: "Dữ liệu không thể  khôi phục sau khi xóa!",
-            successMessage: "Xóa File đính kèm trong bài viết thành công",
-            errorMessage: "Sự cố xảy ra trong quá trình xóa File đính kèm trong bài viết!"
-          }
-        }
-      }
+      baseUrl: '/file_dinh_kem_bai_viets',
+      meta: {
+        name: 'fileDinhKemBaiViet',
+        url: '/file_dinh_kem_bai_viets',
+        domestic: [
+          "bai_viet_id","ten_file","file_url",
+        ],
+        many_to_one: [],
+        one_to_many: []
+      },
+      includes: [],
+      updateModalOpenErrorMessage: "Tải biểu mẫu cập nhật không thành công",
+      updateModalUrl: '/app/file_dinh_kem_bai_viets/_file_dinh_kem_bai_viet_update_modal.html',
+      updateModalName: 'fileDinhKemBaiVietUpdateModal',
+      updateModalSize: 'md',
+      updateModalItemName: 'oldFileDinhKemBaiViet',
+      updateModalWindowClass: "",
+      updateItemSuccessMessage: "Cập nhật thành công File đính kèm trong bài viết",
+      updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật File đính kèm trong bài viết",
+
+      createModalOpenErrorMessage: "Tải biểu mẫu không thành công",
+      createModalUrl: '/app/file_dinh_kem_bai_viets/_file_dinh_kem_bai_viet_create_modal.html',
+      createModalName: 'fileDinhKemBaiVietCreateModal',
+      createModalSize: 'md',
+      createModalItemName: 'newFileDinhKemBaiViet',
+      createModalWindowClass: "",
+      createItemErrorMessage: "Lỗi xảy ra trong quá trình tạo mới File đính kèm trong bài viết",
+      createItemSuccessMessage: "Tạo fileDinhKemBaiViet mới thành công",
+
+      deleteSweetAlertTitle: "Xóa",
+      deleteSweetAlertText: "Dữ liệu không thể  khôi phục sau khi xóa",
+      deleteItemSuccessMessage: "Xóa File đính kèm trong bài viết thành công",
+      deleteItemErrorMessage: "Sự cố xảy ra trong quá trình xóa File đính kèm trong bài viết"
     }
-  });
+  }
 })();

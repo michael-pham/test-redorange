@@ -17,7 +17,7 @@
                 url: '/tinh_trang_binh_luans',
                 config: {
                     templateUrl: 'app/tinh_trang_binh_luans/tinh_trang_binh_luans.html',
-                    controller: 'Projects',
+                    controller: 'TinhTrangBinhLuans',
                     controllerAs: 'vm',
                     title: 'tinh_trang_binh_luan',
                     settings: {
@@ -26,6 +26,19 @@
                     }
                 }
             },
+            {
+                url: '/tinh_trang_binh_luans/:id',
+                config: {
+                    templateUrl: 'app/tinh_trang_binh_luans/details.html',
+                    controller: 'TinhTrangBinhLuanDetails',
+                    controllerAs: 'vm',
+                    title: 'tinh_trang_binh_luan details',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-lock"></i> details'
+                    }
+                }
+            }
         ];
     }
 })();

@@ -1,52 +1,46 @@
 (function() {
   'use strict';
-  angular.module('app.linkTargets')
-  .factory('linkTargetModel', function($http, SweetAlert) {
+
+  angular
+    .module('app.linkTargets')
+    .factory('linkTargetModel', linkTargetModel);
+
+
+  function linkTargetModel() {
     return {
-      init: function(scope) {
-        return {
-          ctrlScope: scope,
-          getList: {
-            url: 'http://localhost:8000/link_targets',
-            name: 'linkTargets',
-            param: {includes: []}
-          },
-          getSingle: {
-            url: 'http://localhost:8000/link_targets',
-            name: 'linkTarget',
-            many_to_one: [],
-            one_to_many: []
-          },
-          update: {
-            url: 'http://localhost:8000/link_targets',
-            name: 'linkTarget',
-            modalUrl: '/app/link_targets/_cap_nhat_link_target_modal.html',
-            successMessage: 'Cập nhật thành công Đối tượng trỏ tới của đường dẫn',
-            errorMessage: 'Lỗi xảy ra trong quá trình cập nhật Đối tượng trỏ tới của đường dẫn'
-          },
-          create: {
-            name: 'modelName',
-            modalUrl: '/app/model_names/_them_link_target_modal.html',
-            successMessage: 'Tạo mới Đối tượng trỏ tới của đường dẫn thành công!',
-            errorMessage: 'Sự cố xảy ra trong quá trình tạo mới Đối tượng trỏ tới của đường dẫn!',
-            activeModalInstance: '',
-            meta: {
-              name: 'linkTarget',
-              url: 'http://localhost:8000/link_targets',
-              domestic: [name, description, ],
-              many_to_one: [],
-              one_to_many: []
-            }
-          },
-          delete: {
-            url: "http://localhost:8000/link_targets",
-            titleSweetAlert: "Xóa Đối tượng trỏ tới của đường dẫn!",
-            textSweetAlert: "Dữ liệu không thể  khôi phục sau khi xóa!",
-            successMessage: "Xóa Đối tượng trỏ tới của đường dẫn thành công",
-            errorMessage: "Sự cố xảy ra trong quá trình xóa Đối tượng trỏ tới của đường dẫn!"
-          }
-        }
-      }
+      baseUrl: '/link_targets',
+      meta: {
+        name: 'linkTarget',
+        url: '/link_targets',
+        domestic: [
+          "name","description",
+        ],
+        many_to_one: [],
+        one_to_many: []
+      },
+      includes: [],
+      updateModalOpenErrorMessage: "Tải biểu mẫu cập nhật không thành công",
+      updateModalUrl: '/app/link_targets/_link_target_update_modal.html',
+      updateModalName: 'linkTargetUpdateModal',
+      updateModalSize: 'md',
+      updateModalItemName: 'oldLinkTarget',
+      updateModalWindowClass: "",
+      updateItemSuccessMessage: "Cập nhật thành công Đối tượng trỏ tới của đường dẫn",
+      updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật Đối tượng trỏ tới của đường dẫn",
+
+      createModalOpenErrorMessage: "Tải biểu mẫu không thành công",
+      createModalUrl: '/app/link_targets/_link_target_create_modal.html',
+      createModalName: 'linkTargetCreateModal',
+      createModalSize: 'md',
+      createModalItemName: 'newLinkTarget',
+      createModalWindowClass: "",
+      createItemErrorMessage: "Lỗi xảy ra trong quá trình tạo mới Đối tượng trỏ tới của đường dẫn",
+      createItemSuccessMessage: "Tạo linkTarget mới thành công",
+
+      deleteSweetAlertTitle: "Xóa",
+      deleteSweetAlertText: "Dữ liệu không thể  khôi phục sau khi xóa",
+      deleteItemSuccessMessage: "Xóa Đối tượng trỏ tới của đường dẫn thành công",
+      deleteItemErrorMessage: "Sự cố xảy ra trong quá trình xóa Đối tượng trỏ tới của đường dẫn"
     }
-  });
+  }
 })();

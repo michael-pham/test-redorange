@@ -4,7 +4,7 @@
       <div class="header">
         <div class="row">
           <div class="col-md-3">
-            <h5 style="text-transform: uppercase;" class="title text-uppercase">Danh sách File đính kèm trong bài viết</h5>
+            <h5 style="text-transform: uppercase;" class="title col">Danh sách File đính kèm trong bài viết</h5>
           </div>
           <div class="col-md-9 pull-right">
             <a ng-show="showSelection" data-ng-click="showSelection=false" class="btn btn-sm pull-right">
@@ -15,13 +15,13 @@
               <i class="fa fa-trash"></i>
               Xóa
             </a>
-            <a ng-show="!showSelection" data-ng-click="showSelection=true" class="btn btn-sm pull-right">
-              <i class="fa fa-edit"></i>
-              Chọn dòng
-            </a>
-            <a data-ng-click="fileDinhKemBaiVietCrud.openCreateForm('md')" class="btn btn-sm btn-custom pull-right">
+            <!-- <a ng&#45;show="!showSelection" data&#45;ng&#45;click="showSelection=true" class="btn btn&#45;sm pull&#45;right"> -->
+            <!--   <i class="fa fa&#45;edit"></i> -->
+            <!--   Chọn dòng -->
+            <!-- </a> -->
+            <a data-ng-click="openFileDinhKemBaiVietCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              Thêm mới File đính kèm trong bài viết
+              Thêm fileDinhKemBaiViet
             </a>
           </div>
         </div>
@@ -29,38 +29,85 @@
       <div class="content table-responsive" ng-init="showSelection=false">
         <table class="table table-hover table-striped">
           <thead>
-            <th class="col-md-1" ng-show="showSelection">
-              <input class="form-control" type="checkbox"/>
+            <th class="col-md-1" ng-show="showSelection"></th>
+            <th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = bai_viet_id; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'bai_viet_id'"><i class="fa fa-fw fa-sort"></i>ID bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == bai_viet_id}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == bai_viet_id && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == bai_viet_id}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == bai_viet_id && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID bài viết</th>
+<th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = ten_file; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'ten_file'"><i class="fa fa-fw fa-sort"></i>Tên file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == ten_file}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == ten_file && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == ten_file}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == ten_file && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên file</th>
+<th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = file_url; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'file_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn đến file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == file_url}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == file_url && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn đến file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == file_url}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == file_url && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn đến file</th>
+
+            <th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = 'created_at'; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == 'created_at'}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'created_at' && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>
+            <th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == 'created_at'}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'created_at' && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Khởi tạo</th>
+
+            <th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = 'updated_at'; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'updated_at'"><i class="fa fa-fw fa-sort"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == 'updated_at'}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'updated_at' && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Cập nhật</th>
+            <th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == 'updated_at'}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'updated_at' && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Cập nhật</th>
+
+            <th class="text-center">
+              <!-- <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button> -->
             </th>
-            <!-- <th class="col-md-1"></th> -->
-            <th>ID bài viết</th><th>Tên file</th><th>Đường dẫn đến file</th>
-            <th class="col-md-1">Tác vụ</th>
+            <th class="col-md-2">Tác vụ</th>
           </thead>
           <tbody>
             <tr>
-              <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
-              <!-- <td ng-show="showSelection" class="col-md-1"></td> -->
-              <td><select name="bai_viet_id" class="form-control" ng-model="searchFileDinhKemBaiViet.bai_viet_id"
-                             ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
-                             <option value=""></option>
-</select>
-</td><td><input name="ten_file" ng-model="searchFileDinhKemBaiViet.ten_file" type="text"
-  class="form-control" required ></input>
-</td><td><input name="ten_file" ng-model="searchFileDinhKemBaiViet.ten_file"
-  type="email" class="form-control" required ></input>
-</td><td><input name="file_url" ng-model="searchFileDinhKemBaiViet.file_url" type="text"
-  class="form-control" required ></input>
-</td><td><input name="file_url" ng-model="searchFileDinhKemBaiViet.file_url"
-  type="email" class="form-control" required ></input>
+              <td ng-show="showSelection" class="col-md-1">
+                <input class="form-control" type="checkbox"/>
+              </td>
+              <td>
+  <select class="form-control" ng-model="fileDinhKemBaiVietParams.bai_viet_id"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
 </td>
+<td>
+  <select class="form-control" ng-model="fileDinhKemBaiVietParams.bai_viet_id"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+<td>
+  <select class="form-control" ng-model="fileDinhKemBaiVietParams.bai_viet_id"
+    ng-options=".id as . for  in s">
+    <option value=""></option>
+  </select>
+</td>
+
+              <td>
+                <div class="has-feedback">
+                  <input class="form-control" type="text" ng-model="fileDinhKemBaiVietParams.filtering.name" clear-icon />
+                </div>
+              </td>
+
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="fileDinhKemBaiVietParams.filtering.created_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td>
+                <div class="has-feedback">
+                <input date-range-picker class="form-control date-picker" type="text"
+                  ng-model="fileDinhKemBaiVietParams.filtering.updated_at_range"
+                    options="{locale: {separator: ' - ', format: 'MM/DD/YYYY'}}" clear-icon />
+                </div>
+              </td>
+              <td></td>
               <td>
                 <div class="row">
                   <div class="col-md-8">
-                    <input class="form-control" placeholder="Tìm kiếm chung" type="text" />
+                    <a ng-click="getFileDinhKemBaiViets()" class="btn btn-md btn-block" data-toggle="tooltip" title="Tìm kiếm">
+                      <i class="fa fa-search"></i>
+                    </a>
                   </div>
                   <div class="col-md-4">
-                    <a class="btn btn-sm btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
-                      <i class="fa fa-undo"></i>
+                    <a ng-click="getFileDinhKemBaiVietsWithInitialParams()" class="btn btn-md btn-block" data-toggle="tooltip" title="Làm sạch các trường tìm kiếm">
+                      <i class="fa fa-close"></i>
                     </a>
                   </div>
                 </div>
@@ -68,53 +115,61 @@
             </tr>
             <tr ng-repeat="(key, fileDinhKemBaiViet) in fileDinhKemBaiViets | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
-              <!-- <td>{{key + 1}}</td> -->
-              <td>{{fileDinhKemBaiViet.bai_viet_id}}</td><td>{{fileDinhKemBaiViet.ten_file}}</td><td>{{fileDinhKemBaiViet.file_url}}</td>
-              <!-- <td><span class="label label-success">Duyệt</span></td> -->
-              <!-- <td><span class="label label-danger">Duyệt</span></td>
-              <td><span class="label label-warning">Duyệt</span></td>
-              <td><span class="label label-info">Duyệt</span></td>
-              <td><span class="label label-default">Duyệt</span></td> -->
-              <td>{{fileDinhKemBaiViet.created_at}}</td>
-              <td>{{fileDinhKemBaiViet.updated_at}}</td>
-              <td class="col-md-3">
-                <div class="row">
-                  <div class="col-md-4  ">
-                    <a href="#/fileDinhKemBaiViets/{{fileDinhKemBaiViet.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
-                      <i class="fa fa-eye"></i>
-                    </a>
+                <td>{{fileDinhKemBaiViet.bai_viet_id}}</td>
+<td>{{fileDinhKemBaiViet.ten_file}}</td>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div ng-repeat="item in {{input_name}}">
+        <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
+      </div>
+    </div>
+  </div>
+</div>
+
+                <td>{{fileDinhKemBaiViet.created_at}}</td>
+                <td>{{fileDinhKemBaiViet.updated_at}}</td>
+                <td class="text-center" ng-hide="fileDinhKemBaiViet.is_valid" data-toggle="tooltip" title="Có thể đã xảy ra lỗi trong quá trình lưu dữ liệu. Xinh vui lòng kiểm tra lại dữ liệu.">
+                  <button type="button" class="btn btn-danger btn-fill btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+                </td>
+                <td class="text-center" ng-show="fileDinhKemBaiViet.is_valid" data-toggle="tooltip" title="Dữ liệu liệu lưu thành công.">
+                  <button type="button" class="btn btn-success btn-fill btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
+                </td>
+                <td class="col-md-3">
+                  <div class="row">
+                    <div class="col-md-4  ">
+                      <a href="#/fileDinhKemBaiViets/{{fileDinhKemBaiViet.id}}" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xem">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="openFileDinhKemBaiVietUpdateModal(fileDinhKemBaiViet.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                    <div class="col-md-4">
+                      <a ng-click="deleteFileDinhKemBaiViet(fileDinhKemBaiViet)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa fileDinhKemBaiViet">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </div>
                   </div>
-                  <div class="col-md-4">
-                    <a ng-click="openUpdateForm(fileDinhKemBaiViet.id)" class="btn btn-sm btn-block" data-toggle="tooltip" title="Chỉnh sửa">
-                      <i class="fa fa-pencil"></i>
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a ng-click="fileDinhKemBaiVietCrud.deleteModel(fileDinhKemBaiViet.id, '')" class="btn btn-sm btn-block" data-toggle="tooltip" title="Xóa fileDinhKemBaiViet">
-                      <i class="fa fa-trash"></i>
-                    </a>
-                  </div>
-                </div>
-              </td>
+                </td>
             </tr>
           </tbody>
         </table>
         <div class="row">
           <div class="col-md-2">
-                <select class="form-control" type="text">
-                  <option style="outline: none">5 dòng </option>
-                  <option>10 dòng</option>
-                  <option>15 dòng</option>
-                </select>
+            <select class="form-control" type="text">
+              <option ng-click="fileDinhKemBaiVietParams.paging.limit=5; getFileDinhKemBaiViets()">5 dòng</option>
+              <option ng-click="fileDinhKemBaiVietParams.paging.limit=10; getFileDinhKemBaiViets()">10 dòng</option>
+              <option ng-click="fileDinhKemBaiVietParams.paging.limit=15; getFileDinhKemBaiViets()">15 dòng</option>
+            </select>
           </div>
           <div class="col-md-8 col-md-offset-2 custom-pagination">
             <ul>
-              <li><a href="#">«</a></li>
-              <li class="active"><a>1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">»</a></li>
+              <li style="cursor: pointer" ng-click="getLeftMostPage(fileDinhKemBaiVietParams.paging, getFileDinhKemBaiViets)"><a>«</a></li>
+              <li style="cursor: pointer" ng-class="{'active': page == fileDinhKemBaiVietParams.paging.page}" ng-click="fileDinhKemBaiVietParams.paging.page = page; getFileDinhKemBaiViets()" ng-repeat="page in fileDinhKemBaiVietParams.paging.pages"><a>{{page}}</a></li>
+              <li style="cursor: pointer" ng-click="getRightMostPage(fileDinhKemBaiVietParams.paging, getFileDinhKemBaiViets)"><a>»</a></li>
             </ul>
           </div>
         </div>
