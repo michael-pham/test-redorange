@@ -76,7 +76,9 @@ if (linkTargetParams.filtering.description) {
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging(linkTargetParams.paging);
         var sorting = utils.makeParams.sorting(linkTargetParams.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 

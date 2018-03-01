@@ -106,7 +106,9 @@ if (baiVietParams.filtering.hinh_anh_dai_dien_thumbnail_url) {
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging(baiVietParams.paging);
         var sorting = utils.makeParams.sorting(baiVietParams.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 

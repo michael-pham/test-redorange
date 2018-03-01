@@ -12,14 +12,15 @@ class BaiVietController extends Controller
 {
   private $baiVietService;
 
-  public function __construct(BaiVietService $baiVietService)
+  public function __construct(BaiVietService $baiVietService, AuthManager $auth)
   {
+    $this->auth = $auth;
     $this->baiVietService = $baiVietService;
   }
 
   public function getAll()
   {
-    if (!$this->auth->user()->can('read_bai_viet')) return;
+    // if (!$this->auth->user()->can('read_bai_viet')) return;
 
     $resourceOptions = $this->parseResourceOptions();
 

@@ -39,7 +39,7 @@ def render_items_html(model):
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
         if attribute.ui_display_type == FILE:
-            subdata[TPL_PATH_KEY] = PATH_BASE + RADIO_INPUT_HTML_TPL
+            subdata[TPL_PATH_KEY] = PATH_BASE + FILE_TD_HTML_TPL
             subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
             subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 

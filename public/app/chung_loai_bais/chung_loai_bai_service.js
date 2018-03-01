@@ -76,7 +76,9 @@ if (chungLoaiBaiParams.filtering.mo_ta) {
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging(chungLoaiBaiParams.paging);
         var sorting = utils.makeParams.sorting(chungLoaiBaiParams.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 

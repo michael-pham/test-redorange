@@ -94,7 +94,9 @@ if (binhLuanParams.filtering.binh_luan_duoc_chap_nhan) {
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging(binhLuanParams.paging);
         var sorting = utils.makeParams.sorting(binhLuanParams.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 

@@ -20,7 +20,7 @@ ITEM_MODULE_JS_DST_FILE_NAME_SUFFIX = "s.module.js"
 ITEM_MODEL_JS_DST_FILE_NAME_SUFFIX= "_model.js"
 ITEM_SERVICE_JS_DST_FILE_NAME_SUFFIX= "_service.js"
 ITEMS_HTML_DST_FILE_NAME_SUFFIX= "s.html"
-ITEM_CREATE_MODAL_HTML_DST_FILE_NAME_SUFFIX= "i_create_modal.html"
+ITEM_CREATE_MODAL_HTML_DST_FILE_NAME_SUFFIX= "_create_modal.html"
 ITEM_UPDATE_MODAL_HTML_DST_FILE_NAME_SUFFIX = "_update_modal.html"
 
 ITEM_MODULE_JS_TPL = "angularjs_app/templates/items.module.js/items.module.js"

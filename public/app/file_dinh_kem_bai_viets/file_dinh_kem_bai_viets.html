@@ -21,7 +21,7 @@
             <!-- </a> -->
             <a data-ng-click="openFileDinhKemBaiVietCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              Thêm fileDinhKemBaiViet
+              Thêm File đính kèm trong bài viết
             </a>
           </div>
         </div>
@@ -30,15 +30,15 @@
         <table class="table table-hover table-striped">
           <thead>
             <th class="col-md-1" ng-show="showSelection"></th>
-            <th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = bai_viet_id; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'bai_viet_id'"><i class="fa fa-fw fa-sort"></i>ID bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == bai_viet_id}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == bai_viet_id && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == bai_viet_id}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == bai_viet_id && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID bài viết</th>
-<th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = ten_file; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'ten_file'"><i class="fa fa-fw fa-sort"></i>Tên file</th>
-<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == ten_file}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == ten_file && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên file</th>
-<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == ten_file}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == ten_file && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên file</th>
-<th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = file_url; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'file_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn đến file</th>
-<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == file_url}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == file_url && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn đến file</th>
-<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == file_url}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == file_url && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn đến file</th>
+            <th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = 'bai_viet_id'; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'bai_viet_id'"><i class="fa fa-fw fa-sort"></i>ID bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == bai_viet_id}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'bai_viet_id' && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == bai_viet_id}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'bai_viet_id' && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID bài viết</th>
+<th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = 'ten_file'; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'ten_file'"><i class="fa fa-fw fa-sort"></i>Tên file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == ten_file}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'ten_file' && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == ten_file}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'ten_file' && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên file</th>
+<th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = 'file_url'; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'file_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn đến file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == file_url}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'file_url' && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn đến file</th>
+<th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == file_url}" ng-click="fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'file_url' && fileDinhKemBaiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn đến file</th>
 
             <th class="sortable" ng-click="fileDinhKemBaiVietParams.sorting.key = 'created_at'; fileDinhKemBaiVietParams.sorting.direction='DESC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
             <th class="sortable" ng-class="{'sortable-active': fileDinhKemBaiVietParams.sorting.key == 'created_at'}" ng-click="fileDinhKemBaiVietParams.sorting.direction='ASC'; getFileDinhKemBaiViets()" ng-show="fileDinhKemBaiVietParams.sorting.key == 'created_at' && fileDinhKemBaiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>
@@ -117,15 +117,7 @@
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
                 <td>{{fileDinhKemBaiViet.bai_viet_id}}</td>
 <td>{{fileDinhKemBaiViet.ten_file}}</td>
-<div class="row">
-  <div class="col-md-12">
-    <div class="form-group">
-      <div ng-repeat="item in {{input_name}}">
-        <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
-      </div>
-    </div>
-  </div>
-</div>
+<td><a href="/{{fileDinhKemBaiViet.file_url}}" target="_blank"><img style="width: 3.5rem" src="/app/assets/img/pdf.png"></a></td>
 
                 <td>{{fileDinhKemBaiViet.created_at}}</td>
                 <td>{{fileDinhKemBaiViet.updated_at}}</td>

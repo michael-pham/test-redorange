@@ -21,7 +21,7 @@
             <!-- </a> -->
             <a data-ng-click="openChungLoaiBaiCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              Thêm chungLoaiBai
+              Thêm Chủng loại bài viết
             </a>
           </div>
         </div>
@@ -30,12 +30,12 @@
         <table class="table table-hover table-striped">
           <thead>
             <th class="col-md-1" ng-show="showSelection"></th>
-            <th class="sortable" ng-click="chungLoaiBaiParams.sorting.key = ten; chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key != 'ten'"><i class="fa fa-fw fa-sort"></i>Tên</th>
-<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == ten}" ng-click="chungLoaiBaiParams.sorting.direction='ASC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == ten && chungLoaiBaiParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên</th>
-<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == ten}" ng-click="chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == ten && chungLoaiBaiParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên</th>
-<th class="sortable" ng-click="chungLoaiBaiParams.sorting.key = mo_ta; chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key != 'mo_ta'"><i class="fa fa-fw fa-sort"></i>Mô tả</th>
-<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == mo_ta}" ng-click="chungLoaiBaiParams.sorting.direction='ASC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == mo_ta && chungLoaiBaiParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Mô tả</th>
-<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == mo_ta}" ng-click="chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == mo_ta && chungLoaiBaiParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Mô tả</th>
+            <th class="sortable" ng-click="chungLoaiBaiParams.sorting.key = 'ten'; chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key != 'ten'"><i class="fa fa-fw fa-sort"></i>Tên</th>
+<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == ten}" ng-click="chungLoaiBaiParams.sorting.direction='ASC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == 'ten' && chungLoaiBaiParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên</th>
+<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == ten}" ng-click="chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == 'ten' && chungLoaiBaiParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên</th>
+<th class="sortable" ng-click="chungLoaiBaiParams.sorting.key = 'mo_ta'; chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key != 'mo_ta'"><i class="fa fa-fw fa-sort"></i>Mô tả</th>
+<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == mo_ta}" ng-click="chungLoaiBaiParams.sorting.direction='ASC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == 'mo_ta' && chungLoaiBaiParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Mô tả</th>
+<th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == mo_ta}" ng-click="chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == 'mo_ta' && chungLoaiBaiParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Mô tả</th>
 
             <th class="sortable" ng-click="chungLoaiBaiParams.sorting.key = 'created_at'; chungLoaiBaiParams.sorting.direction='DESC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
             <th class="sortable" ng-class="{'sortable-active': chungLoaiBaiParams.sorting.key == 'created_at'}" ng-click="chungLoaiBaiParams.sorting.direction='ASC'; getChungLoaiBais()" ng-show="chungLoaiBaiParams.sorting.key == 'created_at' && chungLoaiBaiParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>

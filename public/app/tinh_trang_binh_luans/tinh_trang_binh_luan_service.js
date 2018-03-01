@@ -76,7 +76,9 @@ if (tinhTrangBinhLuanParams.filtering.mo_ta) {
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging(tinhTrangBinhLuanParams.paging);
         var sorting = utils.makeParams.sorting(tinhTrangBinhLuanParams.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 

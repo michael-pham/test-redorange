@@ -21,7 +21,7 @@
             <!-- </a> -->
             <a data-ng-click="openBaiVietCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              Thêm baiViet
+              Thêm Bài viết
             </a>
           </div>
         </div>
@@ -30,42 +30,42 @@
         <table class="table table-hover table-striped">
           <thead>
             <th class="col-md-1" ng-show="showSelection"></th>
-            <th class="sortable" ng-click="baiVietParams.sorting.key = tac_gia_bai_viet_id; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tac_gia_bai_viet_id'"><i class="fa fa-fw fa-sort"></i>ID tác giả bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tac_gia_bai_viet_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tac_gia_bai_viet_id && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID tác giả bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tac_gia_bai_viet_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tac_gia_bai_viet_id && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID tác giả bài viết</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = noi_dung; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'noi_dung'"><i class="fa fa-fw fa-sort"></i>Nội dung</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == noi_dung}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == noi_dung && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Nội dung</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == noi_dung}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == noi_dung && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Nội dung</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = tieu_de; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tieu_de'"><i class="fa fa-fw fa-sort"></i>Tiêu đề</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tieu_de}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tieu_de && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tiêu đề</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tieu_de}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tieu_de && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tiêu đề</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = trich_yeu; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'trich_yeu'"><i class="fa fa-fw fa-sort"></i>Trích yếu</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == trich_yeu}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == trich_yeu && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Trích yếu</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == trich_yeu}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == trich_yeu && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Trích yếu</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = tinh_trang_bai_viet_id; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tinh_trang_bai_viet_id'"><i class="fa fa-fw fa-sort"></i>ID tình trạng bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_bai_viet_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tinh_trang_bai_viet_id && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID tình trạng bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_bai_viet_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tinh_trang_bai_viet_id && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID tình trạng bài viết</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = tinh_trang_binh_luan_id; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tinh_trang_binh_luan_id'"><i class="fa fa-fw fa-sort"></i>Tình trạng bình luận</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_binh_luan_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tinh_trang_binh_luan_id && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tình trạng bình luận</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_binh_luan_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == tinh_trang_binh_luan_id && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tình trạng bình luận</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = bai_viet_cha_id; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'bai_viet_cha_id'"><i class="fa fa-fw fa-sort"></i>ID bài viết cha</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == bai_viet_cha_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == bai_viet_cha_id && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID bài viết cha</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == bai_viet_cha_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == bai_viet_cha_id && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID bài viết cha</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = thu_tu_tren_menu; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'thu_tu_tren_menu'"><i class="fa fa-fw fa-sort"></i>Thứ tự trên menu</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == thu_tu_tren_menu}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == thu_tu_tren_menu && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Thứ tự trên menu</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == thu_tu_tren_menu}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == thu_tu_tren_menu && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Thứ tự trên menu</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = chung_loai_bai_viet_id; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'chung_loai_bai_viet_id'"><i class="fa fa-fw fa-sort"></i>ID chủng loại bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == chung_loai_bai_viet_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == chung_loai_bai_viet_id && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID chủng loại bài viết</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == chung_loai_bai_viet_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == chung_loai_bai_viet_id && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID chủng loại bài viết</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = so_luong_binh_luan; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'so_luong_binh_luan'"><i class="fa fa-fw fa-sort"></i>Số lượng bình lượng</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == so_luong_binh_luan}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == so_luong_binh_luan && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Số lượng bình lượng</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == so_luong_binh_luan}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == so_luong_binh_luan && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Số lượng bình lượng</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = hinh_anh_dai_dien_url; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'hinh_anh_dai_dien_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn đến hình ảnh đại diện</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_url}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == hinh_anh_dai_dien_url && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn đến hình ảnh đại diện</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_url}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == hinh_anh_dai_dien_url && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn đến hình ảnh đại diện</th>
-<th class="sortable" ng-click="baiVietParams.sorting.key = hinh_anh_dai_dien_thumbnail_url; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'hinh_anh_dai_dien_thumbnail_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn đến hình ảnh đại diện thumbnail</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_thumbnail_url}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == hinh_anh_dai_dien_thumbnail_url && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn đến hình ảnh đại diện thumbnail</th>
-<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_thumbnail_url}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == hinh_anh_dai_dien_thumbnail_url && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn đến hình ảnh đại diện thumbnail</th>
+            <th class="sortable" ng-click="baiVietParams.sorting.key = 'tac_gia_bai_viet_id'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tac_gia_bai_viet_id'"><i class="fa fa-fw fa-sort"></i>ID tác giả bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tac_gia_bai_viet_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tac_gia_bai_viet_id' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID tác giả bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tac_gia_bai_viet_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tac_gia_bai_viet_id' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID tác giả bài viết</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'noi_dung'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'noi_dung'"><i class="fa fa-fw fa-sort"></i>Nội dung</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == noi_dung}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'noi_dung' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Nội dung</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == noi_dung}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'noi_dung' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Nội dung</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'tieu_de'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tieu_de'"><i class="fa fa-fw fa-sort"></i>Tiêu đề</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tieu_de}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tieu_de' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tiêu đề</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tieu_de}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tieu_de' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tiêu đề</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'trich_yeu'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'trich_yeu'"><i class="fa fa-fw fa-sort"></i>Trích yếu</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == trich_yeu}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'trich_yeu' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Trích yếu</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == trich_yeu}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'trich_yeu' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Trích yếu</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'tinh_trang_bai_viet_id'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tinh_trang_bai_viet_id'"><i class="fa fa-fw fa-sort"></i>Tình trạng bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_bai_viet_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tinh_trang_bai_viet_id' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tình trạng bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_bai_viet_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tinh_trang_bai_viet_id' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tình trạng bài viết</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'tinh_trang_binh_luan_id'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'tinh_trang_binh_luan_id'"><i class="fa fa-fw fa-sort"></i>Tình trạng bình luận</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_binh_luan_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tinh_trang_binh_luan_id' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tình trạng bình luận</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == tinh_trang_binh_luan_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'tinh_trang_binh_luan_id' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tình trạng bình luận</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'bai_viet_cha_id'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'bai_viet_cha_id'"><i class="fa fa-fw fa-sort"></i>ID bài viết cha</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == bai_viet_cha_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'bai_viet_cha_id' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID bài viết cha</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == bai_viet_cha_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'bai_viet_cha_id' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID bài viết cha</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'thu_tu_tren_menu'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'thu_tu_tren_menu'"><i class="fa fa-fw fa-sort"></i>Thứ tự trên menu</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == thu_tu_tren_menu}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'thu_tu_tren_menu' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Thứ tự trên menu</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == thu_tu_tren_menu}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'thu_tu_tren_menu' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Thứ tự trên menu</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'chung_loai_bai_viet_id'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'chung_loai_bai_viet_id'"><i class="fa fa-fw fa-sort"></i>Chủng loại bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == chung_loai_bai_viet_id}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'chung_loai_bai_viet_id' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Chủng loại bài viết</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == chung_loai_bai_viet_id}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'chung_loai_bai_viet_id' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Chủng loại bài viết</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'so_luong_binh_luan'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'so_luong_binh_luan'"><i class="fa fa-fw fa-sort"></i>Số lượng bình lượng</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == so_luong_binh_luan}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'so_luong_binh_luan' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Số lượng bình lượng</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == so_luong_binh_luan}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'so_luong_binh_luan' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Số lượng bình lượng</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'hinh_anh_dai_dien_url'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'hinh_anh_dai_dien_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn đến hình ảnh đại diện</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_url}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'hinh_anh_dai_dien_url' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn đến hình ảnh đại diện</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_url}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'hinh_anh_dai_dien_url' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn đến hình ảnh đại diện</th>
+<th class="sortable" ng-click="baiVietParams.sorting.key = 'hinh_anh_dai_dien_thumbnail_url'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'hinh_anh_dai_dien_thumbnail_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn đến hình ảnh đại diện thumbnail</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_thumbnail_url}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'hinh_anh_dai_dien_thumbnail_url' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn đến hình ảnh đại diện thumbnail</th>
+<th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == hinh_anh_dai_dien_thumbnail_url}" ng-click="baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'hinh_anh_dai_dien_thumbnail_url' && baiVietParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn đến hình ảnh đại diện thumbnail</th>
 
             <th class="sortable" ng-click="baiVietParams.sorting.key = 'created_at'; baiVietParams.sorting.direction='DESC'; getBaiViets()" ng-show="baiVietParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
             <th class="sortable" ng-class="{'sortable-active': baiVietParams.sorting.key == 'created_at'}" ng-click="baiVietParams.sorting.direction='ASC'; getBaiViets()" ng-show="baiVietParams.sorting.key == 'created_at' && baiVietParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>
@@ -87,73 +87,73 @@
               </td>
               <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
   <select class="form-control" ng-model="baiVietParams.bai_viet_cha_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
@@ -206,15 +206,7 @@
 <td>{{baiViet.thu_tu_tren_menu}}</td>
 <td>{{baiViet.chung_loai_bai_viet_id}}</td>
 <td>{{baiViet.so_luong_binh_luan}}</td>
-<div class="row">
-  <div class="col-md-12">
-    <div class="form-group">
-      <div ng-repeat="item in {{input_name}}">
-        <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
-      </div>
-    </div>
-  </div>
-</div>
+<td><a href="/{{baiViet.hinh_anh_dai_dien_url}}" target="_blank"><img style="width: 3.5rem" src="/app/assets/img/pdf.png"></a></td>
 <td><img style="width: 3.5rem" src="/{{baiViet.hinh_anh_dai_dien_thumbnail_url}}"></td>
 
                 <td>{{baiViet.created_at}}</td>

@@ -21,7 +21,7 @@
             <!-- </a> -->
             <a data-ng-click="openTinhTrangBinhLuanCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
-              Thêm tinhTrangBinhLuan
+              Thêm Tình trạng bình luận
             </a>
           </div>
         </div>
@@ -30,12 +30,12 @@
         <table class="table table-hover table-striped">
           <thead>
             <th class="col-md-1" ng-show="showSelection"></th>
-            <th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = ten; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'ten'"><i class="fa fa-fw fa-sort"></i>Tên</th>
-<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == ten}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == ten && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên</th>
-<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == ten}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == ten && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên</th>
-<th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = mo_ta; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'mo_ta'"><i class="fa fa-fw fa-sort"></i>Mô tả</th>
-<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == mo_ta}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == mo_ta && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Mô tả</th>
-<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == mo_ta}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == mo_ta && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Mô tả</th>
+            <th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = 'ten'; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'ten'"><i class="fa fa-fw fa-sort"></i>Tên</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == ten}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'ten' && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == ten}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'ten' && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên</th>
+<th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = 'mo_ta'; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'mo_ta'"><i class="fa fa-fw fa-sort"></i>Mô tả</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == mo_ta}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'mo_ta' && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Mô tả</th>
+<th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == mo_ta}" ng-click="tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'mo_ta' && tinhTrangBinhLuanParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Mô tả</th>
 
             <th class="sortable" ng-click="tinhTrangBinhLuanParams.sorting.key = 'created_at'; tinhTrangBinhLuanParams.sorting.direction='DESC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key != 'created_at'"><i class="fa fa-fw fa-sort"></i>Khởi tạo</th>
             <th class="sortable" ng-class="{'sortable-active': tinhTrangBinhLuanParams.sorting.key == 'created_at'}" ng-click="tinhTrangBinhLuanParams.sorting.direction='ASC'; getTinhTrangBinhLuans()" ng-show="tinhTrangBinhLuanParams.sorting.key == 'created_at' && tinhTrangBinhLuanParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Khởi tạo</th>

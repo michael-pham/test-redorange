@@ -70,7 +70,9 @@
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging({{item_name_in_camel_case}}Params.paging);
         var sorting = utils.makeParams.sorting({{item_name_in_camel_case}}Params.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 

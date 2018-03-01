@@ -71,13 +71,13 @@ with open(data_path) as fd:
                         ITEMS_HTML_DST_FILE_NAME_SUFFIX
         write_to_file(items_html_dst_path, render_items_html(model))
 
-        item_create_modal_html_dst_path = model_dst_path + "/" + \
+        item_create_modal_html_dst_path = model_dst_path + "/_" + \
                 model_name_in_snake + \
                         ITEM_CREATE_MODAL_HTML_DST_FILE_NAME_SUFFIX
         write_to_file(item_create_modal_html_dst_path, \
             render_item_create_modal_html(model))
 
-        item_update_modal_html_dst_path = model_dst_path + "/" + \
+        item_update_modal_html_dst_path = model_dst_path + "/_" + \
                 model_name_in_snake + \
                         ITEM_UPDATE_MODAL_HTML_DST_FILE_NAME_SUFFIX
         write_to_file(item_update_modal_html_dst_path, \

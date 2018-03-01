@@ -94,7 +94,9 @@ if (linkParams.filtering.link_click_count) {
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging(linkParams.paging);
         var sorting = utils.makeParams.sorting(linkParams.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 

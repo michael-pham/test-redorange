@@ -79,7 +79,9 @@ if (fileDinhKemBaiVietParams.filtering.file_url) {
         var filtering = utils.makeParams.filtering(filteringParams);
         var paging = utils.makeParams.paging(fileDinhKemBaiVietParams.paging);
         var sorting = utils.makeParams.sorting(fileDinhKemBaiVietParams.sorting);
-
+        if (filtering == "?") filtering = "";
+        if (paging == "?") paging = "";
+        if (sorting == "?") sorting = "";
         processedParams = "?" + filtering + paging + sorting;
       }
 
