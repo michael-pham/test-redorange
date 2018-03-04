@@ -153,8 +153,20 @@ angular.module('blocks.utils', ['ui.bootstrap'])
     camelToSnakeCase: function(str) {
       return str.split(/(?=[A-Z])/).join('_').toLowerCase();
     },
-    openModal: function(modalUrl, scope, size, windowClass) {
+    openModal: function(modalUrl, scope, size, windowClass, ckeditorConfig) {
+      if (ckeditorConfig) {
+        scope.ckeditorOptions = {
+          language: ckeditorConfig.language || 'en',
+          allowedContent: true,
+          entities: false,
+          extraPlugins: 'mathjax',
+          mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
+          height: ckeditorConfig.height || 700
+        }
+      } 
+
       if (!size) size = 'lg';
+
       return $modal.open({
         animation: true,
         size: size,

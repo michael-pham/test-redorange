@@ -19,6 +19,9 @@
             <!--   <i class="fa fa&#45;edit"></i> -->
             <!--   Chọn dòng -->
             <!-- </a> -->
+            <a data-ng-click="" class="btn btn-sm btn-custom pull-right">
+              <i class="fa fa-cogs"></i>
+            </a>
             <a data-ng-click="openFileDinhKemBaiVietCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
               Thêm File đính kèm trong bài viết
@@ -60,28 +63,26 @@
               </td>
               <td>
   <select class="form-control" ng-model="fileDinhKemBaiVietParams.bai_viet_id"
-    ng-options=".id as . for  in s">
+    ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets">
     <option value=""></option>
   </select>
 </td>
 <td>
-  <select class="form-control" ng-model="fileDinhKemBaiVietParams.bai_viet_id"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="fileDinhKemBaiVietParams.filtering.ten_file" clear-icon />
+  </div>
 </td>
 <td>
-  <select class="form-control" ng-model="fileDinhKemBaiVietParams.bai_viet_id"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="fileDinhKemBaiVietParams.filtering.file_url" clear-icon />
+  </div>
 </td>
 
-              <td>
+              <!-- <td>
                 <div class="has-feedback">
                   <input class="form-control" type="text" ng-model="fileDinhKemBaiVietParams.filtering.name" clear-icon />
                 </div>
-              </td>
+              </td> -->
 
               <td>
                 <div class="has-feedback">

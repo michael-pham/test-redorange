@@ -278,7 +278,7 @@ def generate_migration_code(model, src_path, dst_path, src_name_portion):
         code += ";\n"
     render(dst_path, start_marker, end_marker, code[:-1])
 
-data_path = BASE_URL + '/models.json'
+data_path = ROOT_URL + 'public/code_factory/angularjs_app/data/models.json'
 import ast
 
 with open(data_path) as fd:

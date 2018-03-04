@@ -7,6 +7,7 @@ use Illuminate\Auth\AuthManager;
 use Infrastructure\Http\Controller;
 use Api\BaiViets\Requests\CreateBaiVietRequest;
 use Api\BaiViets\Services\BaiVietService;
+use Api\BaiViets\Exceptions\BaiVietUnauthorizedException;
 
 class BaiVietController extends Controller
 {
@@ -20,7 +21,9 @@ class BaiVietController extends Controller
 
   public function getAll()
   {
-    // if (!$this->auth->user()->can('read_bai_viet')) return;
+    if (!$this->auth->user()->can('read_bai_viet')) {
+      throw new BaiVietUnauthorizedException("Bạn không có quyền truy xuất danh sách BaiViet");
+    }
 
     $resourceOptions = $this->parseResourceOptions();
 
@@ -32,7 +35,10 @@ class BaiVietController extends Controller
 
   public function getById($baiVietId)
   {
-    if (!$this->auth->user()->can('read_bai_viet')) return;
+    if (!$this->auth->user()->can('read_bai_viet')) {
+      throw new BaiVietUnauthorizedException("Bạn không có quyền truy xuất BaiViet");
+    }
+
     $resourceOptions = $this->parseResourceOptions();
 
     $data = $this->baiVietService->getById($baiVietId, $resourceOptions);
@@ -43,7 +49,9 @@ class BaiVietController extends Controller
 
   public function create(CreateBaiVietRequest $request)
   {
-    if (!$this->auth->user()->can('create_bai_viet')) return;
+    if (!$this->auth->user()->can('create_bai_viet')) {
+      throw new BaiVietUnauthorizedException("Bạn không có quyền tạo mới BaiViet");
+    }
 
     $data = $request->get('baiViet', []);
 
@@ -52,7 +60,9 @@ class BaiVietController extends Controller
 
   public function update($baiVietId, Request $request)
   {
-    if (!$this->auth->user()->can('update_bai_viet')) return;
+    if (!$this->auth->user()->can('update_bai_viet')) {
+      throw new BaiVietUnauthorizedException("Bạn không có quyền cập nhật BaiViet");
+    }
 
     $data = $request->get('baiViet', []);
 
@@ -61,7 +71,9 @@ class BaiVietController extends Controller
 
   public function delete($baiVietId)
   {
-    if (!$this->auth->user()->can('delete_bai_viet')) return;
+    if (!$this->auth->user()->can('delete_bai_viet')) {
+      throw new BaiVietUnauthorizedException("Bạn không có quyền xóa BaiViet");
+    }
 
     return $this->response($this->baiVietService->delete($baiVietId));
   }

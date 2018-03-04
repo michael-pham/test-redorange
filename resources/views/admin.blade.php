@@ -87,6 +87,20 @@
 
     <script src="/app/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script src='/app/bower_components/angular-daterangepicker/js/angular-daterangepicker.min.js'></script>
+    <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+    <script>
+  		// CKEDITOR.replace( 'editor1', {
+  		// 	extraPlugins: 'mathjax',
+  		// 	mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
+  		// 	height: 320
+  		// } );
+      //
+  		// if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
+  		// 	document.getElementById( 'ie8-warning' ).className = 'tip alert';
+  		// }
+  	</script>
+    <script src='/app/bower_components/angular-ckeditor/ckeditor.js'></script>
+    <script src='/app/bower_components/angular-ckeditor/angular-ckeditor.min.js'></script>
     <!-- endinject -->
 
     <!-- inject-assets:js -->
@@ -167,7 +181,6 @@
     <script src="/app/file_manager/config.route.js"></script>
     <script src="/app/file_manager/file_manager.js"></script>
     <script src="/app/file_manager/file_manager_service.js"></script>
-
 <script src='/app/bai_viets/bai_viets.module.js'></script>
 <script src='/app/bai_viets/config.route.js'></script>
 <script src='/app/bai_viets/bai_viets.js'></script>
@@ -192,11 +205,11 @@
 <script src='/app/link_targets/link_target_model.js'></script>
 <script src='/app/link_targets/link_target_service.js'></script>
 
-<script src='/app/chung_loai_bais/chung_loai_bais.module.js'></script>
-<script src='/app/chung_loai_bais/config.route.js'></script>
-<script src='/app/chung_loai_bais/chung_loai_bais.js'></script>
-<script src='/app/chung_loai_bais/chung_loai_bai_model.js'></script>
-<script src='/app/chung_loai_bais/chung_loai_bai_service.js'></script>
+<script src='/app/loai_bai_viets/loai_bai_viets.module.js'></script>
+<script src='/app/loai_bai_viets/config.route.js'></script>
+<script src='/app/loai_bai_viets/loai_bai_viets.js'></script>
+<script src='/app/loai_bai_viets/loai_bai_viet_model.js'></script>
+<script src='/app/loai_bai_viets/loai_bai_viet_service.js'></script>
 
 <script src='/app/tinh_trang_binh_luans/tinh_trang_binh_luans.module.js'></script>
 <script src='/app/tinh_trang_binh_luans/config.route.js'></script>

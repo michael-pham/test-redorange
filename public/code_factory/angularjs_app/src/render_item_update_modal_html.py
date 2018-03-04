@@ -64,6 +64,11 @@ def input(form_model_name, attribute):
     data[INPUT_LABEL_KEY] = attribute.display_name
     data[INPUT_NAME_KEY] = attribute.name
 
+    if attribute.ui_type == "selection_input":
+        data[SELECTION_ITEM_KEY] = to_camel_from_pascal(attribute.dependency_name)
+        data[SELECTION_ITEM_VALUE_KEY] = "id"
+        data[SELECTION_ITEM_DISPLAY_KEY] = attribute.dependency_display_name
+
     (data[INPUT_VALIDATION_NGMESSAGES_KEY], data[INPUT_VALIDATION_KEY]) \
         = _render_ngmessages_html(attribute.display_name, attribute.constraints)
 
@@ -102,6 +107,11 @@ def _render_inputs_html(model):
         if attribute.ui_type == TEXTAREA_INPUT:
             data = input(form_model_name, attribute)
             data[TPL_PATH_KEY] = PATH_BASE + TEXTAREA_INPUT_HTML_TPL
+            inputs.append(data)
+
+        if attribute.ui_type == CKEDITOR:
+            data = input(form_model_name, attribute)
+            data[TPL_PATH_KEY] = PATH_BASE + CKEDITOR_HTML_TPL
             inputs.append(data)
 
         if attribute.ui_type == DATALIST_INPUT:

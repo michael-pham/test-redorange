@@ -6,13 +6,157 @@
     <div class="content">
       <form>
         <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Tên {{item_name_in_camel_case}}</label>
-              <input ng-model="oldBaiViet.name" type="text" class="form-control"></input>
-            </div>
-          </div>
-        </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Tác giả</label>
+      <select name="tac_gia_bai_viet_id" class="form-control" ng-model="oldBaiViet.tac_gia_bai_viet_id"
+                                   ng-options="user.id as user.name for user in users" required >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.tac_gia_bai_viet_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.tac_gia_bai_viet_id.$dirty'>
+          <div ng-message="required">Tác giả là trường bắt buộc</div>
+<div ng-message="number">Tác giả phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Nội dung</label>
+      <div ckeditor="ckeditorOptions" ng-model="oldBaiViet.noi_dung" ready="onReady()"></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Tiêu đề</label>
+      <input name="tieu_de" ng-model="oldBaiViet.tieu_de" type="text"
+        class="form-control" required ></input>
+
+      <div ng-messages="myForm.tieu_de.$error"
+        style="color:maroon" role="alert" ng-if='myForm.tieu_de.$dirty'>
+          <div ng-message="required">Tiêu đề là trường bắt buộc</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Trích yếu</label>
+      <textarea name="trich_yeu" ng-model="oldBaiViet.trich_yeu" type="text"
+        class="form-control" required ></textarea>
+      <div ng-messages="myForm.trich_yeu.$error"
+        style="color:maroon" role="alert" ng-if='myForm.trich_yeu.$dirty'>
+          <div ng-message="required">Trích yếu là trường bắt buộc</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Tình trạng bài viết</label>
+      <select name="tinh_trang_bai_viet_id" class="form-control" ng-model="oldBaiViet.tinh_trang_bai_viet_id"
+                                   ng-options="tinhTrangBaiViet.id as tinhTrangBaiViet.ten for tinhTrangBaiViet in tinhTrangBaiViets" required >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.tinh_trang_bai_viet_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.tinh_trang_bai_viet_id.$dirty'>
+          <div ng-message="required">Tình trạng bài viết là trường bắt buộc</div>
+<div ng-message="number">Tình trạng bài viết phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Tình trạng bình luận</label>
+      <select name="tinh_trang_binh_luan_id" class="form-control" ng-model="oldBaiViet.tinh_trang_binh_luan_id"
+                                   ng-options="tinhTrangBinhLuan.id as tinhTrangBinhLuan.ten for tinhTrangBinhLuan in tinhTrangBinhLuans" required >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.tinh_trang_binh_luan_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.tinh_trang_binh_luan_id.$dirty'>
+          <div ng-message="required">Tình trạng bình luận là trường bắt buộc</div>
+<div ng-message="number">Tình trạng bình luận phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Bài viết cha</label>
+      <select name="bai_viet_cha_id" class="form-control" ng-model="oldBaiViet.bai_viet_cha_id"
+                                   ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets" >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.bai_viet_cha_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.bai_viet_cha_id.$dirty'>
+        <div ng-message="number">Bài viết cha phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Thứ tự trên menu</label>
+      <input name="thu_tu_tren_menu" ng-model="oldBaiViet.thu_tu_tren_menu" type="number"
+        class="form-control" ></input>
+
+      <div ng-messages="myForm.thu_tu_tren_menu.$error"
+        style="color:maroon" role="alert" ng-if='myForm.thu_tu_tren_menu.$dirty'>
+        <div ng-message="number">Thứ tự trên menu phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Loại bài viết</label>
+      <select name="loai_bai_viet_id" class="form-control" ng-model="oldBaiViet.loai_bai_viet_id"
+                                   ng-options="loaiBaiViet.id as loaiBaiViet.ten for loaiBaiViet in loaiBaiViets" required >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.loai_bai_viet_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.loai_bai_viet_id.$dirty'>
+          <div ng-message="required">Loại bài viết là trường bắt buộc</div>
+<div ng-message="number">Loại bài viết phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Số lượng bình lượng</label>
+      <input name="so_luong_binh_luan" ng-model="oldBaiViet.so_luong_binh_luan" type="number"
+        class="form-control" ></input>
+
+      <div ng-messages="myForm.so_luong_binh_luan.$error"
+        style="color:maroon" role="alert" ng-if='myForm.so_luong_binh_luan.$dirty'>
+        <div ng-message="number">Số lượng bình lượng phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="row">
           <div class="col-md-6 col-md-offset-6">
             <button ng-click="updateBaiViet()" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>

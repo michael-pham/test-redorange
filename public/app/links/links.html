@@ -19,6 +19,9 @@
             <!--   <i class="fa fa&#45;edit"></i> -->
             <!--   Chọn dòng -->
             <!-- </a> -->
+            <a data-ng-click="" class="btn btn-sm btn-custom pull-right">
+              <i class="fa fa-cogs"></i>
+            </a>
             <a data-ng-click="openLinkCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
               Thêm Đường dẫn
@@ -30,10 +33,7 @@
         <table class="table table-hover table-striped">
           <thead>
             <th class="col-md-1" ng-show="showSelection"></th>
-            <th class="sortable" ng-click="linkParams.sorting.key = 'link_url'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_url'"><i class="fa fa-fw fa-sort"></i>Đường dẫn</th>
-<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_url}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == 'link_url' && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Đường dẫn</th>
-<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_url}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == 'link_url' && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Đường dẫn</th>
-<th class="sortable" ng-click="linkParams.sorting.key = 'link_name'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_name'"><i class="fa fa-fw fa-sort"></i>Tên link</th>
+            <th class="sortable" ng-click="linkParams.sorting.key = 'link_name'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_name'"><i class="fa fa-fw fa-sort"></i>Tên link</th>
 <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_name}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == 'link_name' && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Tên link</th>
 <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_name}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == 'link_name' && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Tên link</th>
 <th class="sortable" ng-click="linkParams.sorting.key = 'link_image'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_image'"><i class="fa fa-fw fa-sort"></i>Hình ảnh đại diện cho đường dẫn</th>
@@ -42,9 +42,6 @@
 <th class="sortable" ng-click="linkParams.sorting.key = 'link_target_id'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_target_id'"><i class="fa fa-fw fa-sort"></i>ID đối tượng trỏ đến của đường dẫn</th>
 <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_target_id}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == 'link_target_id' && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>ID đối tượng trỏ đến của đường dẫn</th>
 <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_target_id}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == 'link_target_id' && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>ID đối tượng trỏ đến của đường dẫn</th>
-<th class="sortable" ng-click="linkParams.sorting.key = 'link_description'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_description'"><i class="fa fa-fw fa-sort"></i>Mô tả về đường dẫn</th>
-<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_description}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == 'link_description' && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Mô tả về đường dẫn</th>
-<th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_description}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == 'link_description' && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Mô tả về đường dẫn</th>
 <th class="sortable" ng-click="linkParams.sorting.key = 'link_visible'; linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key != 'link_visible'"><i class="fa fa-fw fa-sort"></i>Cho phép hiển thị đường dẫn</th>
 <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_visible}" ng-click="linkParams.sorting.direction='ASC'; getLinks()" ng-show="linkParams.sorting.key == 'link_visible' && linkParams.sorting.direction == 'DESC'"><i class="fa fa-fw fa-sort-down"></i>Cho phép hiển thị đường dẫn</th>
 <th class="sortable" ng-class="{'sortable-active': linkParams.sorting.key == link_visible}" ng-click="linkParams.sorting.direction='DESC'; getLinks()" ng-show="linkParams.sorting.key == 'link_visible' && linkParams.sorting.direction == 'ASC'"><i class="fa fa-fw fa-sort-up"></i>Cho phép hiển thị đường dẫn</th>
@@ -74,59 +71,43 @@
                 <input class="form-control" type="checkbox"/>
               </td>
               <td>
-  <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="linkParams.filtering.link_name" clear-icon />
+  </div>
+</td>
+<td>
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="linkParams.filtering.link_image" clear-icon />
+  </div>
+</td>
+<td>
+  <select class="form-control" ng-model="linkParams.link_target_id"
+    ng-options="linkTarget.id as linkTarget.name for linkTarget in linkTargets">
     <option value=""></option>
   </select>
 </td>
 <td>
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="linkParams.filtering.link_visible" clear-icon />
+  </div>
+</td>
+<td>
   <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
+    ng-options="user.id as user.name for user in users">
     <option value=""></option>
   </select>
 </td>
 <td>
-  <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
-</td>
-<td>
-  <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
-</td>
-<td>
-  <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
-</td>
-<td>
-  <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
-</td>
-<td>
-  <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
-</td>
-<td>
-  <select class="form-control" ng-model="linkParams.link_owner"
-    ng-options=".id as . for  in s">
-    <option value=""></option>
-  </select>
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="linkParams.filtering.link_click_count" clear-icon />
+  </div>
 </td>
 
-              <td>
+              <!-- <td>
                 <div class="has-feedback">
                   <input class="form-control" type="text" ng-model="linkParams.filtering.name" clear-icon />
                 </div>
-              </td>
+              </td> -->
 
               <td>
                 <div class="has-feedback">
@@ -160,11 +141,9 @@
             </tr>
             <tr ng-repeat="(key, link) in links | filter:searchText">
               <td ng-show="showSelection" class="col-md-1"><input class="form-control" type="checkbox"/></td>
-                <td>{{link.link_url}}</td>
-<td>{{link.link_name}}</td>
+                <td>{{link.link_name}}</td>
 <td><a href="/{{link.link_image}}" target="_blank"><img style="width: 3.5rem" src="/app/assets/img/pdf.png"></a></td>
 <td>{{link.link_target_id}}</td>
-<td>{{link.link_description}}</td>
 <td>{{link.link_visible}}</td>
 <td>{{link.link_owner}}</td>
 <td>{{link.link_click_count}}</td>

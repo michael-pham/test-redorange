@@ -100,7 +100,8 @@ if (linkTargetParams.filtering.description) {
         scope: scope,
         size: linkTargetModel.updateModalSize,
         windowClass: linkTargetModel.updateModalWindowClass,
-        dependencies: linkTargetModel.meta.many_to_one
+        dependencies: linkTargetModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemUpdateModal(parameters);
@@ -132,7 +133,8 @@ if (linkTargetParams.filtering.description) {
         scope: scope,
         size: linkTargetModel.createModalSize,
         windowClass: linkTargetModel.createModalWindowClass,
-        dependencies: linkTargetModel.meta.many_to_one
+        dependencies: linkTargetModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemCreateModal(parameters);

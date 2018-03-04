@@ -100,7 +100,8 @@ if (tinhTrangBinhLuanParams.filtering.mo_ta) {
         scope: scope,
         size: tinhTrangBinhLuanModel.updateModalSize,
         windowClass: tinhTrangBinhLuanModel.updateModalWindowClass,
-        dependencies: tinhTrangBinhLuanModel.meta.many_to_one
+        dependencies: tinhTrangBinhLuanModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemUpdateModal(parameters);
@@ -132,7 +133,8 @@ if (tinhTrangBinhLuanParams.filtering.mo_ta) {
         scope: scope,
         size: tinhTrangBinhLuanModel.createModalSize,
         windowClass: tinhTrangBinhLuanModel.createModalWindowClass,
-        dependencies: tinhTrangBinhLuanModel.meta.many_to_one
+        dependencies: tinhTrangBinhLuanModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemCreateModal(parameters);

@@ -12,6 +12,8 @@ def render_items_html(model):
 
     data[TABLE_SORTABLE_THS_KEY] = []
     for attribute in model.attributes:
+        if attribute.shown_on_table == "false":
+            continue
         subdata = dict()
         subdata[TPL_PATH_KEY] = PATH_BASE + SORTABLE_TH_HTML_TPL
         subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
@@ -22,6 +24,8 @@ def render_items_html(model):
 
     data[TABLE_TDS_KEY] = []
     for attribute in model.attributes:
+        if attribute.shown_on_table == "false":
+            continue
         subdata = dict()
         if attribute.ui_display_type == PLAIN:
             subdata[TPL_PATH_KEY] = PATH_BASE + PLAIN_TD_HTML_TPL
@@ -47,24 +51,27 @@ def render_items_html(model):
 
     data[TABLE_SEARCH_TDS_KEY] = []
     for attribute in model.attributes:
+        if attribute.shown_on_table == "false":
+            continue
         subdata = dict()
-        for attribute in model.attributes:
-            if attribute.ui_type == "date_input":
-                subdata[TPL_PATH_KEY] = PATH_BASE + DATE_SEARCH_TD_HTML_TPL
-                subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
-                subdata[ATTRIBUTE_NAME_KEY] = attribute.name
+        # for attribute in model.attributes:
+        if attribute.ui_type == "date_input":
+            subdata[TPL_PATH_KEY] = PATH_BASE + DATE_SEARCH_TD_HTML_TPL
+            subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
+            subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
-            if attribute.ui_type == "selection_input" or attribute.ui_type == "datalist_input":
-                subdata[TPL_PATH_KEY] = PATH_BASE + SELECTION_SEARCH_TD_HTML_TPL
-                subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
-                subdata[ATTRIBUTE_NAME_KEY] = attribute.name
-                subdata[DEPENDENCY_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(attribute.dependency_name)
-                subdata[DEPENDENCY_DISPLAY_ATTRIBUTE_KEY] = attribute.dependency_display_name
+        elif attribute.ui_type == "selection_input" or attribute.ui_type == "datalist_input":
+            subdata[TPL_PATH_KEY] = PATH_BASE + SELECTION_SEARCH_TD_HTML_TPL
+            subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
+            subdata[ATTRIBUTE_NAME_KEY] = attribute.name
+            subdata[DEPENDENCY_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(attribute.dependency_name)
+            subdata[DEPENDENCY_DISPLAY_ATTRIBUTE_KEY] = attribute.dependency_display_name
 
-            if attribute.ui_type == "plain_input":
-                subdata[TPL_PATH_KEY] = PATH_BASE + PLAIN_SEARCH_TD_HTML_TPL
-                subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
-                subdata[ATTRIBUTE_NAME_KEY] = model.attribute.name
+        # if attribute.ui_type == "text_input" or attribute.ui_type == "numeric_input" or attribute.ui file_input:
+        else:
+            subdata[TPL_PATH_KEY] = PATH_BASE + PLAIN_SEARCH_TD_HTML_TPL
+            subdata[ITEM_NAME_IN_CAMEL_CASE_KEY] = to_camel_from_pascal(model.name)
+            subdata[ATTRIBUTE_NAME_KEY] = attribute.name
 
         data[TABLE_SEARCH_TDS_KEY].append(subdata)
 

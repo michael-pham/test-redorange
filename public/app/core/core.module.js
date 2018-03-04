@@ -7,7 +7,7 @@
          */
         'ngAnimate', 'ngRoute', 'ngSanitize', 'ngStorage', 'ngScrollbars',
           'ngFileSaver', 'ngFileUpload',  'oitozero.ngSweetAlert', 'ui.bootstrap',
-            '720kb.datepicker', 'daterangepicker',
+            '720kb.datepicker', 'daterangepicker', 'ckeditor',
         /*
          * Our reusable cross app code modules
          */

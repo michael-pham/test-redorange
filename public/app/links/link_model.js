@@ -15,7 +15,7 @@
         domestic: [
           "link_url","link_name","link_image","link_target_id","link_description","link_visible","link_owner","link_click_count",
         ],
-        many_to_one: [],
+        many_to_one: [{name: "linkTargets", url: "http://localhost:8000/link_targets" }, {name: "users", url: "http://localhost:8000/users" }, ],
         one_to_many: []
       },
       includes: [],

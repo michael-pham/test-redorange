@@ -9,8 +9,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>ID bài viết</label>
-      <select name="bai_viet_id" class="form-control" ng-model="newBinhLuan.bai_viet_id" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+      <select name="bai_viet_id" class="form-control" ng-model="newBinhLuan.bai_viet_id"
+                                   ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets" required >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.bai_viet_id.$error"
@@ -26,8 +26,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>ID người bình luận</label>
-      <select name="nguoi_binh_luan_id" class="form-control" ng-model="newBinhLuan.nguoi_binh_luan_id" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+      <select name="nguoi_binh_luan_id" class="form-control" ng-model="newBinhLuan.nguoi_binh_luan_id"
+                                   ng-options="user.id as user.name for user in users" required >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.nguoi_binh_luan_id.$error"

@@ -15,7 +15,7 @@
         domestic: [
           {{domestic_attributes}}
         ],
-        many_to_one: [],
+        many_to_one: [{{item_many_to_one}}],
         one_to_many: []
       },
       includes: [],

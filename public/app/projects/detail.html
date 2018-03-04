@@ -120,6 +120,7 @@
                     <option value="datalist_input">
                     <option value="file_input">
                     <option value="textarea_input">
+                    <option value="ckeditor">
                     <option value="numeric_input">
                     <option value="selection_input">
                     <option value="date_input">
@@ -148,6 +149,15 @@
                 <div class="form-group col-md-4">
                   <label>Pattern</label>
                   <input ng-model="attribute.constraints.pattern" class="form-control" placeholder="Pattern"></input>
+                </div>
+                <div class="form-group col-md-2">
+                  <p>
+                    On table
+                  </p>
+                  <label class="switch">
+                    <input type="checkbox" ng-model="attribute.shown_on_table">
+                    <span class="slider"></span>
+                  </label>
                 </div>
                 <div class="form-group col-md-12">
                   <label>Pattern message</label>

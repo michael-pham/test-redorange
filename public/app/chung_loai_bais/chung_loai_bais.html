@@ -19,6 +19,9 @@
             <!--   <i class="fa fa&#45;edit"></i> -->
             <!--   Chọn dòng -->
             <!-- </a> -->
+            <a data-ng-click="" class="btn btn-sm btn-custom pull-right">
+              <i class="fa fa-cogs"></i>
+            </a>
             <a data-ng-click="openChungLoaiBaiCreateModal()" class="btn btn-sm btn-custom pull-right">
               <i class="fa fa-plus"></i>
               Thêm Chủng loại bài viết
@@ -55,12 +58,22 @@
               <td ng-show="showSelection" class="col-md-1">
                 <input class="form-control" type="checkbox"/>
               </td>
-              
               <td>
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="chungLoaiBaiParams.filtering.ten" clear-icon />
+  </div>
+</td>
+<td>
+  <div class="has-feedback">
+    <input class="form-control" type="text" ng-model="chungLoaiBaiParams.filtering.mo_ta" clear-icon />
+  </div>
+</td>
+
+              <!-- <td>
                 <div class="has-feedback">
                   <input class="form-control" type="text" ng-model="chungLoaiBaiParams.filtering.name" clear-icon />
                 </div>
-              </td>
+              </td> -->
 
               <td>
                 <div class="has-feedback">

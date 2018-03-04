@@ -1,6 +1,7 @@
 NAME_KEY = 'name'
 DISPLAY_NAME_KEY = 'display_name'
 ATTRIBUTES_KEY = 'attributes'
+SHOWN_ON_TABLE_KEY = 'shown_on_table'
 CONSTRAINTS_KEY = 'constraints'
 MAX_KEY = 'max'
 MIN_KEY = 'min'

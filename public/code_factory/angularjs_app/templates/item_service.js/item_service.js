@@ -94,7 +94,8 @@
         scope: scope,
         size: {{item_name_in_camel_case}}Model.updateModalSize,
         windowClass: {{item_name_in_camel_case}}Model.updateModalWindowClass,
-        dependencies: {{item_name_in_camel_case}}Model.meta.many_to_one
+        dependencies: {{item_name_in_camel_case}}Model.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemUpdateModal(parameters);
@@ -126,7 +127,8 @@
         scope: scope,
         size: {{item_name_in_camel_case}}Model.createModalSize,
         windowClass: {{item_name_in_camel_case}}Model.createModalWindowClass,
-        dependencies: {{item_name_in_camel_case}}Model.meta.many_to_one
+        dependencies: {{item_name_in_camel_case}}Model.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemCreateModal(parameters);

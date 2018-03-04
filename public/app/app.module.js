@@ -31,7 +31,7 @@
 "app.fileDinhKemBaiViets",
 "app.links",
 "app.linkTargets",
-"app.chungLoaiBais",
+"app.loaiBaiViets",
 "app.tinhTrangBinhLuans",
 "app.tinhTrangBaiViets",
 "app.binhLuans",

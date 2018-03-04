@@ -7,19 +7,23 @@ use Illuminate\Auth\AuthManager;
 use Infrastructure\Http\Controller;
 use Api\BinhLuans\Requests\CreateBinhLuanRequest;
 use Api\BinhLuans\Services\BinhLuanService;
+use Api\BinhLuans\Exceptions\BinhLuanUnauthorizedException;
 
 class BinhLuanController extends Controller
 {
   private $binhLuanService;
 
-  public function __construct(BinhLuanService $binhLuanService)
+  public function __construct(BinhLuanService $binhLuanService, AuthManager $auth)
   {
+    $this->auth = $auth;
     $this->binhLuanService = $binhLuanService;
   }
 
   public function getAll()
   {
-    if (!$this->auth->user()->can('read_binh_luan')) return;
+    if (!$this->auth->user()->can('read_binh_luan')) {
+      throw new BinhLuanUnauthorizedException("Bạn không có quyền truy xuất danh sách BinhLuan");
+    }
 
     $resourceOptions = $this->parseResourceOptions();
 
@@ -31,7 +35,10 @@ class BinhLuanController extends Controller
 
   public function getById($binhLuanId)
   {
-    if (!$this->auth->user()->can('read_binh_luan')) return;
+    if (!$this->auth->user()->can('read_binh_luan')) {
+      throw new BinhLuanUnauthorizedException("Bạn không có quyền truy xuất BinhLuan");
+    }
+
     $resourceOptions = $this->parseResourceOptions();
 
     $data = $this->binhLuanService->getById($binhLuanId, $resourceOptions);
@@ -42,7 +49,9 @@ class BinhLuanController extends Controller
 
   public function create(CreateBinhLuanRequest $request)
   {
-    if (!$this->auth->user()->can('create_binh_luan')) return;
+    if (!$this->auth->user()->can('create_binh_luan')) {
+      throw new BinhLuanUnauthorizedException("Bạn không có quyền tạo mới BinhLuan");
+    }
 
     $data = $request->get('binhLuan', []);
 
@@ -51,7 +60,9 @@ class BinhLuanController extends Controller
 
   public function update($binhLuanId, Request $request)
   {
-    if (!$this->auth->user()->can('update_binh_luan')) return;
+    if (!$this->auth->user()->can('update_binh_luan')) {
+      throw new BinhLuanUnauthorizedException("Bạn không có quyền cập nhật BinhLuan");
+    }
 
     $data = $request->get('binhLuan', []);
 
@@ -60,7 +71,9 @@ class BinhLuanController extends Controller
 
   public function delete($binhLuanId)
   {
-    if (!$this->auth->user()->can('delete_binh_luan')) return;
+    if (!$this->auth->user()->can('delete_binh_luan')) {
+      throw new BinhLuanUnauthorizedException("Bạn không có quyền xóa BinhLuan");
+    }
 
     return $this->response($this->binhLuanService->delete($binhLuanId));
   }

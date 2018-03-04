@@ -25,8 +25,7 @@
 
     function prepareCreateData(modelMeta, modelData) {
       var modelName = modelMeta.name;
-      var retVal = {name: modelName, url: modelMeta.url,
-        data: {}};
+      var retVal = {name: modelName, url: modelMeta.url, data: {}};
       retVal.data[modelName] = {};
 
       angular.forEach(modelMeta.domestic, function(attribute) {
@@ -83,7 +82,7 @@
     }
 
     function getSingle(itemMeta, itemId, result) {
-      var includes = itemMeta.many_to_one;
+      var includes = [];
       angular.forEach(itemMeta.one_to_many, function(item, key) {
         includes.push(item.name + "s");
       });
@@ -184,6 +183,7 @@
       var scope = parameters.scope;
       var windowClass = parameters.windowClass;
       var dependencies = parameters.dependencies;
+      var ckeditorConfig = parameters.ckeditorConfig;
 
       var promises = [];
       angular.forEach(dependencies, function(dependency) {
@@ -220,7 +220,7 @@
 
       $q.all(promises).then(function() {
         scope[createModalName] =
-          utils.openModal(modalUrl, scope, size, windowClass);
+          utils.openModal(modalUrl, scope, size, windowClass, ckeditorConfig);
       }).catch(function()  {
         logger.error(openModalErrorMessage);
       });
@@ -237,9 +237,11 @@
       var scope = parameters.scope;
       var windowClass = parameters.windowClass;
       var dependencies = parameters.dependencies;
+      var ckeditorConfig = parameters.ckeditorConfig;
 
       var promises = [];
       angular.forEach(dependencies, function(dependency) {
+        console.log(dependency);
         promises.push(
           $http.get(dependency.url)
           .then(function(response) {
@@ -273,9 +275,9 @@
 
       $q.all(promises).then(function() {
         getItem(itemMeta, itemId).then(function(item) {
-          scope[itemName] = item; 
+          scope[itemName] = item;
           scope[updateModalName] =
-            utils.openModal(modalUrl, scope, size, windowClass);
+            utils.openModal(modalUrl, scope, size, windowClass, ckeditorConfig);
         }).catch(function(response) {
           logger.error(openModalErrorMessage);
         });

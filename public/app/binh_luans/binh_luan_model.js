@@ -15,7 +15,7 @@
         domestic: [
           "bai_viet_id","nguoi_binh_luan_id","ten_nguoi_binh_luan","url_nguoi_binh_luan","ip_nguoi_binh_luan","noi_dung_binh_luan","binh_luan_cha_id","binh_luan_duoc_chap_nhan",
         ],
-        many_to_one: [],
+        many_to_one: [{name: "baiViets", url: "http://localhost:8000/bai_viets" }, {name: "users", url: "http://localhost:8000/users" }, {name: "binhLuans", url: "http://localhost:8000/binh_luans" }, ],
         one_to_many: []
       },
       includes: [],

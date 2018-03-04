@@ -118,7 +118,8 @@ if (linkParams.filtering.link_click_count) {
         scope: scope,
         size: linkModel.updateModalSize,
         windowClass: linkModel.updateModalWindowClass,
-        dependencies: linkModel.meta.many_to_one
+        dependencies: linkModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemUpdateModal(parameters);
@@ -150,7 +151,8 @@ if (linkParams.filtering.link_click_count) {
         scope: scope,
         size: linkModel.createModalSize,
         windowClass: linkModel.createModalWindowClass,
-        dependencies: linkModel.meta.many_to_one
+        dependencies: linkModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemCreateModal(parameters);

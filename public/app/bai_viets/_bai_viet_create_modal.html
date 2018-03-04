@@ -8,15 +8,15 @@
         <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label>ID tác giả bài viết</label>
-      <select name="tac_gia_bai_viet_id" class="form-control" ng-model="newBaiViet.tac_gia_bai_viet_id" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+      <label>Tác giả</label>
+      <select name="tac_gia_bai_viet_id" class="form-control" ng-model="newBaiViet.tac_gia_bai_viet_id"
+                                   ng-options="user.id as user.name for user in users" required >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.tac_gia_bai_viet_id.$error"
         style="color:maroon" role="alert" ng-if='myForm.tac_gia_bai_viet_id.$dirty'>
-          <div ng-message="required">ID tác giả bài viết là trường bắt buộc</div>
-<div ng-message="number">ID tác giả bài viết phải là một số hợp lệ</div>
+          <div ng-message="required">Tác giả là trường bắt buộc</div>
+<div ng-message="number">Tác giả phải là một số hợp lệ</div>
 
       </div>
     </div>
@@ -26,13 +26,7 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>Nội dung</label>
-      <textarea name="noi_dung" ng-model="newBaiViet.noi_dung" type="text"
-        class="form-control" required ></textarea>
-      <div ng-messages="myForm.noi_dung.$error"
-        style="color:maroon" role="alert" ng-if='myForm.noi_dung.$dirty'>
-          <div ng-message="required">Nội dung là trường bắt buộc</div>
-
-      </div>
+      <div ckeditor="ckeditorOptions" ng-model="newBaiViet.noi_dung" ready="onReady()"></div>
     </div>
   </div>
 </div>
@@ -69,8 +63,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>Tình trạng bài viết</label>
-      <select name="tinh_trang_bai_viet_id" class="form-control" ng-model="newBaiViet.tinh_trang_bai_viet_id" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+      <select name="tinh_trang_bai_viet_id" class="form-control" ng-model="newBaiViet.tinh_trang_bai_viet_id"
+                                   ng-options="tinhTrangBaiViet.id as tinhTrangBaiViet.ten for tinhTrangBaiViet in tinhTrangBaiViets" required >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.tinh_trang_bai_viet_id.$error"
@@ -86,8 +80,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>Tình trạng bình luận</label>
-      <select name="tinh_trang_binh_luan_id" class="form-control" ng-model="newBaiViet.tinh_trang_binh_luan_id" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" required >
+      <select name="tinh_trang_binh_luan_id" class="form-control" ng-model="newBaiViet.tinh_trang_binh_luan_id"
+                                   ng-options="tinhTrangBinhLuan.id as tinhTrangBinhLuan.ten for tinhTrangBinhLuan in tinhTrangBinhLuans" required >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.tinh_trang_binh_luan_id.$error"
@@ -102,14 +96,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label>ID bài viết cha</label>
-      <select name="bai_viet_cha_id" class="form-control" ng-model="newBaiViet.bai_viet_cha_id" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" >
+      <label>Bài viết cha</label>
+      <select name="bai_viet_cha_id" class="form-control" ng-model="newBaiViet.bai_viet_cha_id"
+                                   ng-options="baiViet.id as baiViet.tieu_de for baiViet in baiViets" >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.bai_viet_cha_id.$error"
         style="color:maroon" role="alert" ng-if='myForm.bai_viet_cha_id.$dirty'>
-        <div ng-message="number">ID bài viết cha phải là một số hợp lệ</div>
+        <div ng-message="number">Bài viết cha phải là một số hợp lệ</div>
 
       </div>
     </div>
@@ -133,14 +127,15 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label>Chủng loại bài viết</label>
-      <input name="chung_loai_bai_viet_id" ng-model="newBaiViet.chung_loai_bai_viet_id" type="number"
-        class="form-control" required ></input>
-
-      <div ng-messages="myForm.chung_loai_bai_viet_id.$error"
-        style="color:maroon" role="alert" ng-if='myForm.chung_loai_bai_viet_id.$dirty'>
-          <div ng-message="required">Chủng loại bài viết là trường bắt buộc</div>
-<div ng-message="number">Chủng loại bài viết phải là một số hợp lệ</div>
+      <label>Loại bài viết</label>
+      <select name="loai_bai_viet_id" class="form-control" ng-model="newBaiViet.loai_bai_viet_id"
+                                   ng-options="loaiBaiViet.id as loaiBaiViet.ten for loaiBaiViet in loaiBaiViets" required >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.loai_bai_viet_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.loai_bai_viet_id.$dirty'>
+          <div ng-message="required">Loại bài viết là trường bắt buộc</div>
+<div ng-message="number">Loại bài viết phải là một số hợp lệ</div>
 
       </div>
     </div>

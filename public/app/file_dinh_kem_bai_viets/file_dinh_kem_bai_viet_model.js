@@ -15,7 +15,7 @@
         domestic: [
           "bai_viet_id","ten_file","file_url",
         ],
-        many_to_one: [],
+        many_to_one: [{name: "baiViets", url: "http://localhost:8000/bai_viets" }, ],
         one_to_many: []
       },
       includes: [],

@@ -13,9 +13,9 @@
         name: 'baiViet',
         url: '/bai_viets',
         domestic: [
-          "tac_gia_bai_viet_id","noi_dung","tieu_de","trich_yeu","tinh_trang_bai_viet_id","tinh_trang_binh_luan_id","bai_viet_cha_id","thu_tu_tren_menu","chung_loai_bai_viet_id","so_luong_binh_luan","hinh_anh_dai_dien_url","hinh_anh_dai_dien_thumbnail_url",
+          "tac_gia_bai_viet_id","noi_dung","tieu_de","trich_yeu","tinh_trang_bai_viet_id","tinh_trang_binh_luan_id","bai_viet_cha_id","thu_tu_tren_menu","loai_bai_viet_id","so_luong_binh_luan","hinh_anh_dai_dien_url","hinh_anh_dai_dien_thumbnail_url",
         ],
-        many_to_one: [],
+        many_to_one: [{name: "users", url: "http://localhost:8000/users" }, {name: "tinhTrangBaiViets", url: "http://localhost:8000/tinh_trang_bai_viets" }, {name: "tinhTrangBinhLuans", url: "http://localhost:8000/tinh_trang_binh_luans" }, {name: "baiViets", url: "http://localhost:8000/bai_viets" }, {name: "loaiBaiViets", url: "http://localhost:8000/loai_bai_viets" }, ],
         one_to_many: []
       },
       includes: [],
@@ -24,7 +24,7 @@
       updateModalName: 'baiVietUpdateModal',
       updateModalSize: 'md',
       updateModalItemName: 'oldBaiViet',
-      updateModalWindowClass: "",
+      updateModalWindowClass: "bai-viet-modal",
       updateItemSuccessMessage: "Cập nhật thành công Bài viết",
       updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật Bài viết",
 
@@ -33,7 +33,7 @@
       createModalName: 'baiVietCreateModal',
       createModalSize: 'md',
       createModalItemName: 'newBaiViet',
-      createModalWindowClass: "",
+      createModalWindowClass: "bai-viet-modal",
       createItemErrorMessage: "Lỗi xảy ra trong quá trình tạo mới Bài viết",
       createItemSuccessMessage: "Tạo baiViet mới thành công",
 

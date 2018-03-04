@@ -106,6 +106,7 @@
         dependency_name: "",
         dependency_display_name: "",
         hidden: "",
+        shown_on_table: "",
         constraints: {
           max: "255",
           min: "",
@@ -126,6 +127,7 @@
         type: "text",
         ui_type: "textarea_input",
         hidden: "",
+        shown_on_table: "",
         constraints: {
           max: "500",
           min: "",
@@ -342,6 +344,7 @@
         dependency_name: "",
         dependency_display_name: "",
         hidden: "",
+        shown_on_table: "",
         constraints: {
           max: "",
           min: "",

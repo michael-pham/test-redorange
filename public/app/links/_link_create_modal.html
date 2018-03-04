@@ -40,8 +40,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>ID đối tượng trỏ đến của đường dẫn</label>
-      <select name="link_target_id" class="form-control" ng-model="newLink.link_target_id" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" >
+      <select name="link_target_id" class="form-control" ng-model="newLink.link_target_id"
+                                   ng-options="linkTarget.id as linkTarget.name for linkTarget in linkTargets" >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.link_target_id.$error"
@@ -79,8 +79,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>Người sở hữu đường dẫn</label>
-      <select name="link_owner" class="form-control" ng-model="newLink.link_owner" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" >
+      <select name="link_owner" class="form-control" ng-model="newLink.link_owner"
+                                   ng-options="user.id as user.name for user in users" >
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.link_owner.$error"

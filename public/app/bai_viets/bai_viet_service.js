@@ -30,7 +30,7 @@
         filtering: {
           created_at_range: {startDate: "", endDate: ""},
           updated_at_range: {startDate: "", endDate: ""},
-          tac_gia_bai_viet_id: "",noi_dung: "",tieu_de: "",trich_yeu: "",tinh_trang_bai_viet_id: "",tinh_trang_binh_luan_id: "",bai_viet_cha_id: "",thu_tu_tren_menu: "",chung_loai_bai_viet_id: "",so_luong_binh_luan: "",hinh_anh_dai_dien_url: "",hinh_anh_dai_dien_thumbnail_url: "",
+          tac_gia_bai_viet_id: "",noi_dung: "",tieu_de: "",trich_yeu: "",tinh_trang_bai_viet_id: "",tinh_trang_binh_luan_id: "",bai_viet_cha_id: "",thu_tu_tren_menu: "",loai_bai_viet_id: "",so_luong_binh_luan: "",hinh_anh_dai_dien_url: "",hinh_anh_dai_dien_thumbnail_url: "",
         }
       }
     }
@@ -88,8 +88,8 @@ if (baiVietParams.filtering.bai_viet_cha_id) {
 if (baiVietParams.filtering.thu_tu_tren_menu) {
   filteringParams.push(["thu_tu_tren_menu", baiVietParams.filtering.thu_tu_tren_menu, "ct"]);
 }
-if (baiVietParams.filtering.chung_loai_bai_viet_id) {
-  filteringParams.push(["chung_loai_bai_viet_id", baiVietParams.filtering.chung_loai_bai_viet_id, "ct"]);
+if (baiVietParams.filtering.loai_bai_viet_id) {
+  filteringParams.push(["loai_bai_viet_id", baiVietParams.filtering.loai_bai_viet_id, "eq"]);
 }
 if (baiVietParams.filtering.so_luong_binh_luan) {
   filteringParams.push(["so_luong_binh_luan", baiVietParams.filtering.so_luong_binh_luan, "ct"]);
@@ -130,7 +130,8 @@ if (baiVietParams.filtering.hinh_anh_dai_dien_thumbnail_url) {
         scope: scope,
         size: baiVietModel.updateModalSize,
         windowClass: baiVietModel.updateModalWindowClass,
-        dependencies: baiVietModel.meta.many_to_one
+        dependencies: baiVietModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemUpdateModal(parameters);
@@ -162,7 +163,8 @@ if (baiVietParams.filtering.hinh_anh_dai_dien_thumbnail_url) {
         scope: scope,
         size: baiVietModel.createModalSize,
         windowClass: baiVietModel.createModalWindowClass,
-        dependencies: baiVietModel.meta.many_to_one
+        dependencies: baiVietModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemCreateModal(parameters);

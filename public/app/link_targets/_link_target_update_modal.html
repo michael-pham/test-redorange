@@ -6,13 +6,35 @@
     <div class="content">
       <form>
         <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Tên {{item_name_in_camel_case}}</label>
-              <input ng-model="oldLinkTarget.name" type="text" class="form-control"></input>
-            </div>
-          </div>
-        </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Tên</label>
+      <input name="name" ng-model="oldLinkTarget.name" type="text"
+        class="form-control" ng-maxlength='255' required ></input>
+
+      <div ng-messages="myForm.name.$error"
+        style="color:maroon" role="alert" ng-if='myForm.name.$dirty'>
+        <div ng-message="maxlength">Tên không được quá 255 ký tự</div>
+  <div ng-message="required">Tên là trường bắt buộc</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Mô tả</label>
+      <textarea name="description" ng-model="oldLinkTarget.description" type="text"
+        class="form-control" ></textarea>
+      <div ng-messages="myForm.description.$error"
+        style="color:maroon" role="alert" ng-if='myForm.description.$dirty'>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="row">
           <div class="col-md-6 col-md-offset-6">
             <button ng-click="updateLinkTarget()" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>

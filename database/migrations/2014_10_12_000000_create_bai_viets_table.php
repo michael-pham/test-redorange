@@ -23,10 +23,10 @@ $table->bigInteger('tinh_trang_bai_viet_id');
 $table->bigInteger('tinh_trang_binh_luan_id');
 $table->bigInteger('bai_viet_cha_id')->nullable();;
 $table->integer('thu_tu_tren_menu')->nullable();;
-$table->bigInteger('chung_loai_bai_viet_id');
+$table->bigInteger('loai_bai_viet_id');
 $table->bigInteger('so_luong_binh_luan')->nullable();;
-$table->string('hinh_anh_dai_dien_url')->nullable();;
-$table->string('hinh_anh_dai_dien_thumbnail_url')->nullable();;
+$table->text('hinh_anh_dai_dien_url')->nullable();;
+$table->text('hinh_anh_dai_dien_thumbnail_url')->nullable();;
             // end_migration
             $table->timestamps();
         });

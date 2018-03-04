@@ -16,10 +16,10 @@ class CreateLinkRequest extends ApiRequest
       return [
 // start_rules
 'link' => 'array|required',
-'link.link_url' => 'required|string|max:255',
+'link.link_url' => 'required|string',
 'link.link_name' => 'required|string|max:255',
-'link.link_image' => 'string|max:255',
-'link.link_target_id' => 'required|numeric',
+'link.link_image' => 'string',
+'link.link_target_id' => 'numeric',
 'link.link_description' => 'nullable|string|max:255',
 'link.link_visible' => 'required',
 'link.link_owner' => 'nullable',
@@ -33,11 +33,8 @@ class CreateLinkRequest extends ApiRequest
       return [
         // start_messages
         'link.link_url.required' => 'Đường dẫn là trường bắt buộc.',
-        'link.link_url.max' => 'Đường dẫn không được vượt quá 255.',
         'link.link_name.required' => 'Tên link là trường bắt buộc.',
         'link.link_name.max' => 'Tên link không được vượt quá 255.',
-        'link.link_image.max' => 'Hình ảnh đại diện cho đường dẫn không được vượt quá 255.',
-        'link.link_target_id.required' => 'ID đối tượng trỏ đến của đường dẫn là trường bắt buộc.',
         'link.link_target_id.numeric' => 'ID đối tượng trỏ đến của đường dẫn phải là một số',
         'link.link_description.max' => 'Mô tả về đường dẫn không được vượt quá 255.',
         'link.link_visible.required' => 'Cho phép hiển thị đường dẫn là trường bắt buộc.',

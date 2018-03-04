@@ -6,13 +6,36 @@
     <div class="content">
       <form>
         <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Tên {{item_name_in_camel_case}}</label>
-              <input ng-model="oldTinhTrangBaiViet.name" type="text" class="form-control"></input>
-            </div>
-          </div>
-        </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Tên</label>
+      <input name="ten" ng-model="oldTinhTrangBaiViet.ten" type="text"
+        class="form-control" ng-maxlength='255' required ></input>
+
+      <div ng-messages="myForm.ten.$error"
+        style="color:maroon" role="alert" ng-if='myForm.ten.$dirty'>
+        <div ng-message="maxlength">Tên không được quá 255 ký tự</div>
+  <div ng-message="required">Tên là trường bắt buộc</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Mô tả</label>
+      <textarea name="mo_ta" ng-model="oldTinhTrangBaiViet.mo_ta" type="text"
+        class="form-control" ng-maxlength='500' ></textarea>
+      <div ng-messages="myForm.mo_ta.$error"
+        style="color:maroon" role="alert" ng-if='myForm.mo_ta.$dirty'>
+        <div ng-message="maxlength">Mô tả không được quá 500 ký tự</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="row">
           <div class="col-md-6 col-md-offset-6">
             <button ng-click="updateTinhTrangBaiViet()" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>

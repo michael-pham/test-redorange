@@ -15,9 +15,9 @@ class CreateLinksTable extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->increments('id');
             // start_migration
-            $table->string('link_url');
+            $table->text('link_url');
 $table->string('link_name');
-$table->string('link_image');
+$table->text('link_image');
 $table->bigInteger('link_target_id');
 $table->string('link_description')->nullable();;
 $table->boolean('link_visible');

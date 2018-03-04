@@ -103,7 +103,8 @@ if (fileDinhKemBaiVietParams.filtering.file_url) {
         scope: scope,
         size: fileDinhKemBaiVietModel.updateModalSize,
         windowClass: fileDinhKemBaiVietModel.updateModalWindowClass,
-        dependencies: fileDinhKemBaiVietModel.meta.many_to_one
+        dependencies: fileDinhKemBaiVietModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemUpdateModal(parameters);
@@ -135,7 +136,8 @@ if (fileDinhKemBaiVietParams.filtering.file_url) {
         scope: scope,
         size: fileDinhKemBaiVietModel.createModalSize,
         windowClass: fileDinhKemBaiVietModel.createModalWindowClass,
-        dependencies: fileDinhKemBaiVietModel.meta.many_to_one
+        dependencies: fileDinhKemBaiVietModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemCreateModal(parameters);

@@ -6,13 +6,106 @@
     <div class="content">
       <form>
         <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Tên {{item_name_in_camel_case}}</label>
-              <input ng-model="oldLink.name" type="text" class="form-control"></input>
-            </div>
-          </div>
-        </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Đường dẫn</label>
+      <input name="link_url" ng-model="oldLink.link_url" type="text"
+        class="form-control" required ></input>
+
+      <div ng-messages="myForm.link_url.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_url.$dirty'>
+          <div ng-message="required">Đường dẫn là trường bắt buộc</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Tên link</label>
+      <input name="link_name" ng-model="oldLink.link_name" type="text"
+        class="form-control" ng-maxlength='255' required ></input>
+
+      <div ng-messages="myForm.link_name.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_name.$dirty'>
+        <div ng-message="maxlength">Tên link không được quá 255 ký tự</div>
+  <div ng-message="required">Tên link là trường bắt buộc</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>ID đối tượng trỏ đến của đường dẫn</label>
+      <select name="link_target_id" class="form-control" ng-model="oldLink.link_target_id"
+                                   ng-options="linkTarget.id as linkTarget.name for linkTarget in linkTargets" >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.link_target_id.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_target_id.$dirty'>
+        <div ng-message="number">ID đối tượng trỏ đến của đường dẫn phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Mô tả về đường dẫn</label>
+      <textarea name="link_description" ng-model="oldLink.link_description" type="text"
+        class="form-control" ng-maxlength='255' ></textarea>
+      <div ng-messages="myForm.link_description.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_description.$dirty'>
+        <div ng-message="maxlength">Mô tả về đường dẫn không được quá 255 ký tự</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div ng-repeat="item in link_visible">
+        <input type="radio" ng-model="item.is_selected"> {{item.display_name}}<br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Người sở hữu đường dẫn</label>
+      <select name="link_owner" class="form-control" ng-model="oldLink.link_owner"
+                                   ng-options="user.id as user.name for user in users" >
+                                   <option value=""></option>
+      </select>
+      <div ng-messages="myForm.link_owner.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_owner.$dirty'>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Số click vào đường dẫn</label>
+      <input name="link_click_count" ng-model="oldLink.link_click_count" type="number"
+        class="form-control" ></input>
+
+      <div ng-messages="myForm.link_click_count.$error"
+        style="color:maroon" role="alert" ng-if='myForm.link_click_count.$dirty'>
+        <div ng-message="number">Số click vào đường dẫn phải là một số hợp lệ</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="row">
           <div class="col-md-6 col-md-offset-6">
             <button ng-click="updateLink()" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>

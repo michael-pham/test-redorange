@@ -5,14 +5,7 @@
     </div>
     <div class="content">
       <form>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Tên {{item_name_in_camel_case}}</label>
-              <input ng-model="old{{item_name_in_pascal_case}}.name" type="text" class="form-control"></input>
-            </div>
-          </div>
-        </div>
+        {{_inputs_html}}
         <div class="row">
           <div class="col-md-6 col-md-offset-6">
             <button ng-click="update{{item_name_in_pascal_case}}()" class="btn btn-fill col-md-4 pull-right btn-success">Lưu</button>

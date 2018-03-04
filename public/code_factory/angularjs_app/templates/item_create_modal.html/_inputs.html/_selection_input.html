@@ -2,8 +2,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>{{input_label}}</label>
-      <select name="{{input_name}}" class="form-control" ng-model="{{input_model_name}}.{{input_name}}" 
-                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for selection_item in selection_items" {{input_validation}}>
+      <select name="{{input_name}}" class="form-control" ng-model="{{input_model_name}}.{{input_name}}"
+                                   ng-options="{{selection_item}}.{{selection_item_value}} as {{selection_item}}.{{selection_item_display}} for {{selection_item}} in {{selection_item}}s" {{input_validation}}>
                                    <option value=""></option>
       </select>
       <div ng-messages="myForm.{{input_name}}.$error"

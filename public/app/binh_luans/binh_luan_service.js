@@ -118,7 +118,8 @@ if (binhLuanParams.filtering.binh_luan_duoc_chap_nhan) {
         scope: scope,
         size: binhLuanModel.updateModalSize,
         windowClass: binhLuanModel.updateModalWindowClass,
-        dependencies: binhLuanModel.meta.many_to_one
+        dependencies: binhLuanModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemUpdateModal(parameters);
@@ -150,7 +151,8 @@ if (binhLuanParams.filtering.binh_luan_duoc_chap_nhan) {
         scope: scope,
         size: binhLuanModel.createModalSize,
         windowClass: binhLuanModel.createModalWindowClass,
-        dependencies: binhLuanModel.meta.many_to_one
+        dependencies: binhLuanModel.meta.many_to_one,
+        ckeditorConfig: {language: 'vi', height: 700}
       }
 
       crudService.openItemCreateModal(parameters);
