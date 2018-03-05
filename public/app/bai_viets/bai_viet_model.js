@@ -24,7 +24,7 @@
       updateModalName: 'baiVietUpdateModal',
       updateModalSize: 'md',
       updateModalItemName: 'oldBaiViet',
-      updateModalWindowClass: "bai-viet-modal",
+      updateModalWindowClass: "",
       updateItemSuccessMessage: "Cập nhật thành công Bài viết",
       updateItemErrorMessage: "Lỗi xảy ra trong quá trình cập nhật Bài viết",
 
@@ -33,7 +33,7 @@
       createModalName: 'baiVietCreateModal',
       createModalSize: 'md',
       createModalItemName: 'newBaiViet',
-      createModalWindowClass: "bai-viet-modal",
+      createModalWindowClass: "",
       createItemErrorMessage: "Lỗi xảy ra trong quá trình tạo mới Bài viết",
       createItemSuccessMessage: "Tạo baiViet mới thành công",
 

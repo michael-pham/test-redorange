@@ -125,7 +125,12 @@ def _render_inputs_html(model):
 
         if attribute.ui_type == DATE_INPUT:
             data = input(form_model_name, attribute)
-            data[TPL_PATH_KEY] = PATH_BASE + _DATE_INPUT_HTML_TPL
+            data[TPL_PATH_KEY] = PATH_BASE + DATE_INPUT_HTML_TPL
+            inputs.append(data)
+
+        if attribute.ui_type == FILE_INPUT:
+            data = input(form_model_name, attribute)
+            data[TPL_PATH_KEY] = PATH_BASE + FILE_INPUT_HTML_TPL
             inputs.append(data)
 
     return inputs

@@ -37,6 +37,20 @@
   </div>
 </div>
 <div class="row">
+  <div class="col-md-6">
+    <label>Hình ảnh đại diện cho đường dẫn</label>
+    <input class="form-control-file btn btn-fill" type="file"
+      ngf-select ng-model="yourFile.file" name="file" accept="application/*"
+        ngf-max-size="5MB" ngf-model-invalid="errorFile">
+
+    <i ng-show="yourFile.file.$error.required">*required</i><br>
+    <i ng-show="yourFile.file.$error.maxSize">File too large
+      {{errorFile.size / 1000000|number:5}}MB: max 1M</i>
+  </div>
+  <button class="btn btn-fill btn-danger" ng-click="yourFile.file = null"
+                                          ng-show="yourFile.file">Xóa</button>
+</div>
+<div class="row">
   <div class="col-md-12">
     <div class="form-group">
       <label>ID đối tượng trỏ đến của đường dẫn</label>

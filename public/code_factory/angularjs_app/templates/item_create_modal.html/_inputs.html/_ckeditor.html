@@ -1,8 +1,11 @@
-<div class="row">
+<div style="text-align: center">
+  <img src="/app/assets/img/loading-icon.gif" ng-hide="ckeditorLoaded">
+</div>
+<div class="row" ng-show="ckeditorLoaded">
   <div class="col-md-12">
     <div class="form-group">
       <label>{{input_label}}</label>
-      <div ckeditor="ckeditorOptions" ng-model="{{input_model_name}}.{{input_name}}" ready="onReady()"></div>
+      <div ckeditor="ckeditorOptions" ng-model="{{input_model_name}}.{{input_name}}" ready="onCkeditorReady()"></div>
     </div>
   </div>
 </div>

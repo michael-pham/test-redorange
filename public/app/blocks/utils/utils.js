@@ -45,7 +45,7 @@ angular.module('blocks.utils', ['ui.bootstrap'])
 
         var promises = [];
         angular.forEach(M.children, function(child) {
-          child.data[child.name][utils.camelToSnakeCase(M.name) + "_id"] = 
+          child.data[child.name][utils.camelToSnakeCase(M.name) + "_id"] =
             successResponse.data.id;
           promises.push(createModel(child));
         });
@@ -163,7 +163,11 @@ angular.module('blocks.utils', ['ui.bootstrap'])
           mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
           height: ckeditorConfig.height || 700
         }
-      } 
+
+        scope.onCkeditorReady = function() {
+          scope.ckeditorLoaded = true;
+        }
+      }
 
       if (!size) size = 'lg';
 

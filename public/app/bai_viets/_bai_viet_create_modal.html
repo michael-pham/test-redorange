@@ -22,11 +22,14 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div style="text-align: center">
+  <img src="/app/assets/img/loading-icon.gif" ng-hide="ckeditorLoaded">
+</div>
+<div class="row" ng-show="ckeditorLoaded">
   <div class="col-md-12">
     <div class="form-group">
       <label>Nội dung</label>
-      <div ckeditor="ckeditorOptions" ng-model="newBaiViet.noi_dung" ready="onReady()"></div>
+      <div ckeditor="ckeditorOptions" ng-model="newBaiViet.noi_dung" ready="onCkeditorReady()"></div>
     </div>
   </div>
 </div>
@@ -155,6 +158,35 @@
       </div>
     </div>
   </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <label>Đường dẫn đến hình ảnh đại diện</label>
+    <input class="form-control-file btn btn-fill" type="file"
+      ngf-select ng-model="yourFile.file" name="file" accept="application/*"
+        ngf-max-size="5MB" ngf-model-invalid="errorFile">
+
+    <i ng-show="yourFile.file.$error.required">*required</i><br>
+    <i ng-show="yourFile.file.$error.maxSize">File too large
+      {{errorFile.size / 1000000|number:5}}MB: max 1M</i>
+  </div>
+  <button class="btn btn-fill btn-danger" ng-click="yourFile.file = null"
+                                          ng-show="yourFile.file">Xóa</button>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <label>Đường dẫn đến hình ảnh đại diện thumbnail</label>
+    <input class="form-control-file btn btn-fill" type="file"
+      ngf-select ng-model="yourFile.file" name="file" accept="application/*"
+        ngf-max-size="5MB" ngf-model-invalid="errorFile">
+
+    <i ng-show="yourFile.file.$error.required">*required</i><br>
+    <i ng-show="yourFile.file.$error.maxSize">File too large
+      {{errorFile.size / 1000000|number:5}}MB: max 1M</i>
+    <img ngf-thumbnail="yourFile.file || '/thumb.jpg'">
+  </div>
+  <button class="btn btn-fill btn-danger" ng-click="yourFile.file = null"
+                                          ng-show="yourFile.file">Xóa</button>
 </div>
 
         <div class="row">

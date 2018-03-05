@@ -38,19 +38,18 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <div class="form-group">
-      <label>Đường dẫn đến file</label>
-      <input name="file_url" ng-model="newFileDinhKemBaiViet.file_url" type="text"
-        class="form-control" required ></input>
+  <div class="col-md-6">
+    <label>Đường dẫn đến file</label>
+    <input class="form-control-file btn btn-fill" type="file"
+      ngf-select ng-model="yourFile.file" name="file" accept="application/*"
+        ngf-max-size="5MB" ngf-model-invalid="errorFile">
 
-      <div ng-messages="myForm.file_url.$error"
-        style="color:maroon" role="alert" ng-if='myForm.file_url.$dirty'>
-          <div ng-message="required">Đường dẫn đến file là trường bắt buộc</div>
-
-      </div>
-    </div>
+    <i ng-show="yourFile.file.$error.required">*required</i><br>
+    <i ng-show="yourFile.file.$error.maxSize">File too large
+      {{errorFile.size / 1000000|number:5}}MB: max 1M</i>
   </div>
+  <button class="btn btn-fill btn-danger" ng-click="yourFile.file = null"
+                                          ng-show="yourFile.file">Xóa</button>
 </div>
 
         <div class="row">
