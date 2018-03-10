@@ -197,18 +197,14 @@ angular.module('blocks.utils', ['ui.bootstrap'])
       object[newKey] = object[oldKey];
       delete object[oldKey]
     },
-    uploadFile(file, callback) {
-       file.upload = Upload.upload({
-         url: 'http://localhost:8000/file_upload',
-         data: {file: file},
-       });
-
-       file.upload.then(function (successResponse) {
-         callback(successResponse);
-       }, function (errorResponse) {
-         SweetAlert.swal("Error", successResponse.data.file.message, "error");
-       }, function (evt) {
-       });
+    uploadFile(data, uploadUrl) {
+       if (data.file) {
+	       return Upload.upload({
+		 url: uploadUrl,
+		 data: data,
+	       });
+	}
+	return $q.reject("File chưa được đính kèm."); 
     },
     uploadImage(file, callback) {
        file.upload = Upload.upload({
