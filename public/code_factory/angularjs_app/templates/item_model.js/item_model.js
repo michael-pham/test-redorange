@@ -12,13 +12,14 @@
       meta: {
         name: '{{item_name_in_camel_case}}',
         url: '/{{item_name_in_snake_case}}s',
+        has_file_attached: '{{has_file_attached}}',
         domestic: [
           {{domestic_attributes}}
         ],
         many_to_one: [{{item_many_to_one}}],
-        one_to_many: []
+        one_to_many: [{{item_one_to_many}}]
       },
-      includes: [],
+      includes: [{{includes_models}}],
       updateModalOpenErrorMessage: "Tải biểu mẫu cập nhật không thành công",
       updateModalUrl: '/app/{{item_name_in_snake_case}}s/_{{item_name_in_snake_case}}_update_modal.html',
       updateModalName: '{{item_name_in_camel_case}}UpdateModal',

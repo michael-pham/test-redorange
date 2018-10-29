@@ -14,6 +14,7 @@
     var service = {
       getItems: getItems,
       getItem: getItem,
+      getBasicItem: getBasicItem,
       openItemCreateModal: openItemCreateModal,
       createItem: createItem,
       openItemUpdateModal: openItemUpdateModal,
@@ -44,7 +45,17 @@
     }
 
     function submitCreateData(M, resultant) {
-      return $http.post(M.url, M.data)
+      var promise = {};
+      if (M.has_file_attched) {
+        promise = Upload.upload({
+    		  url: M.url,
+    		  data: M.data,
+        });
+      } else {
+        promise = $http.post(M.url, M.data);
+      }
+
+      return promise
         .then(function(response) {
           if (response.data.errors) {
             return $q.reject(response);
@@ -81,9 +92,39 @@
         });
     }
 
+    function getBasicItem(itemMeta, itemId) {
+      return $http.get(itemMeta.url + "/" + itemId)
+      .then(function(response) {
+        if (response.data.errors) {
+          return $q.reject(response);
+        }
+
+        return response;
+      })
+      .catch(function(response) {
+        var errorMessages = [];
+
+        if (response.data.message) {
+          errorMessages.push(response.data.message);
+        }
+
+        if (response.data.errors) {
+          angular.forEach(response.data.errors, function(error) {
+            errorMessages.push(error.detail);
+          })
+        }
+
+        angular.forEach(errorMessages, function(errorMessage) {
+          logger.error(errorMessage);
+        })
+
+        return $q.reject(errorMessages);
+      });
+    }
+
     function getSingle(itemMeta, itemId, result) {
       var includes = [];
-      angular.forEach(itemMeta.one_to_many, function(item, key) {
+      angular.forEach(itemMeta.many_to_one, function(item, key) {
         includes.push(item.name + "s");
       });
 
@@ -241,7 +282,6 @@
 
       var promises = [];
       angular.forEach(dependencies, function(dependency) {
-        console.log(dependency);
         promises.push(
           $http.get(dependency.url)
           .then(function(response) {

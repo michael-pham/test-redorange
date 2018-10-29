@@ -198,13 +198,13 @@ angular.module('blocks.utils', ['ui.bootstrap'])
       delete object[oldKey]
     },
     uploadFile(data, uploadUrl) {
-       if (data.file) {
-	       return Upload.upload({
-		 url: uploadUrl,
-		 data: data,
-	       });
-	}
-	return $q.reject("File chưa được đính kèm."); 
+      if (data.file) {
+        return Upload.upload({
+    		  url: uploadUrl,
+    		  data: data,
+        });
+    	}
+    	return $q.reject("File chưa được đính kèm.");
     },
     uploadImage(file, callback) {
        file.upload = Upload.upload({

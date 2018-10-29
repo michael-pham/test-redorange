@@ -13,6 +13,7 @@
       init{{item_name_in_pascal_case}}Params: init{{item_name_in_pascal_case}}Params,
       get{{item_name_in_pascal_case}}s: get{{item_name_in_pascal_case}}s,
       get{{item_name_in_pascal_case}}: get{{item_name_in_pascal_case}},
+      getBasic{{item_name_in_pascal_case}}: getBasic{{item_name_in_pascal_case}},
       open{{item_name_in_pascal_case}}CreateModal: open{{item_name_in_pascal_case}}CreateModal,
       create{{item_name_in_pascal_case}}: create{{item_name_in_pascal_case}},
       open{{item_name_in_pascal_case}}UpdateModal: open{{item_name_in_pascal_case}}UpdateModal,
@@ -81,6 +82,10 @@
 
     function get{{item_name_in_pascal_case}}({{item_name_in_camel_case}}Id) {
       return crudService.getItem({{item_name_in_camel_case}}Model.meta , {{item_name_in_camel_case}}Id);
+    }
+
+    function getBasic{{item_name_in_pascal_case}}({{item_name_in_camel_case}}Id) {
+      return crudService.getBasicItem({{item_name_in_camel_case}}Model.meta , {{item_name_in_camel_case}}Id);
     }
 
     function open{{item_name_in_pascal_case}}UpdateModal(scope, {{item_name_in_camel_case}}Id) {
